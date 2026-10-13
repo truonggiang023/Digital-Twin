@@ -20,11 +20,14 @@ function plot(id,rows,series,threshold=null){
  for(const cycle of [...new Set([minCycle,Math.round((minCycle+maxCycle)/2),maxCycle])])ctx.fillText(String(cycle),x(cycle)-4,height-16);
  ctx.textAlign='right';ctx.fillText('Chu kỳ xả',right,height-2);ctx.textAlign='left';
  if(threshold!==null){ctx.strokeStyle='#ef7777';ctx.setLineDash([5,4]);ctx.beginPath();ctx.moveTo(left,y(threshold));ctx.lineTo(right,y(threshold));ctx.stroke();ctx.setLineDash([]);}
+ const labelYs=[];
  for(const {key,color} of series){
   ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=2;ctx.beginPath();
   rows.forEach((r,i)=>i?ctx.lineTo(x(r.cycle),y(r[key])):ctx.moveTo(x(r.cycle),y(r[key])));ctx.stroke();
   for(const r of rows){ctx.beginPath();ctx.arc(x(r.cycle),y(r[key]),3,0,Math.PI*2);ctx.fill();}
-  const last=rows.at(-1);ctx.textAlign='right';ctx.fillText(last[key].toFixed(2),right,Math.max(top+12,Math.min(bottom-4,y(last[key])-7)));ctx.textAlign='left';
+  const last=rows.at(-1),desired=Math.max(top+12,Math.min(bottom-4,y(last[key])-7));
+  const labelY=[desired,desired+14,desired-14].find(v=>v>=top+12&&v<=bottom-4&&labelYs.every(other=>Math.abs(v-other)>=12))??desired;
+  labelYs.push(labelY);ctx.textAlign='right';ctx.fillText(last[key].toFixed(2),right,labelY);ctx.textAlign='left';
  }
 }
 
