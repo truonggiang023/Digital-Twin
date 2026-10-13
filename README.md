@@ -1,4 +1,4 @@
-# Digital-Twin
+# Digital-Twin Battery Cell
 
 Battery cycler simulator with a realtime 12-cell 3D dashboard.
 
