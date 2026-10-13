@@ -16,7 +16,11 @@ Random Forest inference once per discharge cycle. The latest result,
 feature cycle, sample count and simulated update timestamp are included
 in `/api/state` under each channel's `live_ml` field and shown in the
 channel table and selected-cell charts. The SOH chart plots simulated SOH
-against ML SOH, with an 80% EOL reference; the second chart plots predicted
+against ML SOH on a simulated-time axis, with an 80% EOL reference. The
+simulated curve is visible from startup and receives a point every 30
+simulated seconds, including charge/rest. ML points are added only after
+each complete early-discharge window; no ML values are invented while
+waiting. The second chart plots predicted
 remaining cycles. Each point is one completed feature window, not a
 fabricated intermediate prediction. Up to 200 per-channel points are held
 in the server under `live_ml_history`, so browser refresh does not lose the

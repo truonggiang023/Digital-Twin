@@ -44,7 +44,7 @@ class Rack:
                                    voltage_v=battery.ocv, current_a=0, soc=battery.soc,
                                    temperature_c=battery.temperature_c, stage_capacity_ah=0,
                                    status='ready', error='', live_ml=self.waiting_prediction(),
-                                   live_ml_history=[], **battery.health()))
+                                   live_ml_history=[],live_soh_history=[dict(time_s=0,simulated_soh_percent=100)], **battery.health()))
 
     @staticmethod
     def waiting_prediction():
@@ -56,6 +56,9 @@ class Rack:
     def collect_prediction(self,index):
         cell=self.cells[index]
         stage=cell['stage']
+        if cell['time_s']-cell['live_soh_history'][-1]['time_s']>=30:
+            cell['live_soh_history'].append(dict(time_s=cell['time_s'],simulated_soh_percent=cell['soh_percent']))
+            cell['live_soh_history']=cell['live_soh_history'][-2048:]
         if stage=='discharge':
             if self.previous_stages[index]!='discharge':
                 self.discharge_starts[index]=self.previous_times[index]
@@ -153,6 +156,10 @@ def make_handler(rack):
     class Handler(SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, directory=str(Path(__file__).parent / 'web'), **kwargs)
+
+        def end_headers(self):
+            self.send_header('Cache-Control','no-store')
+            super().end_headers()
 
         def send_json(self, data, code=200):
             body = json.dumps(data).encode()
