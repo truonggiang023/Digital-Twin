@@ -1,0 +1,21 @@
+{
+  "source": "batterylake-public-metadata",
+  "upstream_commit": "8d2a7304e4841b815287d3d0b2fcc67fea95b200",
+  "total": 40,
+  "filtered_matches": 1,
+  "example_dataset": {
+    "ref_name": "2007_NASA_PCoE_LCO_18650_1C_1C_25T",
+    "ref_name_aliases": [],
+    "dataset_name": "NASA PCoE Battery Aging",
+    "institution": "NASA Prognostics Center of Excellence",
+    "year": 2007,
+    "doi": null,
+    "paper_doi": null,
+    "source_url": "https://data.nasa.gov",
+    "delivery_url": null,
+    "study_group": null,
+    "notes": "34 LCO 18650 cells; charge/discharge cycling with interleaved EIS sweeps (0.1 Hz-5 kHz) to 30% fade; 4-44 \u00b0C; CC-CV charge, 1-4 A discharge"
+  },
+  "measurement_data_loaded": false,
+  "status": "live metadata GET verified"
+}

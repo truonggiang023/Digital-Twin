@@ -14,6 +14,7 @@
     <label>Tốc độ mô phỏng <select id="speed"><option value="1">1×</option><option value="10">10×</option><option value="60" selected>60×</option><option value="300">300×</option></select></label>
     <span id="run-status">Sẵn sàng</span>
   </section>
+  <section class="panel safety-panel"><h3>Kiểm thử cell bất thường</h3><div class="scenario"><label>Cell<select id="fault-cell" aria-label="Cell kiểm thử lỗi"></select></label><label>Tình huống<select id="fault-kind"><option value="overheat">Quá nhiệt 50 °C</option><option value="overvoltage">Quá áp 4,5 V</option><option value="overcurrent">Quá dòng 8 A</option><option value="capacity_drop">Dung lượng giảm đột ngột</option></select></label><button id="inject-fault">Chèn lỗi mô phỏng</button></div><p class="muted">Lỗi được áp dụng tại bước mô phỏng kế tiếp khi đang chạy. Dừng toàn bộ tủ, dòng về 0; cần Reset để chạy lại. Chỉ áp dụng trong mô phỏng.</p><p id="fault-pending" role="status"></p><div id="safety-alarm" role="alert" hidden></div></section>
   <section class="layout">
     <div class="panel scene-panel"><div class="section-title">TỦ CYCLER 3D <span>Kéo để xoay · Cuộn để zoom · Chọn cell</span></div><div id="scene"></div>
       <div class="legend"><span>Nhiệt độ cell · °C</span><div class="colorbar"></div><div class="ticks"><span>20</span><span>25</span><span>30</span><span>35</span><span>40</span><span>45</span></div></div>
@@ -25,6 +26,29 @@
       <div class="health"><span>SOH <b id="health-soh">—</b></span><span>Dung lượng <b id="health-capacity">—</b></span><span>Nội trở <b id="health-resistance">—</b></span><span>EFC <b id="health-efc">—</b></span></div>
       <h3>Lịch sử cell được chọn</h3><div id="charts"></div><p class="muted">Lưu tối đa 240 mẫu gần nhất, lấy mẫu mỗi 250 ms thực tế.</p>
     </aside>
+  </section>
+  <section class="panel ml-panel"><div class="section-title">ML PREDICTION · RAW DATA REPLAY <span>Random Forest / NASA</span></div>
+    <p class="model-note">Huấn luyện B0005/B0006/B0007, kiểm tra riêng B0018. Đầu vào: số chu kỳ và điện áp/dòng/nhiệt độ của 600 giây đầu khi xả. Không dùng dung lượng của chu kỳ hiện tại làm đầu vào.</p>
+    <div class="scenario"><button id="ml-load">Tải raw data replay</button><button id="ml-play" disabled>▶ Phát lại</button><button id="ml-pause" disabled>Ⅱ Dừng phát</button><label>Chu kỳ kiểm tra<input id="ml-cycle" type="range" min="0" max="131" value="0" disabled></label></div>
+    <p id="ml-status" role="status">Bấm Tải raw data replay để xem dự báo ML trên cell B0018.</p>
+    <div class="prediction-stats"><div><small>SOH đo / ML</small><strong id="ml-soh">—</strong></div><div><small>RUL thực / ML (chu kỳ)</small><strong id="ml-rul">—</strong></div><div><small>MAE SOH kiểm tra</small><strong id="ml-mae-soh">—</strong></div><div><small>MAE RUL kiểm tra</small><strong id="ml-mae-rul">—</strong></div></div>
+    <canvas id="ml-chart" aria-label="SOH đo và dự báo ML trên dữ liệu kiểm tra"></canvas>
+    <p class="muted">Xanh: SOH đo · Tím: SOH dự báo ML · Đỏ: EOL 80%. RUL thực là nhãn đối chiếu tính sau khi có dữ liệu tới EOL, không phải đầu vào. Replay độc lập với 12 cell giả lập; không dùng mô hình NASA cho cell/hóa học bất kỳ.</p>
+  </section>
+  <section class="panel lake-panel">
+    <div class="section-title">BATTERYLAKE · DỮ LIỆU THAM KHẢO <span>Public metadata API</span></div>
+    <p class="muted">Dữ liệu thật từ BatteryLake. Metadata mô tả thử nghiệm; chưa tải dữ liệu đo hay huấn luyện mô hình dự báo.</p>
+    <form id="lake-form" class="scenario">
+      <label>Hóa học<select id="lake-chemistry"><option value="">Tất cả</option></select></label>
+      <label>Tác vụ<select id="lake-task"><option value="">Tất cả</option><option>SOH</option><option>RUL</option></select></label>
+      <label>Tìm bộ dữ liệu<input id="lake-search" placeholder="NASA, Stanford, LFP…" maxlength="100"></label>
+      <button type="submit">Tải danh mục</button>
+    </form>
+    <p id="lake-status" role="status">Bấm Tải danh mục để kết nối BatteryLake.</p>
+    <label class="lake-select-label">Bộ dữ liệu<select id="lake-dataset" disabled></select></label>
+    <div id="lake-details"></div>
+    <button id="lake-apply" type="button" disabled>Dùng điều kiện cho dự báo</button>
+    <p id="lake-reference" class="muted"></p>
   </section>
   <section class="panel forecast-panel">
     <div class="section-title">CYCLE PREDICTION / BATTERY DEGRADATION <span id="prediction-cell">CH 01</span></div>

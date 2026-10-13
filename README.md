@@ -4,6 +4,82 @@ Battery cycler simulator with a realtime 12-cell 3D dashboard.
 
 Requires Python 3.11+; no external dependencies.
 
+## BatteryLake metadata + trained ML on real discharge records
+
+The new **BatteryLake** panel calls the public metadata JSON interface from
+`tianwen1209/batterylake`, pinned at commit
+`8d2a7304e4841b815287d3d0b2fcc67fea95b200`. You can search/filter its
+40 datasets, inspect a record, and copy a temperature setpoint and the
+maximum discharge C-rate into the illustrative scenario forecast.
+Metadata does not itself contain capacity trajectories or calibrate a model.
+Use the original links for data access, licensing and citation. The catalog
+requires Internet access to `raw.githubusercontent.com`; errors are reported
+without replacing the catalog with synthetic records.
+
+Local read-only APIs:
+
+```text
+GET /api/batterylake/datasets?chemistry=LCO&task=SOH&search=NASA
+GET /api/batterylake/datasets/dataset_01
+GET /api/ml/replay
+POST /api/ml/predict
+```
+
+BatteryLake's website API console contains simulated `/v1` calls. This
+integration uses their actual public metadata files rather than claiming
+an authenticated REST model service is connected.
+
+The **ML Prediction / Raw Data Replay** panel uses Random Forest models
+trained on NASA discharge time-series CSV records (a public export linked
+to the NASA dataset represented by BatteryLake `dataset_01`). No simulated
+cycler data is used to train these models. B0005/B0006/B0007 are training
+cells; B0018 is a separate test cell. Predictions use cycle number and
+voltage/current/temperature from the first 600 discharge seconds. Capacity
+from the current full discharge is excluded from the features.
+
+Load the replay, press Play, or move its cycle slider. The browser calls
+`POST /api/ml/predict` for actual model inference. SOH compares measured
+capacity / first observed capacity against predicted SOH; RUL compares
+remaining cycles to the first observed 80% crossing against prediction.
+Ground truth RUL is retrospective and is never a model input. RUL metrics
+exclude post-EOL rows; the replay retains them and may show nonzero model
+RUL after the measured crossing. Do not apply these four-cell NASA models
+to arbitrary chemistries or the illustrative 12-cell rack.
+
+See [ML metrics, data provenance and screenshot](results/ML-REPORT.md).
+The server reads our own exported JSON forests, without pickle/joblib or
+runtime ML packages. **Optional retraining** needs:
+
+```sh
+python -m pip install -r requirements-ml.txt
+python -B train_ml.py
+python -B -m unittest -v test_aging test_integrations
+```
+
+Training downloads the pinned 21 MB measured CSV export, verifies SHA-256,
+extracts 636 cycles from 169,766 samples, and overwrites our model/report
+artifacts. The raw download is ignored under `data/`. No third-party model
+file is loaded. `POST /api/ml/predict` accepts a JSON `features` object with
+exactly `cycle`, `voltage_mean`, `voltage_std`, `voltage_end`,
+`temperature_mean`, `current_mean` and `ambient_temperature` (V, A, °C).
+
+## Abnormal-cell cases and STOP alarms
+
+Choose a cell and inject overheat (50 °C), overvoltage (4.5 V), overcurrent
+(8 A), or sudden capacity loss. Click Start if paused; injection takes
+effect at the next simulation step. A violation immediately latches
+**STOP**, pauses the entire rack, sets all channel currents to zero, and
+records the offending values and reason. Start is rejected with HTTP 409
+until Reset clears the fault and creates fresh cells.
+
+The same limits apply to uninjected telemetry: 45 °C, voltage outside
+3.0–4.2 V (1e-5 V discretization tolerance), |current| above 2.2 A, or SOH
+below 80%. These limits match the demonstration protocol, not a universal
+battery safety standard. The simulation source freezes on STOP; it is not
+an independent hardware interlock and does not command a physical cycler.
+
+See [executed abnormal-case report](results/SAFETY-REPORT.md).
+
 ## SOH, cycle prediction and battery degradation
 
 The dashboard now tracks SOH, usable capacity, internal resistance and
@@ -50,7 +126,9 @@ nonfinite or unknown parameters return HTTP 400.
 
 ## Dashboard screenshots and simulation results
 
-![Battery cycler dashboard with cycle prediction](results/dashboard-aging.png)
+![Battery cycler dashboard with ML replay](results/dashboard-ml.png)
+
+[ML test results](results/ML-REPORT.md) · [Abnormal cell STOP cases](results/SAFETY-REPORT.md)
 
 All 12 cells completed three cycles in the recorded example run. The highest
 temperature was 28.72 °C, and the last cell finished after approximately

@@ -1,0 +1,2556 @@
+{
+  "source": "NASA measured discharge CSV export",
+  "raw_url": "https://raw.githubusercontent.com/fmardero/battery_aging/1e1fc5c5b1a7dd3d44db0df0c429b6e893d4692c/discharge.csv",
+  "raw_sha256": "2aad0bb75e77c63439dbe93ddfb91d09e1971b590327c4830fcda0e41440944d",
+  "batterylake_dataset": "dataset_01",
+  "training_cells": [
+    "B0005",
+    "B0006",
+    "B0007"
+  ],
+  "test_cell": "B0018",
+  "raw_rows": 169766,
+  "cycle_rows": 636,
+  "features": [
+    "cycle",
+    "voltage_mean",
+    "voltage_std",
+    "voltage_end",
+    "temperature_mean",
+    "current_mean",
+    "ambient_temperature"
+  ],
+  "early_window_s": 600,
+  "soh_reference": "first observed capacity per cell",
+  "eol_soh_percent": 80,
+  "split": "cross-cell; B0018 never used for fitting",
+  "metrics": {
+    "soh": {
+      "mae": 2.4085197333236787,
+      "rmse": 3.041714705026444,
+      "test_rows": 132,
+      "train_rows": 504,
+      "constant_baseline_mae": 7.402114872426298,
+      "units": "percentage points"
+    },
+    "rul": {
+      "mae": 10.731016656345602,
+      "rmse": 14.09464349122745,
+      "test_rows": 75,
+      "train_rows": 286,
+      "constant_baseline_mae": 21.259300699300695,
+      "units": "cycles"
+    }
+  },
+  "replay": [
+    {
+      "cell": "B0018",
+      "cycle": 1,
+      "capacity_ah": 1.8550045207910817,
+      "soh_percent": 100.0,
+      "true_rul": 74.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 1,
+        "voltage_mean": 3.8246897862991913,
+        "voltage_std": 0.061530463726637834,
+        "voltage_end": 3.739740343003822,
+        "temperature_mean": 26.488144615167624,
+        "current_mean": 2.0092021352794123,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.72015258633606,
+      "predicted_rul": 16.56441985098235
+    },
+    {
+      "cell": "B0018",
+      "cycle": 2,
+      "capacity_ah": 1.8431955317089987,
+      "soh_percent": 99.3633983664338,
+      "true_rul": 73.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 2,
+        "voltage_mean": 3.8322131305234857,
+        "voltage_std": 0.06168300975118028,
+        "voltage_end": 3.745476857895037,
+        "temperature_mean": 26.880342572756476,
+        "current_mean": 2.0085496520442914,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 88.94235044669236,
+      "predicted_rul": 48.872481129981125
+    },
+    {
+      "cell": "B0018",
+      "cycle": 3,
+      "capacity_ah": 1.8396018424355425,
+      "soh_percent": 99.16966895859797,
+      "true_rul": 72.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 3,
+        "voltage_mean": 3.8360892085806064,
+        "voltage_std": 0.0615682052440951,
+        "voltage_end": 3.7492186520619626,
+        "temperature_mean": 26.283093031798288,
+        "current_mean": 2.008292833590432,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 91.60934849972043,
+      "predicted_rul": 60.59627917221667
+    },
+    {
+      "cell": "B0018",
+      "cycle": 4,
+      "capacity_ah": 1.8306736044962053,
+      "soh_percent": 98.68836350412234,
+      "true_rul": 71.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 4,
+        "voltage_mean": 3.835037228797665,
+        "voltage_std": 0.06195618870328201,
+        "voltage_end": 3.7475296333589,
+        "temperature_mean": 25.784371903575707,
+        "current_mean": 2.00817806881501,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 89.5235281714057,
+      "predicted_rul": 52.81534857503608
+    },
+    {
+      "cell": "B0018",
+      "cycle": 5,
+      "capacity_ah": 1.8327002069419656,
+      "soh_percent": 98.79761404357093,
+      "true_rul": 70.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 5,
+        "voltage_mean": 3.842741412761762,
+        "voltage_std": 0.06177299361132769,
+        "voltage_end": 3.7542608723088735,
+        "temperature_mean": 26.914898053788754,
+        "current_mean": 2.0093933702635645,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 96.49461826967946,
+      "predicted_rul": 77.83175536269286
+    },
+    {
+      "cell": "B0018",
+      "cycle": 6,
+      "capacity_ah": 1.8285288846046388,
+      "soh_percent": 98.57274546289773,
+      "true_rul": 69.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 6,
+        "voltage_mean": 3.8478868994618596,
+        "voltage_std": 0.061143559857831015,
+        "voltage_end": 3.760274566902437,
+        "temperature_mean": 27.12563056877991,
+        "current_mean": 2.008509374626898,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 96.91805400840869,
+      "predicted_rul": 83.94768349705849
+    },
+    {
+      "cell": "B0018",
+      "cycle": 7,
+      "capacity_ah": 1.8212011895697924,
+      "soh_percent": 98.17772243450526,
+      "true_rul": 68.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 7,
+        "voltage_mean": 3.8465039883850807,
+        "voltage_std": 0.06150743252207436,
+        "voltage_end": 3.758149257432217,
+        "temperature_mean": 26.759413735979997,
+        "current_mean": 2.008953721837458,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 96.57218197243085,
+      "predicted_rul": 80.7776401029526
+    },
+    {
+      "cell": "B0018",
+      "cycle": 8,
+      "capacity_ah": 1.815170010643328,
+      "soh_percent": 97.85259228744272,
+      "true_rul": 67.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 8,
+        "voltage_mean": 3.8447808742230634,
+        "voltage_std": 0.06189760237909136,
+        "voltage_end": 3.755792639336901,
+        "temperature_mean": 26.39427658098783,
+        "current_mean": 2.0086053551223775,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 96.11549648837156,
+      "predicted_rul": 76.11783761377511
+    },
+    {
+      "cell": "B0018",
+      "cycle": 9,
+      "capacity_ah": 1.8042980520967649,
+      "soh_percent": 97.26650430627022,
+      "true_rul": 66.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 9,
+        "voltage_mean": 3.8438546178448325,
+        "voltage_std": 0.06130498320787949,
+        "voltage_end": 3.755999547680775,
+        "temperature_mean": 26.130651817570868,
+        "current_mean": 2.0087125109510997,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 95.82469953395395,
+      "predicted_rul": 68.76281371406371
+    },
+    {
+      "cell": "B0018",
+      "cycle": 10,
+      "capacity_ah": 1.8231002302844224,
+      "soh_percent": 98.28009634752515,
+      "true_rul": 65.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 10,
+        "voltage_mean": 3.8450695218603537,
+        "voltage_std": 0.061977778072382264,
+        "voltage_end": 3.7562024364749695,
+        "temperature_mean": 26.062980820540076,
+        "current_mean": 2.0089402532384155,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 95.69676197657468,
+      "predicted_rul": 71.84832011738261
+    },
+    {
+      "cell": "B0018",
+      "cycle": 11,
+      "capacity_ah": 1.8121253520255487,
+      "soh_percent": 97.68846014740456,
+      "true_rul": 64.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 11,
+        "voltage_mean": 3.8473905752031827,
+        "voltage_std": 0.061846351806871355,
+        "voltage_end": 3.758265157901785,
+        "temperature_mean": 26.583308751415814,
+        "current_mean": 2.008544333590471,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 95.18186687564275,
+      "predicted_rul": 75.15616598679098
+    },
+    {
+      "cell": "B0018",
+      "cycle": 12,
+      "capacity_ah": 1.8046916382117768,
+      "soh_percent": 97.28772183488542,
+      "true_rul": 63.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 12,
+        "voltage_mean": 3.8476047564718083,
+        "voltage_std": 0.06170858515898121,
+        "voltage_end": 3.758710308199232,
+        "temperature_mean": 26.425938824125588,
+        "current_mean": 2.0085445778965445,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 94.66894818290825,
+      "predicted_rul": 74.51571414696414
+    },
+    {
+      "cell": "B0018",
+      "cycle": 13,
+      "capacity_ah": 1.790844349786295,
+      "soh_percent": 96.54123910288773,
+      "true_rul": 62.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 13,
+        "voltage_mean": 3.8442604077331928,
+        "voltage_std": 0.06220299976776408,
+        "voltage_end": 3.754669699580017,
+        "temperature_mean": 26.004140849459457,
+        "current_mean": 2.00831930865855,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 94.12234504470631,
+      "predicted_rul": 64.28591651404152
+    },
+    {
+      "cell": "B0018",
+      "cycle": 14,
+      "capacity_ah": 1.783470722841926,
+      "soh_percent": 96.14373996680884,
+      "true_rul": 61.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 14,
+        "voltage_mean": 3.8404589421631794,
+        "voltage_std": 0.06245773640293111,
+        "voltage_end": 3.7506798553820486,
+        "temperature_mean": 25.587632634292415,
+        "current_mean": 2.008297360368377,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 90.57979270734889,
+      "predicted_rul": 48.06478622072372
+    },
+    {
+      "cell": "B0018",
+      "cycle": 15,
+      "capacity_ah": 1.7809386125310702,
+      "soh_percent": 96.00723839592449,
+      "true_rul": 60.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 15,
+        "voltage_mean": 3.8466585503395008,
+        "voltage_std": 0.06249201325760242,
+        "voltage_end": 3.756765069728632,
+        "temperature_mean": 25.754191091396418,
+        "current_mean": 2.0093378637565986,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 94.17611861401733,
+      "predicted_rul": 67.8716759976135
+    },
+    {
+      "cell": "B0018",
+      "cycle": 16,
+      "capacity_ah": 1.7712090396726985,
+      "soh_percent": 95.48273439880093,
+      "true_rul": 59.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 16,
+        "voltage_mean": 3.846859256244243,
+        "voltage_std": 0.06235982403243476,
+        "voltage_end": 3.7568102807636192,
+        "temperature_mean": 26.451566540837135,
+        "current_mean": 2.009082426230728,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 94.25050533946632,
+      "predicted_rul": 67.78596143439894
+    },
+    {
+      "cell": "B0018",
+      "cycle": 17,
+      "capacity_ah": 1.7686303996707076,
+      "soh_percent": 95.34372449488484,
+      "true_rul": 58.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 17,
+        "voltage_mean": 3.8476077922128775,
+        "voltage_std": 0.06260607526286613,
+        "voltage_end": 3.756666064930499,
+        "temperature_mean": 26.648264560132237,
+        "current_mean": 2.008456305035648,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 94.2341895911671,
+      "predicted_rul": 69.27628111471861
+    },
+    {
+      "cell": "B0018",
+      "cycle": 18,
+      "capacity_ah": 1.7536304801917124,
+      "soh_percent": 94.53510546938519,
+      "true_rul": 57.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 18,
+        "voltage_mean": 3.843323867496097,
+        "voltage_std": 0.06317076250512658,
+        "voltage_end": 3.7518761934078926,
+        "temperature_mean": 26.23489802992882,
+        "current_mean": 2.007962856763821,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 90.55150378714399,
+      "predicted_rul": 52.0264470945721
+    },
+    {
+      "cell": "B0018",
+      "cycle": 19,
+      "capacity_ah": 1.7462197416415093,
+      "soh_percent": 94.13560571253055,
+      "true_rul": 56.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 19,
+        "voltage_mean": 3.839014803784216,
+        "voltage_std": 0.06296803694305174,
+        "voltage_end": 3.7481340873886575,
+        "temperature_mean": 25.591534368285277,
+        "current_mean": 2.0079040797581222,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 89.1222735296853,
+      "predicted_rul": 35.97660304972805
+    },
+    {
+      "cell": "B0018",
+      "cycle": 20,
+      "capacity_ah": 1.7376647337053737,
+      "soh_percent": 93.67442042482638,
+      "true_rul": 55.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 20,
+        "voltage_mean": 3.839021093081578,
+        "voltage_std": 0.06391017766261531,
+        "voltage_end": 3.7469156810085305,
+        "temperature_mean": 25.253552523080632,
+        "current_mean": 2.008182466697857,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 89.10645972863696,
+      "predicted_rul": 35.11065562909313
+    },
+    {
+      "cell": "B0018",
+      "cycle": 21,
+      "capacity_ah": 1.7315166735475835,
+      "soh_percent": 93.34298941811551,
+      "true_rul": 54.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 21,
+        "voltage_mean": 3.836853392756182,
+        "voltage_std": 0.06430064883028203,
+        "voltage_end": 3.744399211357758,
+        "temperature_mean": 25.07859365451211,
+        "current_mean": 2.0083299739942424,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 88.31902186843794,
+      "predicted_rul": 33.61259826978577
+    },
+    {
+      "cell": "B0018",
+      "cycle": 22,
+      "capacity_ah": 1.7085949894470602,
+      "soh_percent": 92.10732212762565,
+      "true_rul": 53.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 22,
+        "voltage_mean": 3.8321350259812808,
+        "voltage_std": 0.06466447724939743,
+        "voltage_end": 3.738937109985056,
+        "temperature_mean": 25.219022491107477,
+        "current_mean": 2.0083557840844333,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.73587278155297,
+      "predicted_rul": 28.349405923937173
+    },
+    {
+      "cell": "B0018",
+      "cycle": 23,
+      "capacity_ah": 1.7114699570682108,
+      "soh_percent": 92.26230652733615,
+      "true_rul": 52.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 23,
+        "voltage_mean": 3.834542962837932,
+        "voltage_std": 0.0643184262978912,
+        "voltage_end": 3.742022373539168,
+        "temperature_mean": 25.148530049898717,
+        "current_mean": 2.0085342689828463,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 87.97157495192585,
+      "predicted_rul": 26.81891237234987
+    },
+    {
+      "cell": "B0018",
+      "cycle": 24,
+      "capacity_ah": 1.7075021373272627,
+      "soh_percent": 92.04840841029782,
+      "true_rul": 51.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 24,
+        "voltage_mean": 3.8327374393843385,
+        "voltage_std": 0.06455836339805801,
+        "voltage_end": 3.73979705470556,
+        "temperature_mean": 25.041066509499796,
+        "current_mean": 2.008124228524696,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.81675711146049,
+      "predicted_rul": 26.083795804889554
+    },
+    {
+      "cell": "B0018",
+      "cycle": 25,
+      "capacity_ah": 1.7492382064360228,
+      "soh_percent": 94.29832579006579,
+      "true_rul": 50.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 25,
+        "voltage_mean": 3.8381049064643604,
+        "voltage_std": 0.06395457552348979,
+        "voltage_end": 3.745702929854468,
+        "temperature_mean": 25.115312282936507,
+        "current_mean": 2.0086194376510633,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 88.74120065532145,
+      "predicted_rul": 29.15803613053613
+    },
+    {
+      "cell": "B0018",
+      "cycle": 26,
+      "capacity_ah": 1.7327697147429957,
+      "soh_percent": 93.4105386440806,
+      "true_rul": 49.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 26,
+        "voltage_mean": 3.841026524110816,
+        "voltage_std": 0.06411685052116903,
+        "voltage_end": 3.748028799747935,
+        "temperature_mean": 25.89939382130384,
+        "current_mean": 2.009706570562416,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 89.1876096486238,
+      "predicted_rul": 34.0663543054168
+    },
+    {
+      "cell": "B0018",
+      "cycle": 27,
+      "capacity_ah": 1.7222313328292376,
+      "soh_percent": 92.84243318688938,
+      "true_rul": 48.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 27,
+        "voltage_mean": 3.8430317752360414,
+        "voltage_std": 0.06366468362604318,
+        "voltage_end": 3.750390340620137,
+        "temperature_mean": 26.387980290218522,
+        "current_mean": 2.0091222359018817,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 90.17201365526924,
+      "predicted_rul": 38.612865016927515
+    },
+    {
+      "cell": "B0018",
+      "cycle": 28,
+      "capacity_ah": 1.711846298984729,
+      "soh_percent": 92.28259445182907,
+      "true_rul": 47.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 28,
+        "voltage_mean": 3.8415135056246075,
+        "voltage_std": 0.06427427733643873,
+        "voltage_end": 3.748009439891197,
+        "temperature_mean": 26.397870292443347,
+        "current_mean": 2.0089069224548197,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 89.15767619369424,
+      "predicted_rul": 33.28737543706294
+    },
+    {
+      "cell": "B0018",
+      "cycle": 29,
+      "capacity_ah": 1.6992678351266868,
+      "soh_percent": 91.6045117993578,
+      "true_rul": 46.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 29,
+        "voltage_mean": 3.837099704539326,
+        "voltage_std": 0.06455421394626447,
+        "voltage_end": 3.7432757135444414,
+        "temperature_mean": 26.11401493581672,
+        "current_mean": 2.008248593979087,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 88.17994266212011,
+      "predicted_rul": 27.583118201243202
+    },
+    {
+      "cell": "B0018",
+      "cycle": 30,
+      "capacity_ah": 1.6940366439243106,
+      "soh_percent": 91.32250757005568,
+      "true_rul": 45.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 30,
+        "voltage_mean": 3.836805846093512,
+        "voltage_std": 0.06537458399639297,
+        "voltage_end": 3.741946571988065,
+        "temperature_mean": 25.969511926100765,
+        "current_mean": 2.008781102633463,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 87.61519506623011,
+      "predicted_rul": 27.536973946192695
+    },
+    {
+      "cell": "B0018",
+      "cycle": 31,
+      "capacity_ah": 1.6819027078768087,
+      "soh_percent": 90.66838862255429,
+      "true_rul": 44.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 31,
+        "voltage_mean": 3.8347235335201737,
+        "voltage_std": 0.06588199369476275,
+        "voltage_end": 3.7389915427778817,
+        "temperature_mean": 25.982451720269765,
+        "current_mean": 2.0089391409945345,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.8722213061154,
+      "predicted_rul": 27.39512964466089
+    },
+    {
+      "cell": "B0018",
+      "cycle": 32,
+      "capacity_ah": 1.6769770618433686,
+      "soh_percent": 90.40285579078848,
+      "true_rul": 43.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 32,
+        "voltage_mean": 3.836574715182883,
+        "voltage_std": 0.06548274185667796,
+        "voltage_end": 3.741590093294049,
+        "temperature_mean": 26.22957789013768,
+        "current_mean": 2.008817291709702,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 87.61519506623011,
+      "predicted_rul": 28.60779305763681
+    },
+    {
+      "cell": "B0018",
+      "cycle": 33,
+      "capacity_ah": 1.6655229306478936,
+      "soh_percent": 89.78538391580942,
+      "true_rul": 42.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 33,
+        "voltage_mean": 3.834508618202789,
+        "voltage_std": 0.06572471112484529,
+        "voltage_end": 3.739106209239393,
+        "temperature_mean": 26.47848868659394,
+        "current_mean": 2.0083841987737383,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.86040916551332,
+      "predicted_rul": 28.742660065628815
+    },
+    {
+      "cell": "B0018",
+      "cycle": 34,
+      "capacity_ah": 1.6571924575832084,
+      "soh_percent": 89.33630290434469,
+      "true_rul": 41.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 34,
+        "voltage_mean": 3.830264586438085,
+        "voltage_std": 0.06600073818536409,
+        "voltage_end": 3.7342728174557807,
+        "temperature_mean": 26.20660314875728,
+        "current_mean": 2.0081332384812085,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.49492092080685,
+      "predicted_rul": 22.82233761030636
+    },
+    {
+      "cell": "B0018",
+      "cycle": 35,
+      "capacity_ah": 1.6482241555294048,
+      "soh_percent": 88.85283766459536,
+      "true_rul": 40.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 35,
+        "voltage_mean": 3.831309203614647,
+        "voltage_std": 0.06697367947026517,
+        "voltage_end": 3.7338506428796143,
+        "temperature_mean": 25.999603016143876,
+        "current_mean": 2.0087167085032736,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.4353723753766,
+      "predicted_rul": 26.687927714646463
+    },
+    {
+      "cell": "B0018",
+      "cycle": 36,
+      "capacity_ah": 1.6387701497987262,
+      "soh_percent": 88.34318900203324,
+      "true_rul": 39.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 36,
+        "voltage_mean": 3.8285650367160327,
+        "voltage_std": 0.06753759222372559,
+        "voltage_end": 3.7309329364605577,
+        "temperature_mean": 25.833583135136642,
+        "current_mean": 2.00831801667488,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.81682558712482,
+      "predicted_rul": 20.008463116744366
+    },
+    {
+      "cell": "B0018",
+      "cycle": 37,
+      "capacity_ah": 1.6276486907262062,
+      "soh_percent": 87.74365089051547,
+      "true_rul": 38.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 37,
+        "voltage_mean": 3.8263919823993082,
+        "voltage_std": 0.06738245366180724,
+        "voltage_end": 3.729116000735565,
+        "temperature_mean": 25.76725835469695,
+        "current_mean": 2.009274981520442,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.35429627568149,
+      "predicted_rul": 16.3658675525863
+    },
+    {
+      "cell": "B0018",
+      "cycle": 38,
+      "capacity_ah": 1.62215370227252,
+      "soh_percent": 87.44742581978934,
+      "true_rul": 37.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 38,
+        "voltage_mean": 3.827133011338278,
+        "voltage_std": 0.06770707047042909,
+        "voltage_end": 3.729283348685782,
+        "temperature_mean": 26.021376901987914,
+        "current_mean": 2.008721245461697,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.43350210499224,
+      "predicted_rul": 17.587093583499833
+    },
+    {
+      "cell": "B0018",
+      "cycle": 39,
+      "capacity_ah": 1.6140066510467586,
+      "soh_percent": 87.00823275398015,
+      "true_rul": 36.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 39,
+        "voltage_mean": 3.8236348885292317,
+        "voltage_std": 0.06769331212958601,
+        "voltage_end": 3.7255932263426415,
+        "temperature_mean": 26.19351321741857,
+        "current_mean": 2.0084728012210915,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 84.80610670967641,
+      "predicted_rul": 14.888822323509823
+    },
+    {
+      "cell": "B0018",
+      "cycle": 40,
+      "capacity_ah": 1.6760516154424625,
+      "soh_percent": 90.35296661852321,
+      "true_rul": 35.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 40,
+        "voltage_mean": 3.8325384931574646,
+        "voltage_std": 0.06620206767339643,
+        "voltage_end": 3.73625609596628,
+        "temperature_mean": 25.542750529111743,
+        "current_mean": 2.008861060671334,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.55438998457237,
+      "predicted_rul": 27.149207025613276
+    },
+    {
+      "cell": "B0018",
+      "cycle": 41,
+      "capacity_ah": 1.649300642552199,
+      "soh_percent": 88.91086916860134,
+      "true_rul": 34.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 41,
+        "voltage_mean": 3.82860603202465,
+        "voltage_std": 0.0669618793856167,
+        "voltage_end": 3.730965138385192,
+        "temperature_mean": 25.907014038991296,
+        "current_mean": 2.0082725457801653,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.81682558712482,
+      "predicted_rul": 19.668909545315795
+    },
+    {
+      "cell": "B0018",
+      "cycle": 42,
+      "capacity_ah": 1.63238299185809,
+      "soh_percent": 87.99886865838727,
+      "true_rul": 33.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 42,
+        "voltage_mean": 3.828795766175486,
+        "voltage_std": 0.06732505681981124,
+        "voltage_end": 3.7309511697671582,
+        "temperature_mean": 25.651946738867395,
+        "current_mean": 2.008331563485294,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.81682558712482,
+      "predicted_rul": 19.88694525960151
+    },
+    {
+      "cell": "B0018",
+      "cycle": 43,
+      "capacity_ah": 1.6164159719025777,
+      "soh_percent": 87.13811496336645,
+      "true_rul": 32.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 43,
+        "voltage_mean": 3.8242560793858367,
+        "voltage_std": 0.06802897673694185,
+        "voltage_end": 3.72595009627092,
+        "temperature_mean": 25.406147297340134,
+        "current_mean": 2.0080555470760397,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 84.89452992280789,
+      "predicted_rul": 15.572438394938393
+    },
+    {
+      "cell": "B0018",
+      "cycle": 44,
+      "capacity_ah": 1.6109028378249377,
+      "soh_percent": 86.84091169427205,
+      "true_rul": 31.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 44,
+        "voltage_mean": 3.820404085093965,
+        "voltage_std": 0.06854357662167782,
+        "voltage_end": 3.721403285378544,
+        "temperature_mean": 25.157124829520054,
+        "current_mean": 2.00803415536489,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 84.15888019152386,
+      "predicted_rul": 15.242224303474302
+    },
+    {
+      "cell": "B0018",
+      "cycle": 45,
+      "capacity_ah": 1.5954638693695655,
+      "soh_percent": 86.00862431802415,
+      "true_rul": 30.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 45,
+        "voltage_mean": 3.8190361584301447,
+        "voltage_std": 0.0692029994878379,
+        "voltage_end": 3.718721100015826,
+        "temperature_mean": 25.127334254231517,
+        "current_mean": 2.008328061334691,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 83.59866778498129,
+      "predicted_rul": 14.589906482406482
+    },
+    {
+      "cell": "B0018",
+      "cycle": 46,
+      "capacity_ah": 1.7267074400857645,
+      "soh_percent": 93.08373218138551,
+      "true_rul": 29.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 46,
+        "voltage_mean": 3.8378691532193385,
+        "voltage_std": 0.06332274181747757,
+        "voltage_end": 3.740942212992199,
+        "temperature_mean": 25.805117005468897,
+        "current_mean": 2.0091203165431146,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 87.35417209988783,
+      "predicted_rul": 24.08456574675325
+    },
+    {
+      "cell": "B0018",
+      "cycle": 47,
+      "capacity_ah": 1.7165673917429751,
+      "soh_percent": 92.53710017973061,
+      "true_rul": 28.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 47,
+        "voltage_mean": 3.8423926342139816,
+        "voltage_std": 0.06469839720054055,
+        "voltage_end": 3.7424755485447134,
+        "temperature_mean": 26.019237233248074,
+        "current_mean": 2.007590161826278,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 88.32352053155687,
+      "predicted_rul": 29.79006694694195
+    },
+    {
+      "cell": "B0018",
+      "cycle": 48,
+      "capacity_ah": 1.6958235570934848,
+      "soh_percent": 91.4188368861919,
+      "true_rul": 27.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 48,
+        "voltage_mean": 3.8396292759916895,
+        "voltage_std": 0.06582739640990914,
+        "voltage_end": 3.7382119562700553,
+        "temperature_mean": 25.908332889117176,
+        "current_mean": 2.0081272595633894,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 87.11300084635472,
+      "predicted_rul": 29.32864642302142
+    },
+    {
+      "cell": "B0018",
+      "cycle": 49,
+      "capacity_ah": 1.6777783190792557,
+      "soh_percent": 90.44605014567584,
+      "true_rul": 26.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 49,
+        "voltage_mean": 3.83595173675369,
+        "voltage_std": 0.0668662796798886,
+        "voltage_end": 3.733046868576035,
+        "temperature_mean": 25.85740598277812,
+        "current_mean": 2.008015674794142,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.54966530784029,
+      "predicted_rul": 27.783542759324007
+    },
+    {
+      "cell": "B0018",
+      "cycle": 50,
+      "capacity_ah": 1.6606586897774192,
+      "soh_percent": 89.5231613273491,
+      "true_rul": 25.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 50,
+        "voltage_mean": 3.8317194900474263,
+        "voltage_std": 0.06766476574781183,
+        "voltage_end": 3.727772536362288,
+        "temperature_mean": 25.776192762355656,
+        "current_mean": 2.008180625931612,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.40550826944617,
+      "predicted_rul": 26.66262229090354
+    },
+    {
+      "cell": "B0018",
+      "cycle": 51,
+      "capacity_ah": 1.6664109274827466,
+      "soh_percent": 89.83325424846362,
+      "true_rul": 24.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 51,
+        "voltage_mean": 3.8382642409165917,
+        "voltage_std": 0.06638658939145817,
+        "voltage_end": 3.736165207654409,
+        "temperature_mean": 26.369902789920992,
+        "current_mean": 2.0087169150154,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.79117109238406,
+      "predicted_rul": 29.225792922355424
+    },
+    {
+      "cell": "B0018",
+      "cycle": 52,
+      "capacity_ah": 1.6468336174407805,
+      "soh_percent": 88.77787622525442,
+      "true_rul": 23.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 52,
+        "voltage_mean": 3.8352388640584745,
+        "voltage_std": 0.06736329956127923,
+        "voltage_end": 3.7315769305563,
+        "temperature_mean": 26.371347906259928,
+        "current_mean": 2.008132101018734,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 86.31126427221517,
+      "predicted_rul": 28.64739623223998
+    },
+    {
+      "cell": "B0018",
+      "cycle": 53,
+      "capacity_ah": 1.6257639928779952,
+      "soh_percent": 87.64205017595725,
+      "true_rul": 22.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 53,
+        "voltage_mean": 3.8290473951655892,
+        "voltage_std": 0.06846203068897291,
+        "voltage_end": 3.724264399706565,
+        "temperature_mean": 26.196140494139268,
+        "current_mean": 2.0081550866439297,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 84.65789071244038,
+      "predicted_rul": 22.37997851107226
+    },
+    {
+      "cell": "B0018",
+      "cycle": 54,
+      "capacity_ah": 1.6121577411874597,
+      "soh_percent": 86.90856130635962,
+      "true_rul": 21.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 54,
+        "voltage_mean": 3.826677465302069,
+        "voltage_std": 0.06942227463902775,
+        "voltage_end": 3.720842629313473,
+        "temperature_mean": 25.962824428217257,
+        "current_mean": 2.0074371201441825,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 84.30693286304835,
+      "predicted_rul": 17.85957617035742
+    },
+    {
+      "cell": "B0018",
+      "cycle": 55,
+      "capacity_ah": 1.6057366823755344,
+      "soh_percent": 86.56241342693629,
+      "true_rul": 20.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 55,
+        "voltage_mean": 3.8252423499055337,
+        "voltage_std": 0.0697890045597847,
+        "voltage_end": 3.7186623998630752,
+        "temperature_mean": 25.83710340554068,
+        "current_mean": 2.0084597329551945,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 83.73791461677548,
+      "predicted_rul": 16.073944631757133
+    },
+    {
+      "cell": "B0018",
+      "cycle": 56,
+      "capacity_ah": 1.673645314879889,
+      "soh_percent": 90.223247227783,
+      "true_rul": 19.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 56,
+        "voltage_mean": 3.832042933204141,
+        "voltage_std": 0.06658873001665165,
+        "voltage_end": 3.7294496540399487,
+        "temperature_mean": 25.76576579616298,
+        "current_mean": 2.008467747583387,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.5054075569357,
+      "predicted_rul": 29.495268533549783
+    },
+    {
+      "cell": "B0018",
+      "cycle": 57,
+      "capacity_ah": 1.6404348572349936,
+      "soh_percent": 88.43293042409498,
+      "true_rul": 18.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 57,
+        "voltage_mean": 3.834546302401931,
+        "voltage_std": 0.06776593940910407,
+        "voltage_end": 3.729689887332388,
+        "temperature_mean": 26.204918120785663,
+        "current_mean": 2.0083551521439156,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 85.75579643243319,
+      "predicted_rul": 30.925612807331554
+    },
+    {
+      "cell": "B0018",
+      "cycle": 58,
+      "capacity_ah": 1.6132653317422077,
+      "soh_percent": 86.96826954654631,
+      "true_rul": 17.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 58,
+        "voltage_mean": 3.8294894971041438,
+        "voltage_std": 0.06907325660391819,
+        "voltage_end": 3.723057894898586,
+        "temperature_mean": 26.18856209613654,
+        "current_mean": 2.0081232297250486,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 84.62878692522092,
+      "predicted_rul": 23.086625336469087
+    },
+    {
+      "cell": "B0018",
+      "cycle": 59,
+      "capacity_ah": 1.5920964324686278,
+      "soh_percent": 85.82709177386077,
+      "true_rul": 16.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 59,
+        "voltage_mean": 3.822787176085159,
+        "voltage_std": 0.07004176749337504,
+        "voltage_end": 3.715496986331124,
+        "temperature_mean": 26.073511262598753,
+        "current_mean": 2.0081002718205085,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 83.24737498011203,
+      "predicted_rul": 14.669390956265957
+    },
+    {
+      "cell": "B0018",
+      "cycle": 60,
+      "capacity_ah": 1.5866011820698824,
+      "soh_percent": 85.5308525821416,
+      "true_rul": 15.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 60,
+        "voltage_mean": 3.819421390075279,
+        "voltage_std": 0.0707543239749549,
+        "voltage_end": 3.711391572319074,
+        "temperature_mean": 25.901657749240673,
+        "current_mean": 2.0086840853465486,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 82.4918193698722,
+      "predicted_rul": 13.468755584693085
+    },
+    {
+      "cell": "B0018",
+      "cycle": 61,
+      "capacity_ah": 1.580076649033625,
+      "soh_percent": 85.1791265910117,
+      "true_rul": 14.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 61,
+        "voltage_mean": 3.822505697559038,
+        "voltage_std": 0.07050467749917651,
+        "voltage_end": 3.714877151555237,
+        "temperature_mean": 25.80823810890102,
+        "current_mean": 2.00775149560202,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 83.19090556622851,
+      "predicted_rul": 14.208756035631035
+    },
+    {
+      "cell": "B0018",
+      "cycle": 62,
+      "capacity_ah": 1.5641732953289167,
+      "soh_percent": 84.32180503052695,
+      "true_rul": 13.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 62,
+        "voltage_mean": 3.820673758273971,
+        "voltage_std": 0.07118132525793898,
+        "voltage_end": 3.712231457073263,
+        "temperature_mean": 25.96270927046307,
+        "current_mean": 2.0081880126525826,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 83.00386334468509,
+      "predicted_rul": 13.872488449050948
+    },
+    {
+      "cell": "B0018",
+      "cycle": 63,
+      "capacity_ah": 1.5556182721939218,
+      "soh_percent": 83.86061892347927,
+      "true_rul": 12.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 63,
+        "voltage_mean": 3.817362814007907,
+        "voltage_std": 0.07182061340834535,
+        "voltage_end": 3.7083860860214166,
+        "temperature_mean": 25.992200882358002,
+        "current_mean": 2.0079295315899044,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 81.57118180162824,
+      "predicted_rul": 10.291409429386402
+    },
+    {
+      "cell": "B0018",
+      "cycle": 64,
+      "capacity_ah": 1.5402045278637395,
+      "soh_percent": 83.0296913350328,
+      "true_rul": 11.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 64,
+        "voltage_mean": 3.81420716068268,
+        "voltage_std": 0.07253088343918099,
+        "voltage_end": 3.7042241452686544,
+        "temperature_mean": 25.959310473603388,
+        "current_mean": 2.0080110396794395,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 81.35168310229726,
+      "predicted_rul": 8.767149071688547
+    },
+    {
+      "cell": "B0018",
+      "cycle": 65,
+      "capacity_ah": 1.5321613015959863,
+      "soh_percent": 82.59609528835993,
+      "true_rul": 10.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 65,
+        "voltage_mean": 3.8095205784055692,
+        "voltage_std": 0.07280865747622316,
+        "voltage_end": 3.699603290198543,
+        "temperature_mean": 25.80396762668192,
+        "current_mean": 2.007684407662512,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 80.59931580542869,
+      "predicted_rul": 3.2621829906204907
+    },
+    {
+      "cell": "B0018",
+      "cycle": 66,
+      "capacity_ah": 1.5316232403693415,
+      "soh_percent": 82.56708936300426,
+      "true_rul": 9.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 66,
+        "voltage_mean": 3.8112193509265295,
+        "voltage_std": 0.07350640076447547,
+        "voltage_end": 3.700241311338589,
+        "temperature_mean": 25.77726525200277,
+        "current_mean": 2.007571224833355,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 80.72637160289861,
+      "predicted_rul": 5.352029255466755
+    },
+    {
+      "cell": "B0018",
+      "cycle": 67,
+      "capacity_ah": 1.5222595950771978,
+      "soh_percent": 82.06231187124104,
+      "true_rul": 8.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 67,
+        "voltage_mean": 3.8079329114679608,
+        "voltage_std": 0.07420160832960712,
+        "voltage_end": 3.6963225452804975,
+        "temperature_mean": 25.68278899571339,
+        "current_mean": 2.0080485702446107,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 80.19524478515845,
+      "predicted_rul": 2.6567049963924965
+    },
+    {
+      "cell": "B0018",
+      "cycle": 68,
+      "capacity_ah": 1.5065267126851285,
+      "soh_percent": 81.21418011653459,
+      "true_rul": 7.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 68,
+        "voltage_mean": 3.8024555725345595,
+        "voltage_std": 0.07487445000929523,
+        "voltage_end": 3.6902660243437104,
+        "temperature_mean": 25.644286226431646,
+        "current_mean": 2.0083377944773497,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 78.4752360742977,
+      "predicted_rul": 2.29387987012987
+    },
+    {
+      "cell": "B0018",
+      "cycle": 69,
+      "capacity_ah": 1.5014219556532926,
+      "soh_percent": 80.93899172887187,
+      "true_rul": 6.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 69,
+        "voltage_mean": 3.8040583172714166,
+        "voltage_std": 0.07475939170010781,
+        "voltage_end": 3.691948142533044,
+        "temperature_mean": 25.637561528131485,
+        "current_mean": 2.0080339458196224,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 79.32979835239072,
+      "predicted_rul": 2.33325487012987
+    },
+    {
+      "cell": "B0018",
+      "cycle": 70,
+      "capacity_ah": 1.4963534117486457,
+      "soh_percent": 80.66575552659644,
+      "true_rul": 5.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 70,
+        "voltage_mean": 3.800171144812657,
+        "voltage_std": 0.07472492340705333,
+        "voltage_end": 3.688362291120008,
+        "temperature_mean": 25.54392895491734,
+        "current_mean": 2.008309410088536,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 78.39814463298423,
+      "predicted_rul": 2.33325487012987
+    },
+    {
+      "cell": "B0018",
+      "cycle": 71,
+      "capacity_ah": 1.5334262000312422,
+      "soh_percent": 82.66428371707148,
+      "true_rul": 4.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 71,
+        "voltage_mean": 3.8103815420914526,
+        "voltage_std": 0.07321004069417039,
+        "voltage_end": 3.699702883676865,
+        "temperature_mean": 25.75990551781548,
+        "current_mean": 2.0080488530142895,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 80.62379305169141,
+      "predicted_rul": 3.7671974206349206
+    },
+    {
+      "cell": "B0018",
+      "cycle": 72,
+      "capacity_ah": 1.523845267514426,
+      "soh_percent": 82.14779265683782,
+      "true_rul": 3.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 72,
+        "voltage_mean": 3.809898577299858,
+        "voltage_std": 0.07402576321891205,
+        "voltage_end": 3.698061716329837,
+        "temperature_mean": 26.128977727657304,
+        "current_mean": 2.0080356342946635,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 80.39481009487108,
+      "predicted_rul": 3.0822208694083697
+    },
+    {
+      "cell": "B0018",
+      "cycle": 73,
+      "capacity_ah": 1.501192099426124,
+      "soh_percent": 80.92660058779417,
+      "true_rul": 2.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 73,
+        "voltage_mean": 3.8022026458250626,
+        "voltage_std": 0.07498076484236081,
+        "voltage_end": 3.68985756540032,
+        "temperature_mean": 26.223848360413452,
+        "current_mean": 2.0082689182742905,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 78.41895505915299,
+      "predicted_rul": 2.344475108225108
+    },
+    {
+      "cell": "B0018",
+      "cycle": 74,
+      "capacity_ah": 1.492417671450291,
+      "soh_percent": 80.45358675534858,
+      "true_rul": 1.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 74,
+        "voltage_mean": 3.801373538573533,
+        "voltage_std": 0.07579485345648841,
+        "voltage_end": 3.6877573340533183,
+        "temperature_mean": 26.076434346957438,
+        "current_mean": 2.008078485408419,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 78.3817092497514,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 75,
+      "capacity_ah": 1.483323851940123,
+      "soh_percent": 79.9633550923934,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 75,
+        "voltage_mean": 3.7982393337233513,
+        "voltage_std": 0.0763295517752692,
+        "voltage_end": 3.684337367596781,
+        "temperature_mean": 25.87424324531118,
+        "current_mean": 2.007799716079214,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 77.9615964809802,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 76,
+      "capacity_ah": 1.4807376792294196,
+      "soh_percent": 79.82393911352555,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 76,
+        "voltage_mean": 3.800399218842648,
+        "voltage_std": 0.07565476682681464,
+        "voltage_end": 3.687356042093093,
+        "temperature_mean": 25.79657795788485,
+        "current_mean": 2.008351600801879,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 78.40167512382922,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 77,
+      "capacity_ah": 1.4735077809902477,
+      "soh_percent": 79.4341881367415,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 77,
+        "voltage_mean": 3.796930047947607,
+        "voltage_std": 0.07646876849323683,
+        "voltage_end": 3.682889513778537,
+        "temperature_mean": 25.90343458203792,
+        "current_mean": 2.0084763842488162,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 77.8310487193456,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 78,
+      "capacity_ah": 1.46801928526661,
+      "soh_percent": 79.1383130775639,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 78,
+        "voltage_mean": 3.7982307115149907,
+        "voltage_std": 0.07659696635213176,
+        "voltage_end": 3.6835541689613818,
+        "temperature_mean": 26.18036720247198,
+        "current_mean": 2.008729844089908,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 77.8272784505319,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 79,
+      "capacity_ah": 1.458092355711902,
+      "soh_percent": 78.6031699313642,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 79,
+        "voltage_mean": 3.7938272943090574,
+        "voltage_std": 0.07740222735872311,
+        "voltage_end": 3.6787043528237247,
+        "temperature_mean": 26.021237236499633,
+        "current_mean": 2.008123128879681,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 77.41027470884713,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 80,
+      "capacity_ah": 1.44786609888914,
+      "soh_percent": 78.05189058362433,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 80,
+        "voltage_mean": 3.7866997552623665,
+        "voltage_std": 0.07780154918118852,
+        "voltage_end": 3.671456223552967,
+        "temperature_mean": 25.778322533846758,
+        "current_mean": 2.0081350749129654,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.55850730059915,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 81,
+      "capacity_ah": 1.4527808777541982,
+      "soh_percent": 78.31683758563823,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 81,
+        "voltage_mean": 3.7922737231536314,
+        "voltage_std": 0.07866406464724754,
+        "voltage_end": 3.6755162814832536,
+        "temperature_mean": 25.55850385933051,
+        "current_mean": 2.0074869802400577,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.58955119155891,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 82,
+      "capacity_ah": 1.4425356364492432,
+      "soh_percent": 77.76453481817188,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 82,
+        "voltage_mean": 3.7861344954384784,
+        "voltage_std": 0.07908033904309297,
+        "voltage_end": 3.6691582703951062,
+        "temperature_mean": 25.66824244942912,
+        "current_mean": 2.008583228563247,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.46567300204393,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 83,
+      "capacity_ah": 1.4392712877203313,
+      "soh_percent": 77.58855957432074,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 83,
+        "voltage_mean": 3.7894951224867004,
+        "voltage_std": 0.07818165936016327,
+        "voltage_end": 3.673369115509808,
+        "temperature_mean": 25.93695609349796,
+        "current_mean": 2.008206783552408,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.65553735009955,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 84,
+      "capacity_ah": 1.4286475681888218,
+      "soh_percent": 77.01585371768061,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 84,
+        "voltage_mean": 3.78887078392528,
+        "voltage_std": 0.07858572291416291,
+        "voltage_end": 3.6724584314290185,
+        "temperature_mean": 26.163250775926283,
+        "current_mean": 2.0084756491563405,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.38290787140316,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 85,
+      "capacity_ah": 1.4249026750004896,
+      "soh_percent": 76.81397317526904,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 85,
+        "voltage_mean": 3.78317529616318,
+        "voltage_std": 0.07886846076994466,
+        "voltage_end": 3.666761410605009,
+        "temperature_mean": 25.958177928062813,
+        "current_mean": 2.008003270160445,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.25611038372014,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 86,
+      "capacity_ah": 1.4698115324524124,
+      "soh_percent": 79.23492994106556,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 86,
+        "voltage_mean": 3.796551242605153,
+        "voltage_std": 0.07687350969434152,
+        "voltage_end": 3.6815309207656233,
+        "temperature_mean": 25.887166272778778,
+        "current_mean": 2.008013013226441,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 77.71099677634743,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 87,
+      "capacity_ah": 1.4525819651050202,
+      "soh_percent": 78.30611455790711,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 87,
+        "voltage_mean": 3.7924293759525933,
+        "voltage_std": 0.07796016653022887,
+        "voltage_end": 3.6764271675035527,
+        "temperature_mean": 26.066326108342214,
+        "current_mean": 2.007934728251524,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.97133938204975,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 88,
+      "capacity_ah": 1.4428341989087938,
+      "soh_percent": 77.78062979024361,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 88,
+        "voltage_mean": 3.7873267006889377,
+        "voltage_std": 0.07898985867630562,
+        "voltage_end": 3.670392239942089,
+        "temperature_mean": 25.84257631672018,
+        "current_mean": 2.008081658183003,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.52139337231011,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 89,
+      "capacity_ah": 1.4283760588079488,
+      "soh_percent": 77.0012171290454,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 89,
+        "voltage_mean": 3.7823589118827723,
+        "voltage_std": 0.07992720906438909,
+        "voltage_end": 3.664618771154625,
+        "temperature_mean": 25.656664599980214,
+        "current_mean": 2.00780996246486,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.16775621282991,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 90,
+      "capacity_ah": 1.4154547844370715,
+      "soh_percent": 76.30465417051595,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 90,
+        "voltage_mean": 3.7750040791571853,
+        "voltage_std": 0.08033811581710305,
+        "voltage_end": 3.657203083151322,
+        "temperature_mean": 25.37564615925974,
+        "current_mean": 2.0079967430784134,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.65285252935323,
+      "predicted_rul": 2.1902340367965367
+    },
+    {
+      "cell": "B0018",
+      "cycle": 91,
+      "capacity_ah": 1.454576670077708,
+      "soh_percent": 78.41364556121901,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 91,
+        "voltage_mean": 3.7918894413351873,
+        "voltage_std": 0.07930474720497165,
+        "voltage_end": 3.6737295062450968,
+        "temperature_mean": 25.99591636527543,
+        "current_mean": 2.0086119003227108,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.2721525406582,
+      "predicted_rul": 2.117109036796537
+    },
+    {
+      "cell": "B0018",
+      "cycle": 92,
+      "capacity_ah": 1.4283179548274056,
+      "soh_percent": 76.9980848466228,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 92,
+        "voltage_mean": 3.7868881004332215,
+        "voltage_std": 0.07880846605065318,
+        "voltage_end": 3.670171427846467,
+        "temperature_mean": 26.08946204651153,
+        "current_mean": 2.008191716311627,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.53436541379526,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 93,
+      "capacity_ah": 1.4197026883204058,
+      "soh_percent": 76.53365112635747,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 93,
+        "voltage_mean": 3.784823551863474,
+        "voltage_std": 0.07953536645949627,
+        "voltage_end": 3.66711839471542,
+        "temperature_mean": 26.236824145712742,
+        "current_mean": 2.007959362943505,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.31567253663637,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 94,
+      "capacity_ah": 1.4155606630306516,
+      "soh_percent": 76.31036189749955,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 94,
+        "voltage_mean": 3.7843149219587673,
+        "voltage_std": 0.07990332307379108,
+        "voltage_end": 3.665957406400272,
+        "temperature_mean": 26.326243759332332,
+        "current_mean": 2.0087184181686366,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 75.19915021652241,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 95,
+      "capacity_ah": 1.405680035419228,
+      "soh_percent": 75.77771480684933,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 95,
+        "voltage_mean": 3.776996995770642,
+        "voltage_std": 0.08042239513667164,
+        "voltage_end": 3.658490360190564,
+        "temperature_mean": 26.046419218720533,
+        "current_mean": 2.0080445003480265,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.67388168175444,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 96,
+      "capacity_ah": 1.4084461071166137,
+      "soh_percent": 75.92682882066349,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 96,
+        "voltage_mean": 3.780629383376841,
+        "voltage_std": 0.08055309619037422,
+        "voltage_end": 3.66129418428914,
+        "temperature_mean": 26.10600583154241,
+        "current_mean": 2.0082094383270244,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.70650910656528,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 97,
+      "capacity_ah": 1.3968547782872414,
+      "soh_percent": 75.30196086484692,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 97,
+        "voltage_mean": 3.7766193487363684,
+        "voltage_std": 0.08163836891741781,
+        "voltage_end": 3.656689374581559,
+        "temperature_mean": 26.118208374066754,
+        "current_mean": 2.008214227483253,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.2940313121623,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 98,
+      "capacity_ah": 1.3935670371440676,
+      "soh_percent": 75.1247245774781,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 98,
+        "voltage_mean": 3.7741879115437835,
+        "voltage_std": 0.08217218640276014,
+        "voltage_end": 3.653613744027677,
+        "temperature_mean": 26.133356873724864,
+        "current_mean": 2.0085574776576194,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.56653601031437,
+      "predicted_rul": 1.9900257034632034
+    },
+    {
+      "cell": "B0018",
+      "cycle": 99,
+      "capacity_ah": 1.3893644292809475,
+      "soh_percent": 74.89816944965945,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 99,
+        "voltage_mean": 3.775923728607442,
+        "voltage_std": 0.08174889025835555,
+        "voltage_end": 3.655687520157756,
+        "temperature_mean": 26.222318067256385,
+        "current_mean": 2.00869344129495,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.21868032840658,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 100,
+      "capacity_ah": 1.3785651415666709,
+      "soh_percent": 74.31599902402236,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 100,
+        "voltage_mean": 3.7710244492286336,
+        "voltage_std": 0.08205665803001295,
+        "voltage_end": 3.6506415686025337,
+        "temperature_mean": 26.1530970806707,
+        "current_mean": 2.008415970665789,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.45212987933166,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 101,
+      "capacity_ah": 1.384901110085747,
+      "soh_percent": 74.65755983684313,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 101,
+        "voltage_mean": 3.774125293641604,
+        "voltage_std": 0.08194995052691995,
+        "voltage_end": 3.653580851061904,
+        "temperature_mean": 26.097764124444424,
+        "current_mean": 2.0084513724808435,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.72882975882706,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 102,
+      "capacity_ah": 1.3703251814242443,
+      "soh_percent": 73.87179740348331,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 102,
+        "voltage_mean": 3.768820303307568,
+        "voltage_std": 0.0825372726650169,
+        "voltage_end": 3.647839041613512,
+        "temperature_mean": 26.059908172522846,
+        "current_mean": 2.0091698185934126,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.00102677609759,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 103,
+      "capacity_ah": 1.3733464385229082,
+      "soh_percent": 74.03466800917732,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 103,
+        "voltage_mean": 3.7703305728399017,
+        "voltage_std": 0.08303487172127375,
+        "voltage_end": 3.648682913140105,
+        "temperature_mean": 26.206647657256124,
+        "current_mean": 2.0081325731662067,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.92656436614485,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 104,
+      "capacity_ah": 1.3679487285504814,
+      "soh_percent": 73.74368704864982,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 104,
+        "voltage_mean": 3.7691807148520593,
+        "voltage_std": 0.08327867387027599,
+        "voltage_end": 3.6470496404787993,
+        "temperature_mean": 26.291046256913656,
+        "current_mean": 2.008282240365062,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.74128629866331,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 105,
+      "capacity_ah": 1.3567141087089647,
+      "soh_percent": 73.13804864100186,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 105,
+        "voltage_mean": 3.7639470980353855,
+        "voltage_std": 0.08343338485610301,
+        "voltage_end": 3.641981218986993,
+        "temperature_mean": 26.206638207376226,
+        "current_mean": 2.0084286850281248,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.28472150443935,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 106,
+      "capacity_ah": 1.4604310209194575,
+      "soh_percent": 78.72924322020761,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 106,
+        "voltage_mean": 3.7930380041403535,
+        "voltage_std": 0.07805700555480816,
+        "voltage_end": 3.6763381972799887,
+        "temperature_mean": 25.247863837160725,
+        "current_mean": 2.008448828336676,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.99194220601439,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 107,
+      "capacity_ah": 1.4500998937104097,
+      "soh_percent": 78.17231049614924,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 107,
+        "voltage_mean": 3.7932089732070886,
+        "voltage_std": 0.07877546021930777,
+        "voltage_end": 3.6755062934082106,
+        "temperature_mean": 25.8449858819839,
+        "current_mean": 2.008508606365169,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.55729503825482,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 108,
+      "capacity_ah": 1.4381406901824496,
+      "soh_percent": 77.52761106852412,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 108,
+        "voltage_mean": 3.7919796772737504,
+        "voltage_std": 0.07941440252207738,
+        "voltage_end": 3.673430681435705,
+        "temperature_mean": 26.27068281184865,
+        "current_mean": 2.0081975780066696,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.20492418037352,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 109,
+      "capacity_ah": 1.4283681980964316,
+      "soh_percent": 77.00079337204484,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 109,
+        "voltage_mean": 3.791027557583392,
+        "voltage_std": 0.07955561388930046,
+        "voltage_end": 3.672361858511649,
+        "temperature_mean": 26.08732333716583,
+        "current_mean": 2.0075785009650478,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 76.11540059389158,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 110,
+      "capacity_ah": 1.4147874517552432,
+      "soh_percent": 76.26867945054364,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 110,
+        "voltage_mean": 3.782415740648199,
+        "voltage_std": 0.08106327716831158,
+        "voltage_end": 3.662215337925853,
+        "temperature_mean": 25.89086679128669,
+        "current_mean": 2.0080181481858284,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.55196147535807,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 111,
+      "capacity_ah": 1.4138891633931818,
+      "soh_percent": 76.2202543199311,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 111,
+        "voltage_mean": 3.7835903171688505,
+        "voltage_std": 0.08099442448352492,
+        "voltage_end": 3.66342501419728,
+        "temperature_mean": 25.675845998355747,
+        "current_mean": 2.007805107404585,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.55636957110659,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 112,
+      "capacity_ah": 1.3989331662177225,
+      "soh_percent": 75.41400306782735,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 112,
+        "voltage_mean": 3.779658847943946,
+        "voltage_std": 0.08113591049723101,
+        "voltage_end": 3.65974984243812,
+        "temperature_mean": 25.75032842902566,
+        "current_mean": 2.0082832220981746,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.47301148347769,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 113,
+      "capacity_ah": 1.3953322584033976,
+      "soh_percent": 75.21988452127043,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 113,
+        "voltage_mean": 3.782438819194827,
+        "voltage_std": 0.0812098669202594,
+        "voltage_end": 3.662016610225892,
+        "temperature_mean": 26.212989421196156,
+        "current_mean": 2.0084291929448628,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.55196147535807,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 114,
+      "capacity_ah": 1.390046129540245,
+      "soh_percent": 74.93491870022228,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 114,
+        "voltage_mean": 3.782979094123555,
+        "voltage_std": 0.08163050467502221,
+        "voltage_end": 3.661979498607163,
+        "temperature_mean": 26.68240660805378,
+        "current_mean": 2.0085431256382718,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.37635700712032,
+      "predicted_rul": 1.524906655844156
+    },
+    {
+      "cell": "B0018",
+      "cycle": 115,
+      "capacity_ah": 1.3860271454209647,
+      "soh_percent": 74.7182624023947,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 115,
+        "voltage_mean": 3.7774523791426096,
+        "voltage_std": 0.08204091624333566,
+        "voltage_end": 3.656265412827561,
+        "temperature_mean": 26.481254629418583,
+        "current_mean": 2.0080562558863795,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.9562782638015,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 116,
+      "capacity_ah": 1.388215260193751,
+      "soh_percent": 74.83621978461461,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 116,
+        "voltage_mean": 3.7805588778849586,
+        "voltage_std": 0.08299195216408158,
+        "voltage_end": 3.657460917304258,
+        "temperature_mean": 26.001060394220236,
+        "current_mean": 2.0079313355638084,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.47869655772733,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 117,
+      "capacity_ah": 1.3761826562394497,
+      "soh_percent": 74.18756347033406,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 117,
+        "voltage_mean": 3.7723427177248,
+        "voltage_std": 0.08332090835026872,
+        "voltage_end": 3.6495038387512353,
+        "temperature_mean": 25.874340384353502,
+        "current_mean": 2.0077744309517334,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.95596234894887,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 118,
+      "capacity_ah": 1.3647168898640163,
+      "soh_percent": 73.56946436346267,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 118,
+        "voltage_mean": 3.768641461621338,
+        "voltage_std": 0.08394748889101626,
+        "voltage_end": 3.6452177046740952,
+        "temperature_mean": 25.669741863027674,
+        "current_mean": 2.007765380645442,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.30826431737088,
+      "predicted_rul": 1.9303382034632033
+    },
+    {
+      "cell": "B0018",
+      "cycle": 119,
+      "capacity_ah": 1.3589854739373584,
+      "soh_percent": 73.26049390746542,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 119,
+        "voltage_mean": 3.7664599884405066,
+        "voltage_std": 0.0845735424430645,
+        "voltage_end": 3.642463571046658,
+        "temperature_mean": 25.555169926915724,
+        "current_mean": 2.007110395446212,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.10541492149831,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 120,
+      "capacity_ah": 1.34623087640088,
+      "soh_percent": 72.57291620112973,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 120,
+        "voltage_mean": 3.758113180442621,
+        "voltage_std": 0.08516663127291009,
+        "voltage_end": 3.634234673701815,
+        "temperature_mean": 25.29751592587485,
+        "current_mean": 2.007595045610695,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 71.16237708972872,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 121,
+      "capacity_ah": 1.4268427818454643,
+      "soh_percent": 76.91856089045949,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 121,
+        "voltage_mean": 3.787019691066969,
+        "voltage_std": 0.08139067446567472,
+        "voltage_end": 3.665785255287917,
+        "temperature_mean": 25.22167810489445,
+        "current_mean": 2.0081094500110113,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.49294728082526,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 122,
+      "capacity_ah": 1.4064481483279665,
+      "soh_percent": 75.81912240991063,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 122,
+        "voltage_mean": 3.7830256469809243,
+        "voltage_std": 0.08074529787022484,
+        "voltage_end": 3.6632210925320887,
+        "temperature_mean": 25.677994596076285,
+        "current_mean": 2.0079398362647347,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.6686569278919,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 123,
+      "capacity_ah": 1.3934907492075153,
+      "soh_percent": 75.12061203027417,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 123,
+        "voltage_mean": 3.781913103873971,
+        "voltage_std": 0.08153247994573969,
+        "voltage_end": 3.660889796991159,
+        "temperature_mean": 25.892603500513694,
+        "current_mean": 2.0078306709095783,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 74.37830573188936,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 124,
+      "capacity_ah": 1.3882493512249316,
+      "soh_percent": 74.83805757157408,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 124,
+        "voltage_mean": 3.778783290402936,
+        "voltage_std": 0.08230947554206285,
+        "voltage_end": 3.6570159611997033,
+        "temperature_mean": 25.82957031167204,
+        "current_mean": 2.007617945395789,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.84705159626928,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 125,
+      "capacity_ah": 1.3701878338420928,
+      "soh_percent": 73.86439323920166,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 125,
+        "voltage_mean": 3.7718087026741944,
+        "voltage_std": 0.08293973235433404,
+        "voltage_end": 3.6498189222248887,
+        "temperature_mean": 25.682390674812062,
+        "current_mean": 2.0075923883236473,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.9746575817583,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 126,
+      "capacity_ah": 1.379695166560862,
+      "soh_percent": 74.37691666500521,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 126,
+        "voltage_mean": 3.7749538768868605,
+        "voltage_std": 0.08287399599212349,
+        "voltage_end": 3.652336462534253,
+        "temperature_mean": 25.657438691650714,
+        "current_mean": 2.0080793632214067,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 73.06837647153915,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 127,
+      "capacity_ah": 1.3686586323935683,
+      "soh_percent": 73.7819567043369,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 127,
+        "voltage_mean": 3.7736176386995566,
+        "voltage_std": 0.08353693166416044,
+        "voltage_end": 3.650297556175393,
+        "temperature_mean": 25.98448787552212,
+        "current_mean": 2.0085465619292284,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.80013865050834,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 128,
+      "capacity_ah": 1.3627371779096438,
+      "soh_percent": 73.46274160714678,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 128,
+        "voltage_mean": 3.774247774455351,
+        "voltage_std": 0.08392938461132105,
+        "voltage_end": 3.6504993378223465,
+        "temperature_mean": 26.544180845545704,
+        "current_mean": 2.008886125474861,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.63825667278996,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 129,
+      "capacity_ah": 1.3634051133928071,
+      "soh_percent": 73.49874882306874,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 129,
+        "voltage_mean": 3.7750788660008,
+        "voltage_std": 0.08379481390294753,
+        "voltage_end": 3.650907117600204,
+        "temperature_mean": 26.822972240541333,
+        "current_mean": 2.008273587149043,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.69240919601695,
+      "predicted_rul": 1.5159780844155843
+    },
+    {
+      "cell": "B0018",
+      "cycle": 130,
+      "capacity_ah": 1.3518646035305233,
+      "soh_percent": 72.87662042753458,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 130,
+        "voltage_mean": 3.765216744365156,
+        "voltage_std": 0.0846434940630313,
+        "voltage_end": 3.6412448322735744,
+        "temperature_mean": 26.436226347578632,
+        "current_mean": 2.0078739464029427,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.00119245328993,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 131,
+      "capacity_ah": 1.3547969729652622,
+      "soh_percent": 73.03469925709389,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 131,
+        "voltage_mean": 3.7691628136942996,
+        "voltage_std": 0.08489994742547133,
+        "voltage_end": 3.643882435393544,
+        "temperature_mean": 26.264807189993054,
+        "current_mean": 2.0077520614018383,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 72.21803749183951,
+      "predicted_rul": 1.921409632034632
+    },
+    {
+      "cell": "B0018",
+      "cycle": 132,
+      "capacity_ah": 1.3410514406404852,
+      "soh_percent": 72.29370201580872,
+      "true_rul": 0.0,
+      "eol_cycle": 75.0,
+      "features": {
+        "cycle": 132,
+        "voltage_mean": 3.7639984410917173,
+        "voltage_std": 0.08589541540051743,
+        "voltage_end": 3.6381884091381207,
+        "temperature_mean": 25.978045464408968,
+        "current_mean": 2.007800952049459,
+        "ambient_temperature": 24.0
+      },
+      "predicted_soh": 71.41127092925142,
+      "predicted_rul": 1.921409632034632
+    }
+  ],
+  "limitations": "Four NASA cells only. No hyperparameter tuning on test data. RUL uses retrospective first observed 80% crossing. Not valid for arbitrary chemistries or synthetic rack cells."
+}

@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from './vendor/OrbitControls.js';
 import { initPrediction } from './prediction.js';
+import { initBatteryLake } from './batterylake.js';
+import { initML } from './ml.js';
 
 const $ = id => document.getElementById(id);
 const palette = ['#2563eb','#06b6d4','#22c55e','#facc15','#ef4444'].map(x=>new THREE.Color(x));
@@ -10,10 +12,11 @@ function thermalColor(t) {
   return palette[i].clone().lerp(palette[i+1], x-i);
 }
 const stages = {ready:'Sẵn sàng',charge:'Sạc',rest_after_charge:'Nghỉ sau sạc',discharge:'Xả',rest_after_discharge:'Nghỉ sau xả'};
-const statuses = {ready:'Sẵn sàng',running:'Đang chạy',complete:'Hoàn tất',fault:'Dừng lỗi'};
+const statuses = {ready:'Sẵn sàng',running:'Đang chạy',complete:'Hoàn tất',fault:'Dừng lỗi',stopped:'Dừng bảo vệ'};
 let selected=0, state=null, history=Array.from({length:12},()=>[]), lastTime=Array(12).fill(-1);
 const meshes=[], outlines=[];
 for(let i=0;i<12;i++) $('cell-select').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i));
+for(let i=0;i<12;i++) $('fault-cell').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i+1));
 function selectCell(i){selected=i;$('cell-select').value=i;if(state)updateUI(state);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:i}));}
 $('cell-select').addEventListener('change',e=>selectCell(Number(e.target.value)));
 const definitions=[['temperature_c','Nhiệt độ · °C','#facc15'],['voltage_v','Điện áp · V','#5dd5bf'],['current_a','Dòng điện · A','#6ba8ff'],['soc','SOC · %','#c799ff']];
@@ -76,7 +79,13 @@ function drawCharts(){
 }
 function updateUI(s){
  state=s;const cell=s.cells[selected];
- $('run-status').textContent=s.running?'Đang mô phỏng':s.cells.every(c=>['complete','fault'].includes(c.status))?'Đã kết thúc':'Tạm dừng / Sẵn sàng';
+ $('start').disabled=s.safety_stop;
+ $('inject-fault').disabled=s.safety_stop;
+ $('safety-alarm').hidden=!s.safety_stop;
+ $('safety-alarm').textContent=s.safety_stop?'STOP — '+s.alarms.map(a=>`CH ${a.cell}: ${a.reason} tại ${a.time_s.toFixed(0)} s`).join(' · ')+' · Reset để bỏ khóa.':'';
+ $('fault-pending').textContent=s.pending_fault?`Đã lên lịch lỗi ${s.pending_fault.kind} cho CH ${s.pending_fault.cell}. Bắt đầu để áp dụng.`:'';
+ $('run-status').textContent=s.safety_stop?'STOP · Dừng bảo vệ':s.running?'Đang mô phỏng':s.cells.every(c=>['complete','fault'].includes(c.status))?'Đã kết thúc':'Tạm dừng / Sẵn sàng';
+ $('run-status').classList.toggle('error',s.safety_stop);
  $('speed').value=String(s.speed);$('cell-title').textContent=`CH ${String(cell.id).padStart(2,'0')}`;
  $('stage').textContent=`${stages[cell.stage]||cell.stage} · ${cell.mode} · Chu kỳ ${cell.cycle}/3`;
  $('temperature').textContent=`${cell.temperature_c.toFixed(2)} °C`;$('temperature').style.color='#'+thermalColor(cell.temperature_c).getHexString();
@@ -104,16 +113,19 @@ async function request(path,options){
 }
 function connection(ok,error=''){$('connection').textContent=ok?'● Dữ liệu trực tuyến · 4 Hz':`Mất kết nối: ${error}`;$('connection').classList.toggle('error',!ok);}
 let busy=false;
-async function control(action,speed){
+async function control(action,speed,extra={}){
  if(busy)return;busy=true;
  try{
-   const data=await request('/api/control',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,speed})});
+   const data=await request('/api/control',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,speed,...extra})});
    if(action==='reset'){history=Array.from({length:12},()=>[]);lastTime.fill(-1);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:selected}));}
    updateUI(data);connection(true);
  }catch(e){connection(false,e.message);}finally{busy=false;}
 }
 for(const id of ['start','pause','reset'])$(id).addEventListener('click',()=>control(id));
 $('speed').addEventListener('change',e=>control('speed',Number(e.target.value)));
+$('inject-fault').addEventListener('click',()=>control('fault',undefined,{cell:Number($('fault-cell').value),kind:$('fault-kind').value}));
 async function poll(){try{if(!busy){updateUI(await request('/api/state'));connection(true);}}catch(e){connection(false,e.message);}finally{setTimeout(poll,250);}}
 poll();
 initPrediction();
+initBatteryLake();
+initML();
