@@ -1,0 +1,7 @@
+run = "python -B server.py --host 0.0.0.0 --port 8000"
+entrypoint = "server.py"
+modules = ["python-3.11"]
+
+[[ports]]
+localPort = 8000
+externalPort = 80
