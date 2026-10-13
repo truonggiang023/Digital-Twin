@@ -8,7 +8,7 @@ from pathlib import Path
 
 @lru_cache(maxsize=1)
 def model():
-    return json.loads((Path(__file__).parent/'models/nasa-forest.json').read_text())
+    return json.loads((Path(__file__).parent/'models/nasa-forest.json').read_text(encoding='utf-8'))
 
 
 def predict(features):

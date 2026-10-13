@@ -33,9 +33,9 @@ def generate(output):
     result = dict(source='local-model', calibrated=False, batterytwin_api_connected=False,
                   current_a=2, cycles_per_cell=3, cells=cells, predictions=predictions)
     (output/'aging-results.json').write_text(json.dumps(result,indent=2), encoding='utf-8')
-    with (output/'cycle-summary.csv').open('w',newline='') as file:
+    with (output/'cycle-summary.csv').open('w',newline='',encoding='utf-8') as file:
         writer=csv.DictWriter(file,fieldnames=list(cycle_rows[0]));writer.writeheader();writer.writerows(cycle_rows)
-    with (output/'degradation-predictions.csv').open('w',newline='') as file:
+    with (output/'degradation-predictions.csv').open('w',newline='',encoding='utf-8') as file:
         fields=['cell','scenario','temperature_c','c_rate','dod','eol_soh','cycle','efc','soh_percent',
                 'capacity_ah','resistance_mohm','optimistic_soh_percent','pessimistic_soh_percent']
         writer=csv.DictWriter(file,fieldnames=fields);writer.writeheader()

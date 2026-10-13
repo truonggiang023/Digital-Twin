@@ -63,6 +63,10 @@ file is loaded. `POST /api/ml/predict` accepts a JSON `features` object with
 exactly `cycle`, `voltage_mean`, `voltage_std`, `voltage_end`,
 `temperature_mean`, `current_mean` and `ambient_temperature` (V, A, °C).
 
+Reports and JSON artifacts explicitly use UTF-8 on Windows as well as
+Linux. The pinned retraining dependencies require Python 3.11 or later;
+the Python 3.8 runtime is not supported by that requirements file.
+
 ## Abnormal-cell cases and STOP alarms
 
 Choose a cell and inject overheat (50 °C), overvoltage (4.5 V), overcurrent

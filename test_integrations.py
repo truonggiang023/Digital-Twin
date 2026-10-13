@@ -23,7 +23,7 @@ class IntegrationTests(unittest.TestCase):
 
     def test_exported_model_matches_saved_test_predictions(self):
         from pathlib import Path
-        replay=json.loads((Path(__file__).parent/'results/ml-results.json').read_text())['replay']
+        replay=json.loads((Path(__file__).parent/'results/ml-results.json').read_text(encoding='utf-8'))['replay']
         self.assertNotIn('B0018',model()['training_cells'])
         for row in replay:
             result=predict(row['features'])

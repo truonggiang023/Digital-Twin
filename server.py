@@ -116,7 +116,7 @@ def make_handler(rack):
                     self.send_json(rack.snapshot())
             elif url.path=='/api/ml/replay':
                 try:
-                    self.send_json(json.loads((Path(__file__).parent/'results/ml-results.json').read_text()))
+                    self.send_json(json.loads((Path(__file__).parent/'results/ml-results.json').read_text(encoding='utf-8')))
                 except (OSError,ValueError):
                     self.send_json({'error':'Train the NASA models first with train_ml.py'},503)
             elif url.path.startswith('/api/batterylake/'):

@@ -70,7 +70,7 @@ def train(raw_path,output,model_path):
                      feature=t.tree_.feature.tolist(),threshold=t.tree_.threshold.tolist(),value=t.tree_.value[:,0,0].tolist()) for t in forest.estimators_]
     artifact=dict(model_id='nasa-random-forest-v1',features=FEATURES,bounds=BOUNDS,training_cells=training,
                   soh_trees=export(forests['soh']),rul_trees=export(forests['rul']))
-    model_path.parent.mkdir(parents=True,exist_ok=True);model_path.write_text(json.dumps(artifact,separators=(',',':')))
+    model_path.parent.mkdir(parents=True,exist_ok=True);model_path.write_text(json.dumps(artifact,separators=(',',':')),encoding='utf-8')
     # Validate dependency-free inference against sklearn on the held-out cell.
     from ml_inference import predict,model
     model.cache_clear()
@@ -91,8 +91,8 @@ def train(raw_path,output,model_path):
                 soh_reference='first observed capacity per cell',eol_soh_percent=80,
                 split='cross-cell; B0018 never used for fitting',metrics=metrics,replay=replay,
                 limitations='Four NASA cells only. No hyperparameter tuning on test data. RUL uses retrospective first observed 80% crossing. Not valid for arbitrary chemistries or synthetic rack cells.')
-    (output/'ml-results.json').write_text(json.dumps(report,indent=2,allow_nan=False))
-    frame.to_csv(output/'ml-cycle-predictions.csv',index=False)
+    (output/'ml-results.json').write_text(json.dumps(report,indent=2,allow_nan=False),encoding='utf-8')
+    frame.to_csv(output/'ml-cycle-predictions.csv',index=False,encoding='utf-8')
     (output/'ML-REPORT.md').write_text('\n'.join([
         '# ML prediction on NASA discharge data','',
         f'Source: [{RAW_COMMIT[:7]} CSV export]({RAW_URL}), citing [NASA battery aging](https://data.nasa.gov/dataset/li-ion-battery-aging-datasets). BatteryLake catalog reference: dataset_01.',
@@ -103,7 +103,7 @@ def train(raw_path,output,model_path):
         '',report['limitations'],'','SOH is capacity / first observed capacity. RUL is evaluated only through the first observed crossing; post-EOL rows remain in the replay but are not included in RUL metrics.',
         '', 'No third-party pickle/joblib was loaded. Our trained forests are exported as JSON and run in the server using standard Python.',
         '', '![ML replay dashboard](dashboard-ml.png)','', '[Prediction CSV](ml-cycle-predictions.csv) · [Metrics and replay JSON](ml-results.json)',
-        '', 'Reproduce: `python -m pip install -r requirements-ml.txt` then `python -B train_ml.py`.']))
+        '', 'Reproduce: `python -m pip install -r requirements-ml.txt` then `python -B train_ml.py`.']),encoding='utf-8')
     print(json.dumps(metrics,indent=2))
 
 
