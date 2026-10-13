@@ -22,10 +22,28 @@
       <h2 id="cell-title">CH 01</h2><p id="stage">Sẵn sàng</p>
       <div class="metrics"><div><small>Nhiệt độ</small><strong id="temperature">—</strong></div><div><small>Điện áp</small><strong id="voltage">—</strong></div><div><small>Dòng điện</small><strong id="current">—</strong></div><div><small>SOC</small><strong id="soc">—</strong></div></div>
       <div class="soc-track"><div id="soc-fill"></div></div><p id="time">Thời gian mô phỏng: 0 s</p><p id="fault" role="alert"></p>
+      <div class="health"><span>SOH <b id="health-soh">—</b></span><span>Dung lượng <b id="health-capacity">—</b></span><span>Nội trở <b id="health-resistance">—</b></span><span>EFC <b id="health-efc">—</b></span></div>
       <h3>Lịch sử cell được chọn</h3><div id="charts"></div><p class="muted">Lưu tối đa 240 mẫu gần nhất, lấy mẫu mỗi 250 ms thực tế.</p>
     </aside>
   </section>
-  <section class="panel table-panel"><div class="section-title">GIÁM SÁT 12 KÊNH <span>Chọn hàng để xem cell</span></div><div class="table-scroll"><table><thead><tr><th>Kênh</th><th>Trạng thái</th><th>Chu kỳ</th><th>Chế độ</th><th>Điện áp</th><th>Dòng điện</th><th>SOC</th><th>Nhiệt độ</th></tr></thead><tbody id="channels"></tbody></table></div></section>
+  <section class="panel forecast-panel">
+    <div class="section-title">CYCLE PREDICTION / BATTERY DEGRADATION <span id="prediction-cell">CH 01</span></div>
+    <p class="model-note">Nguồn: mô hình cục bộ minh họa, chưa hiệu chuẩn bằng dữ liệu pin. Chưa kết nối API BatteryTwin.</p>
+    <form id="prediction-form" class="scenario">
+      <label>Nhiệt độ (°C)<input id="p-temperature" type="number" min="-10" max="60" step="1" value="25" required></label>
+      <label>C-rate<input id="p-rate" type="number" min="0.1" max="5" step="0.1" value="1" required></label>
+      <label>DoD (%)<input id="p-dod" type="number" min="5" max="100" step="1" value="80" required></label>
+      <label>Dự báo (chu kỳ)<input id="p-horizon" type="number" min="10" max="10000" step="1" value="2000" required></label>
+      <label>Ngưỡng EOL / SOH (%)<input id="p-eol" type="number" min="50" max="95" step="1" value="80" required></label>
+      <button type="submit" id="predict">Tính dự báo</button><button type="button" id="export-prediction" disabled>Xuất CSV</button>
+    </form>
+    <p id="prediction-error" role="alert"></p>
+    <div class="prediction-stats"><div><small>SOH hiện tại</small><strong id="p-soh">—</strong></div><div><small>Chu kỳ còn lại đến EOL</small><strong id="p-rul">—</strong></div><div><small>Dung lượng cuối dự báo</small><strong id="p-capacity">—</strong></div><div><small>Nội trở cuối dự báo</small><strong id="p-resistance">—</strong></div></div>
+    <p id="prediction-context" class="muted"></p>
+    <div class="prediction-graphs"><div><h3>SOH theo số chu kỳ bổ sung</h3><canvas id="forecast-soh" aria-label="Dự báo SOH theo chu kỳ"></canvas></div><div><h3>Dung lượng theo số chu kỳ bổ sung</h3><canvas id="forecast-capacity" aria-label="Dự báo dung lượng theo chu kỳ"></canvas></div></div>
+    <p class="muted">Xanh: dự báo cơ sở · Vùng tô: kịch bản tốc độ suy giảm ±30%, không phải khoảng tin cậy thống kê · Đỏ: ngưỡng EOL. Không bao gồm lão hóa theo thời gian lưu trữ.</p>
+  </section>
+  <section class="panel table-panel"><div class="section-title">GIÁM SÁT 12 KÊNH <span>Chọn hàng để xem cell</span></div><div class="table-scroll"><table><thead><tr><th>Kênh</th><th>Trạng thái</th><th>Chu kỳ</th><th>Chế độ</th><th>Điện áp</th><th>Dòng điện</th><th>SOC</th><th>Nhiệt độ</th><th>SOH</th><th>EFC</th></tr></thead><tbody id="channels"></tbody></table></div></section>
   <footer>Mô hình minh họa · 3 chu kỳ CC/CV → nghỉ → xả CC → nghỉ · Ngưỡng quá nhiệt 45 °C · Mỗi cell có thông số riêng, nhiệt độ đồng nhất trong cell.</footer>
 </main>
 <script type="module" src="app.js"></script>

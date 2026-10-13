@@ -2,17 +2,62 @@
 
 Battery cycler simulator with a realtime 12-cell 3D dashboard.
 
-Requires Python 3.10+; no external dependencies.
+Requires Python 3.11+; no external dependencies.
+
+## SOH, cycle prediction and battery degradation
+
+The dashboard now tracks SOH, usable capacity, internal resistance and
+equivalent full cycles (EFC) for every cell. Aging feeds back into subsequent
+voltage, thermal and charge/discharge calculations. EFC is total charge plus
+discharge throughput divided by twice the nominal capacity; it is different
+from the protocol's numbered cycles. Reset creates fresh, unaged cells.
+
+Select a cell and use **Cycle Prediction / Battery Degradation** to compare
+temperature, C-rate, DoD, forecast horizon and EOL threshold. The forecast
+starts from that cell's current simulated SOH/EFC, refreshes every five
+seconds, and estimates additional operational cycles to EOL. Its scenario
+does not change the realtime cycling protocol. CSV exports include scenario
+metadata, SOH, capacity, resistance and sensitivity curves. Scenario edits
+disable export until a new valid forecast is computed.
+
+The model uses `SOH = exp(-damage)`, with damage per EFC equal to
+`0.00025 * 2^((temperature-25)/10) * sqrt(max(C-rate,0.1)) * DoD^0.3`.
+Live aging uses DoD=1 as its throughput-based approximation. Future
+operational cycles add DoD EFC each. Capacity is nominal capacity times SOH;
+resistance is initial resistance times `1 + 1.5*(1-SOH)`. These coefficients
+are demonstration assumptions, not chemistry-specific fits or AI outputs.
+The ±30% bands vary the aging rate; they are not confidence intervals.
+
+[BatteryTwin Studio](https://batterytwin.ai/#studio) was requested as a
+reference. This project does not use BatteryTwin code, data or API: its
+website could not be read from this environment, and no API documentation
+or credentials were supplied. A real integration still needs documented
+endpoints, request/response formats and authentication. No API key belongs
+in the browser or repository.
+
+See [executed results and screenshots](results/REPORT.md). Reproduce the
+12-cell, three-cycle report and baseline/warm/fast forecasts with:
+
+```sh
+python -B -m unittest -v test_aging
+python -B report.py --output results
+```
+
+JSON predictions are served at `/api/prediction?cell=1&temperature_c=25&c_rate=1&dod=0.8&horizon=2000&eol_soh=0.8`.
+Cell IDs are 1–12, temperature −10 to 60 °C, C-rate 0.1–5, DoD 0.05–1,
+horizon 10–10,000 integer cycles and EOL SOH 0.5–0.95. Invalid, duplicate,
+nonfinite or unknown parameters return HTTP 400.
 
 ## Dashboard screenshots and simulation results
 
-![Running battery cycler dashboard](results/dashboard-running.png)
+![Battery cycler dashboard with cycle prediction](results/dashboard-aging.png)
 
 All 12 cells completed three cycles in the recorded example run. The highest
 temperature was 28.72 °C, and the last cell finished after approximately
 8.06 simulated hours. These are illustrative model outputs, not hardware
-measurements. See the [completed dashboard](results/dashboard-completed.png)
-and [JSON results](results/results.json).
+measurements. See the [completed dashboard](results/dashboard-aging-completed.png)
+and [latest executed report](results/REPORT.md). The earlier `results.json`
+and `dashboard-running.png` files retain the original run before aging was added.
 
 ## Realtime 3D dashboard
 
@@ -88,8 +133,8 @@ rest duration and initial SOC. Output paths must have an existing parent
 directory. An existing output file is overwritten. On a thermal limit or
 timeout the program exits with a nonzero status and retains partial CSV data.
 
-This is an illustrative digital twin: linear open-circuit voltage, fixed
-internal resistance and a lumped thermal model. It does not model aging,
-cell imbalance, charging efficiency or hardware communication. It must not
+This is an illustrative digital twin: linear open-circuit voltage, a simple
+cycle-aging model and a lumped thermal model. It does not model calendar
+aging, cell imbalance, charging efficiency or hardware communication. It must not
 be used to control or validate real battery equipment without calibrated
 models and independent hardware safety controls.

@@ -6,7 +6,9 @@ import threading
 import time
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import urlsplit, parse_qs
 from main import Battery, simulate
+from aging import forecast
 
 
 class Rack:
@@ -20,16 +22,18 @@ class Rack:
         self.fraction = 0.0
         self.cells = []
         self.streams = []
+        self.batteries = []
         for i in range(12):
             battery = Battery(capacity_ah=2.5 + 0.025 * i,
                               resistance_ohm=0.07 + 0.004 * i,
                               soc=0.15 + 0.025 * i,
                               temperature_c=25 + 0.2 * i, ambient_c=25 + 0.2 * i)
             self.streams.append(simulate(battery, cycles=3, current_a=2, dt_s=1))
+            self.batteries.append(battery)
             self.cells.append(dict(id=i + 1, time_s=0, cycle=1, stage='ready', mode='READY',
                                    voltage_v=battery.ocv, current_a=0, soc=battery.soc,
                                    temperature_c=battery.temperature_c, stage_capacity_ah=0,
-                                   status='ready', error=''))
+                                   status='ready', error='', **battery.health()))
 
     def tick(self, wall_dt):
         if not self.running:
@@ -70,9 +74,28 @@ def make_handler(rack):
             self.wfile.write(body)
 
         def do_GET(self):
-            if self.path == '/api/state':
+            url = urlsplit(self.path)
+            if url.path == '/api/state':
                 with rack.lock:
                     self.send_json(rack.snapshot())
+            elif url.path == '/api/prediction':
+                try:
+                    query = parse_qs(url.query, keep_blank_values=True)
+                    allowed = {'cell', 'temperature_c', 'c_rate', 'dod', 'horizon', 'eol_soh'}
+                    if set(query) - allowed or any(len(v) != 1 for v in query.values()):
+                        raise ValueError('Unknown or duplicate parameter')
+                    cell = int(query.get('cell', ['1'])[0])
+                    if not 1 <= cell <= 12:
+                        raise ValueError('Cell must be 1 through 12')
+                    kwargs = {k: (int(v[0]) if k == 'horizon' else float(v[0]))
+                              for k, v in query.items() if k != 'cell'}
+                    with rack.lock:
+                        b = rack.batteries[cell - 1]
+                        result = forecast(b.capacity_ah, b.resistance_ohm, b.soh, b.efc, **kwargs)
+                        result.update(cell=cell, source='local-model', time_s=rack.cells[cell-1]['time_s'])
+                    self.send_json(result)
+                except (ValueError, OverflowError) as error:
+                    self.send_json({'error': str(error)}, 400)
             else:
                 super().do_GET()
 

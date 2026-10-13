@@ -5,6 +5,7 @@ import csv
 import math
 from dataclasses import dataclass
 from pathlib import Path
+from aging import BASE_RATE, stress_factor
 
 
 @dataclass
@@ -14,6 +15,24 @@ class Battery:
     soc: float = 0.2
     temperature_c: float = 25.0
     ambient_c: float = 25.0
+    efc: float = 0.0
+    aging_damage: float = 0.0
+
+    @property
+    def soh(self):
+        return math.exp(-self.aging_damage)
+
+    @property
+    def usable_capacity_ah(self):
+        return self.capacity_ah * self.soh
+
+    @property
+    def effective_resistance_ohm(self):
+        return self.resistance_ohm * (1 + 1.5 * (1 - self.soh))
+
+    def health(self):
+        return dict(soh_percent=100*self.soh, capacity_ah=self.usable_capacity_ah,
+                    resistance_mohm=1000*self.effective_resistance_ohm, efc=self.efc)
 
     @property
     def ocv(self):
@@ -21,12 +40,17 @@ class Battery:
         return 3.0 + 1.2 * self.soc
 
     def advance(self, current_a, dt_s):
-        self.soc = min(1.0, max(0.0, self.soc + current_a * dt_s / (3600 * self.capacity_ah)))
+        self.soc = min(1.0, max(0.0, self.soc + current_a * dt_s / (3600 * self.usable_capacity_ah)))
         # Lumped thermal model: heat capacity 50 J/K, cooling 0.3 W/K.
         decay = math.exp(-0.3 * dt_s / 50.0)
-        equilibrium = self.ambient_c + current_a**2 * self.resistance_ohm / 0.3
+        equilibrium = self.ambient_c + current_a**2 * self.effective_resistance_ohm / 0.3
         self.temperature_c = equilibrium + (self.temperature_c - equilibrium) * decay
-        return self.ocv + current_a * self.resistance_ohm
+        # EFC counts charge + discharge throughput / (2 * nominal capacity).
+        delta_efc = abs(current_a) * dt_s / (7200 * self.capacity_ah)
+        self.efc += delta_efc
+        self.aging_damage += BASE_RATE * delta_efc * stress_factor(
+            self.temperature_c, abs(current_a) / self.capacity_ah)
+        return self.ocv + current_a * self.effective_resistance_ohm
 
 
 def simulate(battery, cycles=1, current_a=1.0, dt_s=1.0, rest_s=60.0,
@@ -51,7 +75,7 @@ def simulate(battery, cycles=1, current_a=1.0, dt_s=1.0, rest_s=60.0,
                 elif stage == "charge":
                     # Implicit endpoint CV current keeps terminal voltage <= 4.2 V.
                     cv_current = max(0.0, (4.2 - battery.ocv) /
-                                     (battery.resistance_ohm + 1.2 * dt_s / (3600 * battery.capacity_ah)))
+                                     (battery.effective_resistance_ohm + 1.2 * dt_s / (3600 * battery.usable_capacity_ah)))
                     current = min(current_a, cv_current)
                     if current <= 0.05 * current_a:
                         break
@@ -59,13 +83,13 @@ def simulate(battery, cycles=1, current_a=1.0, dt_s=1.0, rest_s=60.0,
                     step = dt_s
                 else:
                     available = (battery.ocv - 3.0) / (
-                        battery.resistance_ohm + 1.2 * dt_s / (3600 * battery.capacity_ah))
+                        battery.effective_resistance_ohm + 1.2 * dt_s / (3600 * battery.usable_capacity_ah))
                     if available <= 0:
                         break
                     current = -current_a
                     # Shorten final discharge step to land on the 3.0 V cutoff.
-                    step = min(dt_s, max(0.0, (battery.ocv - current_a * battery.resistance_ohm - 3.0)
-                                          * 3600 * battery.capacity_ah / (1.2 * current_a)))
+                    step = min(dt_s, max(0.0, (battery.ocv - current_a * battery.effective_resistance_ohm - 3.0)
+                                          * 3600 * battery.usable_capacity_ah / (1.2 * current_a)))
                     if step < 1e-8:
                         break
                     mode = "CC"
@@ -75,7 +99,8 @@ def simulate(battery, cycles=1, current_a=1.0, dt_s=1.0, rest_s=60.0,
                 transferred_ah += abs(current) * step / 3600
                 yield {"time_s": elapsed, "cycle": cycle, "stage": stage, "mode": mode,
                        "voltage_v": voltage, "current_a": current, "soc": battery.soc,
-                       "temperature_c": battery.temperature_c, "stage_capacity_ah": transferred_ah}
+                       "temperature_c": battery.temperature_c, "stage_capacity_ah": transferred_ah,
+                       **battery.health()}
                 if battery.temperature_c >= max_temperature_c:
                     raise RuntimeError("Temperature limit reached; simulation stopped")
                 if not stage.startswith("rest") and stage_time >= timeout:
@@ -103,7 +128,8 @@ def main():
         parser.error("cycles must be >= 1 and initial SOC must be between 0 and 1")
     battery = Battery(capacity_ah=args.capacity_ah, soc=args.initial_soc)
     fields = ["time_s", "cycle", "stage", "mode", "voltage_v", "current_a", "soc",
-              "temperature_c", "stage_capacity_ah"]
+              "temperature_c", "stage_capacity_ah", "soh_percent", "capacity_ah",
+              "resistance_mohm", "efc"]
     count = 0
     try:
         with args.output.open("w", newline="") as file:
