@@ -11,6 +11,7 @@ from main import Battery, simulate
 from aging import forecast
 from batterylake import BatteryLake, BatteryLakeError
 from ml_inference import predict as ml_predict
+from live_features import EarlyDischargeWindow
 
 
 class Rack:
@@ -28,6 +29,10 @@ class Rack:
         self.alarms = []
         self.safety_stop = False
         self.pending_fault = None
+        self.live_windows = [EarlyDischargeWindow() for _ in range(12)]
+        self.discharge_starts = [None]*12
+        self.previous_stages = ['ready']*12
+        self.previous_times = [0.0]*12
         for i in range(12):
             battery = Battery(capacity_ah=2.5 + 0.025 * i,
                               resistance_ohm=0.07 + 0.004 * i,
@@ -38,7 +43,47 @@ class Rack:
             self.cells.append(dict(id=i + 1, time_s=0, cycle=1, stage='ready', mode='READY',
                                    voltage_v=battery.ocv, current_a=0, soc=battery.soc,
                                    temperature_c=battery.temperature_c, stage_capacity_ah=0,
-                                   status='ready', error='', **battery.health()))
+                                   status='ready', error='', live_ml=self.waiting_prediction(), **battery.health()))
+
+    @staticmethod
+    def waiting_prediction():
+        return dict(status='waiting',remaining_cycles=None,soh_percent=None,
+                    feature_cycle=None,updated_time_s=None,sample_count=0,
+                    window_s=600,experimental=True,valid_for_hardware=False,
+                    reason='Waiting for 600 seconds of discharge telemetry')
+
+    def collect_prediction(self,index):
+        cell=self.cells[index]
+        stage=cell['stage']
+        if stage=='discharge':
+            if self.previous_stages[index]!='discharge':
+                self.discharge_starts[index]=self.previous_times[index]
+                if cell['live_ml']['feature_cycle']!=cell['cycle']:
+                    cell['live_ml']['status']='collecting'
+            try:
+                features=self.live_windows[index].add(
+                    cycle=cell['cycle'],stage=stage,time_s=cell['time_s'],
+                    voltage_v=cell['voltage_v'],current_a=cell['current_a'],
+                    temperature_c=cell['temperature_c'],
+                    ambient_temperature_c=self.batteries[index].ambient_c,
+                    stage_start_s=self.discharge_starts[index])
+                window=self.live_windows[index]
+                cell['live_ml']['sample_count']=window.count
+                if features:
+                    prediction=ml_predict(features)
+                    cell['live_ml']=dict(**prediction,status='ready',experimental=True,
+                                         valid_for_hardware=False,feature_cycle=cell['cycle'],
+                                         updated_time_s=cell['time_s'],sample_count=window.count,
+                                         window_s=600,features=features,
+                                         reason='NASA-trained model applied to simulated signals; not calibrated')
+                elif window.error:
+                    cell['live_ml'].update(status='insufficient',reason=window.error)
+            except (ValueError,OSError) as error:
+                cell['live_ml'].update(status='error',reason=str(error))
+        elif self.previous_stages[index]=='discharge' and not self.live_windows[index].ready:
+            cell['live_ml'].update(status='insufficient',reason='Discharge ended before a complete 600-second window')
+        self.previous_stages[index]=stage
+        self.previous_times[index]=cell['time_s']
 
     def tick(self, wall_dt):
         if not self.running:
@@ -74,6 +119,7 @@ class Rack:
                 if reason:
                     self.trip(cell,reason)
                     return
+                self.collect_prediction(index)
         if all(c['status'] in ('complete', 'fault') for c in self.cells):
             self.running = False
 
@@ -87,6 +133,8 @@ class Rack:
         for c in self.cells:
             c['current_a']=0
             if c['status']=='running':c['status']='stopped'
+            if c['live_ml']['remaining_cycles'] is not None:
+                c['live_ml']['status']='safety_stop'
 
     def snapshot(self):
         return dict(running=self.running, speed=self.speed, cells=self.cells,

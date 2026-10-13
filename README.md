@@ -6,6 +6,36 @@ Requires Python 3.11+; no external dependencies.
 
 ## BatteryLake metadata + trained ML on real discharge records
 
+### Live per-channel ML RUL
+
+The 12 simulated channels now feed their running voltage/current/temperature
+into independent early-discharge windows. Each channel waits for a complete
+600-second discharge window (at least 10 samples), computes the same
+seven features as the NASA training pipeline, and performs server-side
+Random Forest inference once per discharge cycle. The latest result,
+feature cycle, sample count and simulated update timestamp are included
+in `/api/state` under each channel's `live_ml` field and shown in the
+channel table and selected-cell card. Browser refresh does not lose the
+server's window. Pause freezes collection; Reset clears all predictions.
+
+**These live results are experimental:** NASA-trained trees have not been
+calibrated or validated on the synthetic rack signals. The NASA hold-out
+metrics do not describe accuracy on these channels. They are not the
+physics scenario forecast and must not be interpreted as verified battery
+life. The replay remains a separate validated NASA backtest. Live RUL
+means additional cycles to 80% SOH, not remaining steps in the three-cycle
+demo. Predictions may fluctuate; they are not forced to decrease.
+
+No physical cycler adapter is connected. Real channel updates require the
+instrument's protocol/API or CSV stream and a model validated for its cells
+and test conditions. Never feed charge/rest samples into this discharge
+model. Features exclude current-cycle capacity and future data; invalid or
+out-of-order timestamps are rejected. Short discharges show insufficient
+data instead of inventing a prediction. The independent safety checks run
+before feature collection; a STOP freezes predictions and current.
+
+See [executed live-channel results](results/LIVE-ML-REPORT.md).
+
 The new **BatteryLake** panel calls the public metadata JSON interface from
 `tianwen1209/batterylake`, pinned at commit
 `8d2a7304e4841b815287d3d0b2fcc67fea95b200`. You can search/filter its

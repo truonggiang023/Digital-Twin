@@ -96,12 +96,17 @@ function updateUI(s){
  $('health-capacity').textContent=`${cell.capacity_ah.toFixed(3)} Ah`;
  $('health-resistance').textContent=`${cell.resistance_mohm.toFixed(2)} mΩ`;
  $('health-efc').textContent=cell.efc.toFixed(3);
+ const live=cell.live_ml;
+ $('live-rul').textContent=live.remaining_cycles===null?'Chờ dữ liệu xả':`≈ ${Math.round(live.remaining_cycles)} chu kỳ còn lại`;
+ $('live-model-soh').textContent=live.soh_percent===null?'':`SOH dự báo ML: ${live.soh_percent.toFixed(2)} %`;
+ const liveLabels={waiting:'Chờ xả',collecting:'Đang gom dữ liệu xả',ready:'Đã cập nhật',insufficient:'Thiếu dữ liệu',error:'Lỗi mô hình',safety_stop:'STOP · Dự báo ngừng cập nhật'};
+ $('live-ml-state').textContent=`${liveLabels[live.status]||live.status} · ${live.sample_count} mẫu / 600 s${live.feature_cycle===null?'':` · chu kỳ ${live.feature_cycle} · cập nhật tại ${live.updated_time_s.toFixed(0)} s`}${['error','insufficient'].includes(live.status)?' · '+live.reason:''}`;
  $('channels').replaceChildren();
  for(const [i,c] of s.cells.entries()){
    if(c.time_s!==lastTime[i]){history[i].push({...c});if(history[i].length>240)history[i].shift();lastTime[i]=c.time_s;}
    if(meshes[i])meshes[i].material.color.copy(thermalColor(c.temperature_c));
    const tr=document.createElement('tr');tr.classList.toggle('selected',i===selected);tr.tabIndex=0;
-   const texts=[`CH ${String(c.id).padStart(2,'0')}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3)];
+   const texts=[`CH ${String(c.id).padStart(2,'0')}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
    texts.forEach((text,j)=>{const td=document.createElement('td');td.textContent=text;if(j===7){const dot=document.createElement('span');dot.className='dot';dot.style.background='#'+thermalColor(c.temperature_c).getHexString();td.prepend(dot);}tr.append(td);});
    tr.addEventListener('click',()=>selectCell(i));tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCell(i);}});$('channels').append(tr);
  }
