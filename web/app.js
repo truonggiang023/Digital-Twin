@@ -3,6 +3,7 @@ import { OrbitControls } from './vendor/OrbitControls.js';
 import { initPrediction } from './prediction.js';
 import { initBatteryLake } from './batterylake.js';
 import { initML } from './ml.js';
+import { drawLivePrediction } from './live_chart.js';
 
 const $ = id => document.getElementById(id);
 const palette = ['#2563eb','#06b6d4','#22c55e','#facc15','#ef4444'].map(x=>new THREE.Color(x));
@@ -97,8 +98,7 @@ function updateUI(s){
  $('health-resistance').textContent=`${cell.resistance_mohm.toFixed(2)} mΩ`;
  $('health-efc').textContent=cell.efc.toFixed(3);
  const live=cell.live_ml;
- $('live-rul').textContent=live.remaining_cycles===null?'Chờ dữ liệu xả':`≈ ${Math.round(live.remaining_cycles)} chu kỳ còn lại`;
- $('live-model-soh').textContent=live.soh_percent===null?'':`SOH dự báo ML: ${live.soh_percent.toFixed(2)} %`;
+ drawLivePrediction(cell);
  const liveLabels={waiting:'Chờ xả',collecting:'Đang gom dữ liệu xả',ready:'Đã cập nhật',insufficient:'Thiếu dữ liệu',error:'Lỗi mô hình',safety_stop:'STOP · Dự báo ngừng cập nhật'};
  $('live-ml-state').textContent=`${liveLabels[live.status]||live.status} · ${live.sample_count} mẫu / 600 s${live.feature_cycle===null?'':` · chu kỳ ${live.feature_cycle} · cập nhật tại ${live.updated_time_s.toFixed(0)} s`}${['error','insufficient'].includes(live.status)?' · '+live.reason:''}`;
  $('channels').replaceChildren();
@@ -134,3 +134,4 @@ poll();
 initPrediction();
 initBatteryLake();
 initML();
+new ResizeObserver(()=>{if(state)drawLivePrediction(state.cells[selected]);}).observe($('live-soh-chart').parentElement);

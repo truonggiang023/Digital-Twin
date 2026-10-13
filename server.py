@@ -43,7 +43,8 @@ class Rack:
             self.cells.append(dict(id=i + 1, time_s=0, cycle=1, stage='ready', mode='READY',
                                    voltage_v=battery.ocv, current_a=0, soc=battery.soc,
                                    temperature_c=battery.temperature_c, stage_capacity_ah=0,
-                                   status='ready', error='', live_ml=self.waiting_prediction(), **battery.health()))
+                                   status='ready', error='', live_ml=self.waiting_prediction(),
+                                   live_ml_history=[], **battery.health()))
 
     @staticmethod
     def waiting_prediction():
@@ -76,6 +77,11 @@ class Rack:
                                          updated_time_s=cell['time_s'],sample_count=window.count,
                                          window_s=600,features=features,
                                          reason='NASA-trained model applied to simulated signals; not calibrated')
+                    cell['live_ml_history'].append(dict(cycle=cell['cycle'],time_s=cell['time_s'],
+                                                       soh_percent=prediction['soh_percent'],
+                                                       simulated_soh_percent=cell['soh_percent'],
+                                                       remaining_cycles=prediction['remaining_cycles']))
+                    cell['live_ml_history']=cell['live_ml_history'][-200:]
                 elif window.error:
                     cell['live_ml'].update(status='insufficient',reason=window.error)
             except (ValueError,OSError) as error:

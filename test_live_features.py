@@ -50,8 +50,11 @@ class LiveFeatureTests(unittest.TestCase):
             self.assertTrue(prediction['experimental'])
             self.assertFalse(prediction['valid_for_hardware'])
             self.assertNotIn('capacity_ah',prediction['features'])
+            self.assertEqual([p['cycle'] for p in cell['live_ml_history']],[1,2,3])
+            self.assertEqual(cell['live_ml_history'][-1]['remaining_cycles'],prediction['remaining_cycles'])
         rack.reset()
         self.assertTrue(all(c['live_ml']['remaining_cycles'] is None for c in rack.cells))
+        self.assertTrue(all(not c['live_ml_history'] for c in rack.cells))
 
     def test_fault_does_not_publish_unsafe_prediction(self):
         from server import Rack

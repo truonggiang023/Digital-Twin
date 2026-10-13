@@ -1,5 +1,9 @@
 # Live-channel ML RUL demonstration
 
+The selected-channel card now draws live SOH and RUL history instead of text-only metrics.
+
+![Selected-channel SOH and RUL charts](dashboard-live-soh.png)
+
 12 simulated channels produced 36 server-side ML updates across three discharge cycles. Predictions use each channel’s first 600 discharge seconds and refresh independently once per cycle. There is no physical cycler connection.
 
 Model: NASA Random Forest. The transfer to simulated channels is experimental and not calibrated; NASA hold-out accuracy does not apply. These are not verified remaining lifetimes.

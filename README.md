@@ -15,7 +15,11 @@ seven features as the NASA training pipeline, and performs server-side
 Random Forest inference once per discharge cycle. The latest result,
 feature cycle, sample count and simulated update timestamp are included
 in `/api/state` under each channel's `live_ml` field and shown in the
-channel table and selected-cell card. Browser refresh does not lose the
+channel table and selected-cell charts. The SOH chart plots simulated SOH
+against ML SOH, with an 80% EOL reference; the second chart plots predicted
+remaining cycles. Each point is one completed feature window, not a
+fabricated intermediate prediction. Up to 200 per-channel points are held
+in the server under `live_ml_history`, so browser refresh does not lose the
 server's window. Pause freezes collection; Reset clears all predictions.
 
 **These live results are experimental:** NASA-trained trees have not been
