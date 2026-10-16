@@ -7,12 +7,17 @@ ML charts, scoped to the selected project's channels. It does not link out to a
 separate demo dataset. Selecting a DOE in the workflow or cell inside 3D keeps
 the same DOE/channel selected.
 
-Each running demo cell is named for its DOE: DOE-01…DOE-06 map to PRISMATIC LFP01
-CH01–06, DOE-07…DOE-12 to CYLINDRICAL LFP01 CH07–12. The project tables, 3D cell
-labels, selector and management reports share these identities and the same
-Rack telemetry. This supersedes the earlier four-DOE/three-cell grouping.
-SIB projects show an empty state because no sodium channels are assigned;
-no lithium telemetry is reused to fill those projects.
+The demo now uses **six replicate cells per DOE**:
+- `DOE-P-LFP01`: PRISMATIC LFP01, C01–C06 on CH01–06.
+- `DOE-C-LFP01`: CYLINDRICAL LFP01, C01–C06 on CH07–12.
+
+Each DOE has one shared original BOM/revision and batch, with six unique cell
+and test IDs. Performance/3D selection distinguishes replicates by C01–C06.
+The home summary aggregates running count and mean/min/max SOH per DOE. Each
+cell's telemetry and experimental ML remain independent. Editing the shared
+recipe is blocked if any of its six cells already has telemetry. This supersedes
+the previous one-DOE-per-cell mapping; old local records are preserved.
+SIB projects remain empty because no sodium channels are assigned.
 
 `GET /api/project-workflow?project=<project-id>` returns a consistent locked
 snapshot of live telemetry, persisted original DOE definitions and linked
@@ -33,7 +38,7 @@ Performance CSV/JSON export only the selected project's channels, with original
 BOM, DOE/cell name, revision, batch, channel, session/time, telemetry, ML provenance
 and issues. JSON also includes histories. No separate demo seed is required.
 A legacy all-channel page at `/index.html` preserves every old feature; it can
-also be filtered by `?project=prismatic-lfp01&doe=DOE-03`.
+also be filtered by `?project=prismatic-lfp01&doe=DOE-P-LFP01&channel=3`.
 
 Start/Pause/Reset inside the embedded cycler apply to the **whole rack**, even
 when the display is project-filtered. Reset creates a new runtime session and

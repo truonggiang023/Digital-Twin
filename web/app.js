@@ -16,16 +16,16 @@ const stages = {ready:'Sẵn sàng',charge:'Sạc',rest_after_charge:'Nghỉ sau
 const statuses = {ready:'Sẵn sàng',running:'Đang chạy',complete:'Hoàn tất',fault:'Dừng lỗi',stopped:'Dừng bảo vệ'};
 const context=new URLSearchParams(location.search),projectScope=context.get('project');
 const allowed=Array.from({length:12},(_,i)=>i).filter(i=>!projectScope||projectScope===(i<6?'prismatic-lfp01':'cylindrical-lfp01'));
-const requested=Number((context.get('doe')||'').replace('DOE-',''))-1;
+const requested=Number(context.get('channel')||0)-1;
 let selected=allowed.includes(requested)?requested:(allowed[0]??0), state=null, history=Array.from({length:12},()=>[]), lastTime=Array(12).fill(-1);
 if(projectScope){document.querySelector('.scene-panel .section-title').firstChild.textContent='CYCLER 3D · '+(projectScope.startsWith('prismatic')?'PRISMATIC':'CYLINDRICAL')+' · THEO DỰ ÁN ';document.querySelector('.scene-panel p.muted').textContent='Chỉ hiển thị DOE/cell được gán dự án này. Màu từng cell theo nhiệt độ realtime.';}
 if(context.get('embed')==='1'){document.body.classList.add('embedded');document.querySelector('header').hidden=true;}
 
 const meshes=[], outlines=[];
-for(const i of allowed) $('cell-select').add(new Option(`DOE-${String(i+1).padStart(2,'0')} · CH ${String(i+1).padStart(2,'0')}`,i));
+for(const i of allowed) $('cell-select').add(new Option(`${i<6?'DOE-P-LFP01':'DOE-C-LFP01'}-C${String(i%6+1).padStart(2,'0')} · CH${i+1}`,i));
 $('cell-select').value=String(selected);
 for(const i of allowed) $('fault-cell').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i+1));
-function selectCell(i){if(!allowed.includes(i))return;selected=i;if(window.parent!==window)window.parent.postMessage({type:'cycler-doe-selected',doe:'DOE-'+String(i+1).padStart(2,'0')},location.origin);$('cell-select').value=i;if(state)updateUI(state);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:i}));}
+function selectCell(i){if(!allowed.includes(i))return;selected=i;if(window.parent!==window)window.parent.postMessage({type:'cycler-doe-selected',doe:i<6?'DOE-P-LFP01':'DOE-C-LFP01',channel:i+1},location.origin);$('cell-select').value=i;if(state)updateUI(state);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:i}));}
 $('cell-select').addEventListener('change',e=>selectCell(Number(e.target.value)));
 const definitions=[['temperature_c','Nhiệt độ · °C','#facc15'],['voltage_v','Điện áp · V','#5dd5bf'],['current_a','Dòng điện · A','#6ba8ff'],['soc','SOC · %','#c799ff']];
 for(const [key,label] of definitions){
@@ -61,7 +61,7 @@ try {
    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1,1.65,1)),new THREE.LineBasicMaterial({color:'#e7fffa'}));
    edges.position.copy(cell.position);scene.add(edges);outlines[i]=edges;
    const labelCanvas=document.createElement('canvas');labelCanvas.width=256;labelCanvas.height=64;
-   const ctx=labelCanvas.getContext('2d');ctx.fillStyle='#c4dae9';ctx.font='bold 24px sans-serif';ctx.textAlign='center';ctx.fillText(`DOE-${String(i+1).padStart(2,'0')} · CH${i+1}`,128,42);
+   const ctx=labelCanvas.getContext('2d');ctx.fillStyle='#c4dae9';ctx.font='bold 24px sans-serif';ctx.textAlign='center';ctx.fillText(`${i<6?'DOE-P':'DOE-C'} C${String(i%6+1).padStart(2,'0')} · CH${i+1}`,128,42);
    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(labelCanvas)}));sprite.position.set(x,y-.68,1.35);sprite.scale.set(1.15,.29,1);scene.add(sprite);
    for(const object of scene.children.slice(childStart))object.visible=allowed.includes(i);
  }
@@ -101,7 +101,7 @@ function updateUI(s){
  $('fault-pending').textContent=s.pending_fault?`Đã lên lịch lỗi ${s.pending_fault.kind} cho CH ${s.pending_fault.cell}. Bắt đầu để áp dụng.`:'';
  $('run-status').textContent=s.safety_stop?'STOP · Dừng bảo vệ':s.running?'Đang mô phỏng':s.cells.every(c=>['complete','fault'].includes(c.status))?'Đã kết thúc':'Tạm dừng / Sẵn sàng';
  $('run-status').classList.toggle('error',s.safety_stop);
- $('speed').value=String(s.speed);$('cell-title').textContent=`${cell.doe_name} · CH ${String(cell.id).padStart(2,'0')} · ${cell.form_factor}`;
+ $('speed').value=String(s.speed);$('cell-title').textContent=`${cell.cell_name} · CH ${String(cell.id).padStart(2,'0')} · ${cell.form_factor}`;
  $('stage').textContent=`${stages[cell.stage]||cell.stage} · ${cell.mode} · Chu kỳ ${cell.cycle}/3`;
  $('temperature').textContent=`${cell.temperature_c.toFixed(2)} °C`;$('temperature').style.color='#'+thermalColor(cell.temperature_c).getHexString();
  $('voltage').textContent=`${cell.voltage_v.toFixed(3)} V`;$('current').textContent=`${cell.current_a.toFixed(3)} A`;
@@ -121,7 +121,7 @@ function updateUI(s){
    if(c.time_s!==lastTime[i]){history[i].push({...c});if(history[i].length>240)history[i].shift();lastTime[i]=c.time_s;}
    if(meshes[i])meshes[i].material.color.copy(thermalColor(c.temperature_c));
    const tr=document.createElement('tr');tr.classList.toggle('selected',i===selected);tr.tabIndex=0;
-   const texts=[`${c.doe_name} · CH ${String(c.id).padStart(2,'0')} · ${c.form_factor}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
+   const texts=[`${c.cell_name} · CH ${String(c.id).padStart(2,'0')} · ${c.form_factor}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
    texts.forEach((text,j)=>{const td=document.createElement('td');td.textContent=text;if(j===7){const dot=document.createElement('span');dot.className='dot';dot.style.background='#'+thermalColor(c.temperature_c).getHexString();td.prepend(dot);}tr.append(td);});
    tr.addEventListener('click',()=>selectCell(i));tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCell(i);}});$('channels').append(tr);
  }

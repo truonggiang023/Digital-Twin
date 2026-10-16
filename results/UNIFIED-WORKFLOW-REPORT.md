@@ -6,25 +6,26 @@ design categories, batch/cell/test registry, Performance and Issues all refer
 to the same named cells and channels. Performance includes the original 3D
 cycler and live SOH/ML within the project workflow.
 
-Each cell is named for its DOE. DOE-01–06 / CH01–06 are PRISMATIC LFP01;
-DOE-07–12 / CH07–12 are CYLINDRICAL LFP01. Thus the new demo has 12 DOE/cell
-identities, replacing the earlier four-DOE grouping. SIB is explicitly empty.
-The shared original DOE definitions persist in SQLite and can be edited before
-testing, creating revisions. Running-channel metadata cannot be rewritten.
+Current demo: DOE-P-LFP01 has six prismatic replicates C01–C06 on CH01–06;
+DOE-C-LFP01 has six cylindrical replicates C01–C06 on CH07–12. One original
+BOM/revision and batch per DOE; unique cell/test/channel and live history per
+replicate. The home summary aggregates count, running and SOH mean/min/max.
+Editing a shared recipe is blocked after any replicate has begun testing.
+Old one-DOE-per-cell records remain preserved, but no longer drive this demo.
 
 Browser verification:
-- Workflow hidden until project choice; six actual channels per LFP project.
+- Workflow hidden until project choice; one DOE and six actual channels per LFP project.
 - DOE selection selects the same channel inside embedded 3D.
 - 3D selection synchronizes the outer DOE selector.
 - Six visible 3D bodies and six channel options/rows, all from the chosen project.
 - Switching projects does not reuse the other project's channels.
 - No iframe, channels or CSV rows are invented for SIB.
-- Project CSV has six rows, DOE name equals cell name, and all 60 original fields.
-- Fault on CH08 appears as an issue against DOE-08 in CYLINDRICAL LFP01.
+- Project CSV has six rows, cell names include the DOE and replicate suffix, and all 60 original fields.
+- Fault on CH08 appears as an issue against DOE-C-LFP01 / C02 in CYLINDRICAL LFP01.
 - Design editor has 60 fields and saves the same live DOE as revision V2.
 - Mobile width checked; no JavaScript errors.
 
-50 Python tests passed, including source identity, no old static-demo leakage,
+51 Python tests passed, including source identity, no old static-demo leakage,
 project filtering, persisted DOE definitions, fault/issue resolution preserving
 STOP, revision protection, and the existing live ML, aging, DOE and safety suites.
 

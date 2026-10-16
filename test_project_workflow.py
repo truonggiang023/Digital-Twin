@@ -11,12 +11,17 @@ class ProjectWorkflowTests(unittest.TestCase):
  def tearDown(self):self.store.close();self.tmp.cleanup()
  def test_one_doe_name_per_cycler_cell_and_same_source_every_tab(self):
   d=report(self.rack,self.store,'prismatic-lfp01')
-  self.assertEqual(len(d['does']),6);self.assertEqual(len(d['tests']),6)
+  self.assertEqual(len(d['does']),1);self.assertEqual(len(d['tests']),6)
   for t in d['tests']:
-   self.assertEqual(t['cell_name'],t['doe_id']);self.assertEqual(t['telemetry']['doe_name'],t['doe_id'])
+   self.assertTrue(t['cell_name'].startswith(t['doe_id']+'-C'));self.assertEqual(t['telemetry']['doe_name'],t['doe_id'])
    self.assertEqual(t['telemetry'],self.rack.cells[t['channel']-1])
    self.assertTrue(any(r['kind']=='cell' and r['doe_id']==t['doe_id'] for r in d['records']))
    self.assertTrue(any(r['kind']=='batch' and r['doe_id']==t['doe_id'] for r in d['records']))
+ def test_six_unique_cells_share_one_design_and_batch(self):
+  d=report(self.rack,self.store,'prismatic-lfp01')
+  self.assertEqual(len({t['cell_id'] for t in d['tests']}),6)
+  self.assertEqual(len({t['batch_id'] for t in d['tests']}),1)
+  self.assertEqual(sum(r['kind']=='batch' for r in d['records']),1)
  def test_no_cross_project_or_static_demo_leak(self):
   api(self.store,'demo',{})
   d=report(self.rack,self.store,'cylindrical-lfp01')
@@ -33,7 +38,7 @@ class ProjectWorkflowTests(unittest.TestCase):
  def test_fault_issue_same_cell_and_resolution_survives_poll(self):
   self.rack.trip(self.rack.cells[7],'Overheat')
   d=report(self.rack,self.store,'cylindrical-lfp01');self.assertEqual(len(d['issues']),1)
-  i=d['issues'][0];self.assertEqual(i['doe_id'],'DOE-08')
+  i=d['issues'][0];self.assertEqual(i['doe_id'],'DOE-C-LFP01')
   api(self.store,'resolve',dict(id=i['id'],resolution='Investigated'))
   d=report(self.rack,self.store,'cylindrical-lfp01');self.assertEqual(d['issues'][0]['status'],'resolved')
   self.assertTrue(d['safety_stop']);self.assertEqual(len(report(self.rack,self.store,'prismatic-lfp01')['issues']),0)
