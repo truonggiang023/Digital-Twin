@@ -14,11 +14,18 @@ function thermalColor(t) {
 }
 const stages = {ready:'Sẵn sàng',charge:'Sạc',rest_after_charge:'Nghỉ sau sạc',discharge:'Xả',rest_after_discharge:'Nghỉ sau xả'};
 const statuses = {ready:'Sẵn sàng',running:'Đang chạy',complete:'Hoàn tất',fault:'Dừng lỗi',stopped:'Dừng bảo vệ'};
-let selected=0, state=null, history=Array.from({length:12},()=>[]), lastTime=Array(12).fill(-1);
+const context=new URLSearchParams(location.search),projectScope=context.get('project');
+const allowed=Array.from({length:12},(_,i)=>i).filter(i=>!projectScope||projectScope===(i<6?'prismatic-lfp01':'cylindrical-lfp01'));
+const requested=Number((context.get('doe')||'').replace('DOE-',''))-1;
+let selected=allowed.includes(requested)?requested:(allowed[0]??0), state=null, history=Array.from({length:12},()=>[]), lastTime=Array(12).fill(-1);
+if(projectScope){document.querySelector('.scene-panel .section-title').firstChild.textContent='CYCLER 3D · '+(projectScope.startsWith('prismatic')?'PRISMATIC':'CYLINDRICAL')+' · THEO DỰ ÁN ';document.querySelector('.scene-panel p.muted').textContent='Chỉ hiển thị DOE/cell được gán dự án này. Màu từng cell theo nhiệt độ realtime.';}
+if(context.get('embed')==='1'){document.body.classList.add('embedded');document.querySelector('header').hidden=true;}
+
 const meshes=[], outlines=[];
-for(let i=0;i<12;i++) $('cell-select').add(new Option(`CH ${String(i+1).padStart(2,'0')} · ${i<6?'Prismatic':'Cylindrical'}`,i));
-for(let i=0;i<12;i++) $('fault-cell').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i+1));
-function selectCell(i){selected=i;$('cell-select').value=i;if(state)updateUI(state);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:i}));}
+for(const i of allowed) $('cell-select').add(new Option(`DOE-${String(i+1).padStart(2,'0')} · CH ${String(i+1).padStart(2,'0')}`,i));
+$('cell-select').value=String(selected);
+for(const i of allowed) $('fault-cell').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i+1));
+function selectCell(i){if(!allowed.includes(i))return;selected=i;if(window.parent!==window)window.parent.postMessage({type:'cycler-doe-selected',doe:'DOE-'+String(i+1).padStart(2,'0')},location.origin);$('cell-select').value=i;if(state)updateUI(state);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:i}));}
 $('cell-select').addEventListener('change',e=>selectCell(Number(e.target.value)));
 const definitions=[['temperature_c','Nhiệt độ · °C','#facc15'],['voltage_v','Điện áp · V','#5dd5bf'],['current_a','Dòng điện · A','#6ba8ff'],['soc','SOC · %','#c799ff']];
 for(const [key,label] of definitions){
@@ -32,7 +39,8 @@ try {
  const host=$('scene'),scene=new THREE.Scene();scene.background=new THREE.Color('#0c1623');
  const camera=new THREE.PerspectiveCamera(40,1,.1,100);camera.position.set(8,6,12);
  const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));host.append(renderer.domElement);
- const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,2.4,0);controls.enableDamping=true;controls.minDistance=5;controls.maxDistance=22;
+ if(projectScope){camera.position.set(projectScope.startsWith('prismatic')?-3:5,5,11);}
+ const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(projectScope?(projectScope.startsWith('prismatic')?-1.55:1.55):0,2.4,0);controls.enableDamping=true;controls.minDistance=5;controls.maxDistance=22;
  scene.add(new THREE.HemisphereLight(0xe1f4ff,0x24384c,2.4));
  const light=new THREE.DirectionalLight(0xffffff,3);light.position.set(5,8,6);scene.add(light);
  function box(w,h,d,x,y,z,color){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color,roughness:.55,metalness:.4}));m.position.set(x,y,z);scene.add(m);return m;}
@@ -41,19 +49,21 @@ try {
  for(const y of [0,1.85,3.7,5.6])box(6.7,.13,2.5,0,y,0,'#334b61');
  box(6.6,5.6,.12,0,2.8,-1.15,'#1a2b3d');
  for(let i=0;i<12;i++){
+   const childStart=scene.children.length;
    const prismatic=i<6,col=(prismatic?0:2)+i%2,row=Math.floor((i%6)/2);
    const x=(col-1.5)*1.55,y=4.55-row*1.85;
    const cell=new THREE.Mesh((prismatic?new THREE.BoxGeometry(.95,1.3,.55):new THREE.CylinderGeometry(.42,.42,1.3,40)),new THREE.MeshStandardMaterial({color:thermalColor(25),roughness:.4,metalness:.22}));
-   cell.position.set(x,y,.1);cell.userData.id=i;cell.userData.formFactor=prismatic?'PRISMATIC':'CYLINDRICAL';scene.add(cell);meshes.push(cell);
+   cell.position.set(x,y,.1);cell.userData.id=i;cell.userData.formFactor=prismatic?'PRISMATIC':'CYLINDRICAL';scene.add(cell);meshes[i]=cell;
    if(prismatic){
      box(.2,.12,.22,x-.28,y+.71,.1,'#ed786a');
      box(.2,.12,.22,x+.28,y+.71,.1,'#b5c5d3');
    }else box(.32,.1,.32,x,y+.7,.1,'#b5c5d3');
    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1,1.65,1)),new THREE.LineBasicMaterial({color:'#e7fffa'}));
-   edges.position.copy(cell.position);scene.add(edges);outlines.push(edges);
+   edges.position.copy(cell.position);scene.add(edges);outlines[i]=edges;
    const labelCanvas=document.createElement('canvas');labelCanvas.width=256;labelCanvas.height=64;
-   const ctx=labelCanvas.getContext('2d');ctx.fillStyle='#c4dae9';ctx.font='bold 24px sans-serif';ctx.textAlign='center';ctx.fillText(`CH ${String(i+1).padStart(2,'0')} · ${prismatic?'PRISM':'CYL'}`,128,42);
+   const ctx=labelCanvas.getContext('2d');ctx.fillStyle='#c4dae9';ctx.font='bold 24px sans-serif';ctx.textAlign='center';ctx.fillText(`DOE-${String(i+1).padStart(2,'0')} · CH${i+1}`,128,42);
    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(labelCanvas)}));sprite.position.set(x,y-.68,1.35);sprite.scale.set(1.15,.29,1);scene.add(sprite);
+   for(const object of scene.children.slice(childStart))object.visible=allowed.includes(i);
  }
  const grid=new THREE.GridHelper(20,20,0x345168,0x192d40);grid.position.y=-.1;scene.add(grid);
  const ray=new THREE.Raycaster(),pointer=new THREE.Vector2();let down;
@@ -61,10 +71,10 @@ try {
  renderer.domElement.addEventListener('pointerup',e=>{
    if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;
    const r=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
-   ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(meshes)[0];if(hit)selectCell(hit.object.userData.id);
+   ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(meshes.filter(m=>m.visible))[0];if(hit)selectCell(hit.object.userData.id);
  });
  new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}).observe(host);
- renderer.setAnimationLoop(()=>{controls.update();outlines.forEach((o,i)=>o.visible=i===selected);renderer.render(scene,camera);});
+ renderer.setAnimationLoop(()=>{controls.update();outlines.forEach((o,i)=>o.visible=allowed.includes(i)&&i===selected);renderer.render(scene,camera);});
  window.cycler3D={renderer,scene,meshes};
 } catch(error){$('scene').textContent='Không khởi tạo được WebGL 3D. Bảng dữ liệu vẫn hoạt động. '+error.message;}
 
@@ -83,7 +93,7 @@ function drawCharts(){
  }
 }
 function updateUI(s){
- state=s;const cell=s.cells[selected];
+ state=s;if(!allowed.length){document.querySelector('.layout').hidden=true;document.querySelector('.table-panel').hidden=true;$('run-status').textContent='Dự án chưa có channel gán cycler';return;}const cell=s.cells[selected];
  $('start').disabled=s.safety_stop;
  $('inject-fault').disabled=s.safety_stop;
  $('safety-alarm').hidden=!s.safety_stop;
@@ -91,7 +101,7 @@ function updateUI(s){
  $('fault-pending').textContent=s.pending_fault?`Đã lên lịch lỗi ${s.pending_fault.kind} cho CH ${s.pending_fault.cell}. Bắt đầu để áp dụng.`:'';
  $('run-status').textContent=s.safety_stop?'STOP · Dừng bảo vệ':s.running?'Đang mô phỏng':s.cells.every(c=>['complete','fault'].includes(c.status))?'Đã kết thúc':'Tạm dừng / Sẵn sàng';
  $('run-status').classList.toggle('error',s.safety_stop);
- $('speed').value=String(s.speed);$('cell-title').textContent=`CH ${String(cell.id).padStart(2,'0')} · ${cell.form_factor}`;
+ $('speed').value=String(s.speed);$('cell-title').textContent=`${cell.doe_name} · CH ${String(cell.id).padStart(2,'0')} · ${cell.form_factor}`;
  $('stage').textContent=`${stages[cell.stage]||cell.stage} · ${cell.mode} · Chu kỳ ${cell.cycle}/3`;
  $('temperature').textContent=`${cell.temperature_c.toFixed(2)} °C`;$('temperature').style.color='#'+thermalColor(cell.temperature_c).getHexString();
  $('voltage').textContent=`${cell.voltage_v.toFixed(3)} V`;$('current').textContent=`${cell.current_a.toFixed(3)} A`;
@@ -107,10 +117,11 @@ function updateUI(s){
  $('live-ml-state').textContent=`${liveLabels[live.status]||live.status} · ${live.sample_count} mẫu / 600 s${live.feature_cycle===null?'':` · chu kỳ ${live.feature_cycle} · cập nhật tại ${live.updated_time_s.toFixed(0)} s`}${['error','insufficient'].includes(live.status)?' · '+live.reason:''}`;
  $('channels').replaceChildren();
  for(const [i,c] of s.cells.entries()){
+   if(!allowed.includes(i))continue;
    if(c.time_s!==lastTime[i]){history[i].push({...c});if(history[i].length>240)history[i].shift();lastTime[i]=c.time_s;}
    if(meshes[i])meshes[i].material.color.copy(thermalColor(c.temperature_c));
    const tr=document.createElement('tr');tr.classList.toggle('selected',i===selected);tr.tabIndex=0;
-   const texts=[`CH ${String(c.id).padStart(2,'0')} · ${c.form_factor}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
+   const texts=[`${c.doe_name} · CH ${String(c.id).padStart(2,'0')} · ${c.form_factor}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
    texts.forEach((text,j)=>{const td=document.createElement('td');td.textContent=text;if(j===7){const dot=document.createElement('span');dot.className='dot';dot.style.background='#'+thermalColor(c.temperature_c).getHexString();td.prepend(dot);}tr.append(td);});
    tr.addEventListener('click',()=>selectCell(i));tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCell(i);}});$('channels').append(tr);
  }
@@ -138,4 +149,5 @@ poll();
 initPrediction();
 initBatteryLake();
 initML();
+selectCell(selected);
 new ResizeObserver(()=>{if(state)drawLivePrediction(state.cells[selected]);}).observe($('live-soh-chart').parentElement);

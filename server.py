@@ -1,7 +1,7 @@
 """Local realtime dashboard using the same battery model as main.py."""
 import argparse
 import uuid
-from live_report import report as live_report
+from live_report import report as live_report, update_design as update_live_design
 import json
 import os
 import threading
@@ -47,7 +47,7 @@ class Rack:
             self.streams.append(simulate(battery, cycles=3, current_a=2, dt_s=1))
             self.batteries.append(battery)
             self.cells.append(dict(id=i + 1, form_factor='PRISMATIC' if i<6 else 'CYLINDRICAL',
-                                   project_id='prismatic-lfp01' if i<6 else 'cylindrical-lfp01', time_s=0, cycle=1, stage='ready', mode='READY',
+                                   project_id='prismatic-lfp01' if i<6 else 'cylindrical-lfp01', doe_name='DOE-%02d'%(i+1), time_s=0, cycle=1, stage='ready', mode='READY',
                                    voltage_v=battery.ocv, current_a=0, soc=battery.soc,
                                    temperature_c=battery.temperature_c, stage_capacity_ah=0,
                                    status='ready', error='', live_ml=self.waiting_prediction(),
@@ -191,8 +191,11 @@ def make_handler(rack,workspace=None):
             if url.path.startswith('/api/workspace/'):
                 try:self.send_json(workspace_api.get(workspace_store(),url))
                 except ValueError as error:self.send_json({'error':str(error)},400)
-            elif url.path == '/api/live-report':
-                with rack.lock:self.send_json(live_report(rack))
+            elif url.path in ('/api/live-report','/api/project-workflow'):
+                try:
+                    pid=parse_qs(url.query).get('project',[None])[0]
+                    with rack.lock:self.send_json(live_report(rack,workspace_store(),pid))
+                except ValueError as error:self.send_json({'error':str(error)},400)
             elif url.path == '/api/state':
                 with rack.lock:
                     self.send_json(rack.snapshot())
@@ -258,6 +261,9 @@ def make_handler(rack,workspace=None):
                 data = json.loads(self.rfile.read(size))
                 if not isinstance(data, dict):
                     raise ValueError('Expected object')
+                if self.path=='/api/workspace/live-design':
+                    with rack.lock:self.send_json(update_live_design(rack,workspace_store(),data))
+                    return
                 if self.path.startswith('/api/workspace/'):
                     self.send_json(workspace_api.post(workspace_store(),self.path,data))
                     return

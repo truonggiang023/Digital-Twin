@@ -1,47 +1,55 @@
-## Mixed prismatic / cylindrical 3D rack
+## Unified Project → DOE/Cell → Cycler Performance workflow
 
-The original `/index.html` cycler displays six prismatic cells on the left
-(CH01–06) and six cylindrical cells on the right (CH07–12). Prismatic cells
-have rectangular bodies and two terminal tabs; cylindrical cells retain round
-bodies and a top terminal. Both use the same realtime temperature color bar.
-Mesh selection, channel selector, telemetry table and SOH/ML remain available.
-`/api/state` and live DOE exports now carry `form_factor` and the matching demo
-project ID. The four DOE sheets map three channels each to the appropriate form
-factor. Shape is illustrative only: no form-factor-dependent thermal or
-electrochemical model has been calibrated. Existing model behavior is preserved.
+Open `/` and **choose a project first**. Its workflow then shows DOE Register,
+design categories, Batch/Cell Registry, Test/Channel Registry, Performance and
+Issues. Performance **contains the actual 3D cycler**, live SOH and experimental
+ML charts, scoped to the selected project's channels. It does not link out to a
+separate demo dataset. Selecting a DOE in the workflow or cell inside 3D keeps
+the same DOE/channel selected.
 
-## Live 12-channel DOE demo and export
+Each running demo cell is named for its DOE: DOE-01…DOE-06 map to PRISMATIC LFP01
+CH01–06, DOE-07…DOE-12 to CYLINDRICAL LFP01 CH07–12. The project tables, 3D cell
+labels, selector and management reports share these identities and the same
+Rack telemetry. This supersedes the earlier four-DOE/three-cell grouping.
+SIB projects show an empty state because no sodium channels are assigned;
+no lithium telemetry is reused to fill those projects.
 
-Open `/live-doe.html` or click **12 cell live · DOE / Export** from Home or
-Cycler 3D. Four predefined DOE information sheets (three channels each) join
-the exact same in-memory Rack as `/index.html`; no separate fake running tests
-are used on this page. Start/Pause/Speed operate that same rack. Telemetry and
-ML refresh every second, without changing selection or DOE information.
+`GET /api/project-workflow?project=<project-id>` returns a consistent locked
+snapshot of live telemetry, persisted original DOE definitions and linked
+batch/cell/test records, SOH/ML histories, alarms and project issues.
+`/api/live-report` uses the same mapping (optionally filtered by project).
+Original DOE recipes persist in SQLite without reseeding duplicates. Faults
+create persisted issues linked to the exact session/test/cell/DOE, with Owner,
+Due Date and resolution. Resolving an issue never clears a safety STOP.
+Historical issues retain their session IDs when the cycler is reset.
 
-`GET /api/live-report` captures a locked snapshot with session ID, original
-60-field BOM for each DOE, batch/cell/test/channel identity, actual simulator
-telemetry, SOH/ML histories and alarms. Reset changes the session and test IDs.
-The metadata maps CH01–06 to PRISMATIC LFP01 and CH07–12 to CYLINDRICAL LFP01: the generic
-3.0–4.2V simulator is not calibrated LFP chemistry and must not stand in for SIB.
-Recipes describe demo design inputs; they do not drive or explain the rack model.
-This mapping is distinct from the persistent manual lifecycle registry.
+Use **Nhập / sửa thiết kế DOE** in the DOE tab to edit the same DOE's 60-field
+BOM, Owner and Objective before testing begins. Saving creates a new revision
+and preserves the previous revision in SQLite. Editing is rejected while the
+rack runs or that channel has telemetry; export and Reset before preparing the
+next test. Metadata changes do not recalibrate the generic simulation physics.
 
-CSV exports all 12 channels at one snapshot time, all original BOM fields,
-model usable capacity, partial-stage Ah, model resistance, EFC, SOH, experimental
-ML with feature cycle/time, and per-channel alarms. Full JSON retains histories,
-ML features and metric definitions. CE is blank and target assessment pending
-because full paired-cycle capacity/CE has not been aggregated. Model resistance
-is not pulse-measured DCIR. Runtime telemetry is memory-only; export before reset.
+Performance CSV/JSON export only the selected project's channels, with original
+BOM, DOE/cell name, revision, batch, channel, session/time, telemetry, ML provenance
+and issues. JSON also includes histories. No separate demo seed is required.
+A legacy all-channel page at `/index.html` preserves every old feature; it can
+also be filtered by `?project=prismatic-lfp01&doe=DOE-03`.
 
-Examples in `results/live-doe-*` were captured at about 9,150 simulated seconds
-with all 12 channels running and discharge-window ML available. All are simulated.
+Start/Pause/Reset inside the embedded cycler apply to the **whole rack**, even
+when the display is project-filtered. Reset creates a new runtime session and
+clears in-memory telemetry/history; export first. Persisted DOE information and
+issues survive. The model remains generic 3.0–4.2 V, not calibrated LFP/SIB;
+NASA ML is experimental. Usable Ah/resistance are model outputs, not full-cycle
+discharge capacity or pulse-measured DCIR. CE/final target assessment stay pending.
 
-## Project → DOE → Cell → Test lifecycle registry
+Examples: `results/unified-project-workflow.png`, `unified-performance-3d.png`,
+`unified-project-performance.csv`, `unified-project-report.json`.
 
-Open `/` (or `/workflow.html`) for Navigation Home. The original design/DOE
-simulation workspace remains at `/projects.html`; the 12-channel 3D cycler,
-live SOH charts, experimental NASA ML, safety controls and BatteryLake remain
-at `/index.html`.
+## Legacy manual lifecycle API and historical demo artifacts
+
+The manual lifecycle API and the earlier static demo seed remain available
+for compatibility. They do not populate the current live Project Workflow.
+Existing local records are preserved; `results/lifecycle-*` are historical examples.
 
 Click **Tạo data demo** or run `python -B seed_demo.py` before starting the server.
 This idempotently adds 4 projects × 2 DOE records (V01) × 3 cells = 24 demo cells,
@@ -63,7 +71,8 @@ Temperature ≥45°C sets registry STOP and creates a critical issue. Closed tes
 reject further cycles; retest creates a new test. This **does not send a STOP
 command to equipment**; a device adapter is still required. Running equipment/
 channel occupancy conflicts are rejected. Manual and demo chains cannot mix.
-The registry and old 12-channel live simulator remain separate data sources.
+Manual cycle imports are distinct from live cycler telemetry; the current Project
+Workflow uses the cycler directly, rather than these manual snapshots.
 
 Performance shows capacity, design-normalized SOH, first-cycle retention, entered
 DCIR, CE and temperature, plus a SOH curve and per-DOE summaries. Pass checks

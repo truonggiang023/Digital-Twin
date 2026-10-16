@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-let selected=1,result=null,version=0;
+let selected=Number($('cell-select').value||0)+1,result=null,version=0;
 
 function graph(id,key,threshold=null){
  const canvas=$(id),w=canvas.clientWidth,h=220,dpr=Math.min(devicePixelRatio,2);

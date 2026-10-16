@@ -4,9 +4,9 @@ from live_report import report
 class LiveReportTests(unittest.TestCase):
  def test_exact_channel_join_and_reset_session(self):
   r=Rack();d=report(r)
-  self.assertEqual(len(d['tests']),12);self.assertEqual(len(d['does']),4)
+  self.assertEqual(len(d['tests']),12);self.assertEqual(len(d['does']),12)
   self.assertEqual([t['channel'] for t in d['tests']],list(range(1,13)))
-  self.assertTrue(all(sum(t['doe_id']==doe['id'] for t in d['tests'])==3 for doe in d['does']))
+  self.assertTrue(all(sum(t['doe_id']==doe['id'] for t in d['tests'])==1 for doe in d['does']))
   self.assertEqual([t['form_factor'] for t in d['tests']],['PRISMATIC']*6+['CYLINDRICAL']*6)
   self.assertEqual([t['project_id'] for t in d['tests']],['prismatic-lfp01']*6+['cylindrical-lfp01']*6)
   old=d['session_id'];r.reset();self.assertNotEqual(report(r)['session_id'],old)
