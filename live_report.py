@@ -7,15 +7,16 @@ def report(rack):
     # Caller holds rack.lock: telemetry, ML and histories form one consistent snapshot.
     does=[]
     for group in range(4):
-        bom=template('cylindrical-lfp01')
+        pid='prismatic-lfp01' if group<2 else 'cylindrical-lfp01'
+        bom=template(pid)
         bom['cell']['capacity_033_typical']=2.5+.025*(group*3+1)
         bom['cell']['capacity_033_min']=bom['cell']['capacity_033_typical']*.95
-        does.append(dict(id='LIVE-DOE-%02d'%(group+1),revision=1,owner='Demo R&D',
+        does.append(dict(project_id=pid,form_factor='PRISMATIC' if group<2 else 'CYLINDRICAL',id='LIVE-DOE-%02d'%(group+1),revision=1,owner='Demo R&D',
             objective='Monitor three live simulator channels; no causal design effect claimed',bom=bom))
     tests=[]
     for index,c in enumerate(rack.cells):
         d=does[index//3]
-        tests.append(dict(project_id='cylindrical-lfp01',source='live_cycler_simulator',session_id=rack.session_id,
+        tests.append(dict(project_id=c['project_id'],form_factor=c['form_factor'],source='live_cycler_simulator',session_id=rack.session_id,
             doe_id=d['id'],revision=d['revision'],batch_id='LIVE-BATCH-%02d'%(index//3+1),
             cell_id='LIVE-CELL-%02d'%c['id'],test_id=rack.session_id+'-CH%02d'%c['id'],
             equipment='SIM-RACK-01',channel=c['id'],protocol='CC/CV 2A 4.2V → rest → discharge 2A 3.0V; 3 cycles',

@@ -46,7 +46,8 @@ class Rack:
                               temperature_c=25 + 0.2 * i, ambient_c=25 + 0.2 * i)
             self.streams.append(simulate(battery, cycles=3, current_a=2, dt_s=1))
             self.batteries.append(battery)
-            self.cells.append(dict(id=i + 1, time_s=0, cycle=1, stage='ready', mode='READY',
+            self.cells.append(dict(id=i + 1, form_factor='PRISMATIC' if i<6 else 'CYLINDRICAL',
+                                   project_id='prismatic-lfp01' if i<6 else 'cylindrical-lfp01', time_s=0, cycle=1, stage='ready', mode='READY',
                                    voltage_v=battery.ocv, current_a=0, soc=battery.soc,
                                    temperature_c=battery.temperature_c, stage_capacity_ah=0,
                                    status='ready', error='', live_ml=self.waiting_prediction(),

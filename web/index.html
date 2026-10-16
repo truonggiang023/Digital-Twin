@@ -16,7 +16,7 @@
   </section>
   <section class="panel safety-panel"><h3>Kiểm thử cell bất thường</h3><div class="scenario"><label>Cell<select id="fault-cell" aria-label="Cell kiểm thử lỗi"></select></label><label>Tình huống<select id="fault-kind"><option value="overheat">Quá nhiệt 50 °C</option><option value="overvoltage">Quá áp 4,5 V</option><option value="overcurrent">Quá dòng 8 A</option><option value="capacity_drop">Dung lượng giảm đột ngột</option></select></label><button id="inject-fault">Chèn lỗi mô phỏng</button></div><p class="muted">Lỗi được áp dụng tại bước mô phỏng kế tiếp khi đang chạy. Dừng toàn bộ tủ, dòng về 0; cần Reset để chạy lại. Chỉ áp dụng trong mô phỏng.</p><p id="fault-pending" role="status"></p><div id="safety-alarm" role="alert" hidden></div></section>
   <section class="layout">
-    <div class="panel scene-panel"><div class="section-title">TỦ CYCLER 3D <span>Kéo để xoay · Cuộn để zoom · Chọn cell</span></div><div id="scene"></div>
+    <div class="panel scene-panel"><div class="section-title">TỦ CYCLER 3D · 6 PRISMATIC + 6 CYLINDRICAL <span>Kéo để xoay · Cuộn để zoom · Chọn cell</span></div><div id="scene"></div><p class="muted">Bên trái: CH01–06 Prismatic · Bên phải: CH07–12 Cylindrical. Hình dạng minh họa; chưa có mô hình nhiệt riêng theo form factor.</p>
       <div class="legend"><span>Nhiệt độ cell · °C</span><div class="colorbar"></div><div class="ticks"><span>20</span><span>25</span><span>30</span><span>35</span><span>40</span><span>45</span></div></div>
     </div>
     <aside class="panel details"><div class="section-title">CELL ĐANG CHỌN <select id="cell-select" aria-label="Chọn cell"></select></div>

@@ -1,6 +1,7 @@
 # Twelve-channel live DOE performance export
 
-Four demo DOE sheets × three cells map to the existing live simulator's channels
+Six prismatic channels (01–06) and six cylindrical channels (07–12) are shown
+in the mixed 3D rack. Four demo DOE sheets × three cells map to the existing live simulator's channels
 1–12. The page at /live-doe.html reads the same Rack as the 3D cycler and polls
 every second. Start/Pause/Speed operate that shared state. Every export identifies
 the session, time, DOE revision, batch, cell, test and equipment/channel.

@@ -1,3 +1,15 @@
+## Mixed prismatic / cylindrical 3D rack
+
+The original `/index.html` cycler displays six prismatic cells on the left
+(CH01–06) and six cylindrical cells on the right (CH07–12). Prismatic cells
+have rectangular bodies and two terminal tabs; cylindrical cells retain round
+bodies and a top terminal. Both use the same realtime temperature color bar.
+Mesh selection, channel selector, telemetry table and SOH/ML remain available.
+`/api/state` and live DOE exports now carry `form_factor` and the matching demo
+project ID. The four DOE sheets map three channels each to the appropriate form
+factor. Shape is illustrative only: no form-factor-dependent thermal or
+electrochemical model has been calibrated. Existing model behavior is preserved.
+
 ## Live 12-channel DOE demo and export
 
 Open `/live-doe.html` or click **12 cell live · DOE / Export** from Home or
@@ -9,7 +21,7 @@ ML refresh every second, without changing selection or DOE information.
 `GET /api/live-report` captures a locked snapshot with session ID, original
 60-field BOM for each DOE, batch/cell/test/channel identity, actual simulator
 telemetry, SOH/ML histories and alarms. Reset changes the session and test IDs.
-The metadata is a demonstration mapping to CYLINDRICAL LFP01 only: the generic
+The metadata maps CH01–06 to PRISMATIC LFP01 and CH07–12 to CYLINDRICAL LFP01: the generic
 3.0–4.2V simulator is not calibrated LFP chemistry and must not stand in for SIB.
 Recipes describe demo design inputs; they do not drive or explain the rack model.
 This mapping is distinct from the persistent manual lifecycle registry.

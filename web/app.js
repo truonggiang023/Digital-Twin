@@ -16,7 +16,7 @@ const stages = {ready:'Sẵn sàng',charge:'Sạc',rest_after_charge:'Nghỉ sau
 const statuses = {ready:'Sẵn sàng',running:'Đang chạy',complete:'Hoàn tất',fault:'Dừng lỗi',stopped:'Dừng bảo vệ'};
 let selected=0, state=null, history=Array.from({length:12},()=>[]), lastTime=Array(12).fill(-1);
 const meshes=[], outlines=[];
-for(let i=0;i<12;i++) $('cell-select').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i));
+for(let i=0;i<12;i++) $('cell-select').add(new Option(`CH ${String(i+1).padStart(2,'0')} · ${i<6?'Prismatic':'Cylindrical'}`,i));
 for(let i=0;i<12;i++) $('fault-cell').add(new Option(`CH ${String(i+1).padStart(2,'0')}`,i+1));
 function selectCell(i){selected=i;$('cell-select').value=i;if(state)updateUI(state);window.dispatchEvent(new CustomEvent('cycler-cell',{detail:i}));}
 $('cell-select').addEventListener('change',e=>selectCell(Number(e.target.value)));
@@ -41,14 +41,18 @@ try {
  for(const y of [0,1.85,3.7,5.6])box(6.7,.13,2.5,0,y,0,'#334b61');
  box(6.6,5.6,.12,0,2.8,-1.15,'#1a2b3d');
  for(let i=0;i<12;i++){
-   const x=(i%4-1.5)*1.55,y=4.55-Math.floor(i/4)*1.85;
-   const cell=new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,1.3,40),new THREE.MeshStandardMaterial({color:thermalColor(25),roughness:.4,metalness:.22}));
-   cell.position.set(x,y,.1);cell.userData.id=i;scene.add(cell);meshes.push(cell);
-   box(.32,.1,.32,x,y+.7,.1,'#b5c5d3');
+   const prismatic=i<6,col=(prismatic?0:2)+i%2,row=Math.floor((i%6)/2);
+   const x=(col-1.5)*1.55,y=4.55-row*1.85;
+   const cell=new THREE.Mesh((prismatic?new THREE.BoxGeometry(.95,1.3,.55):new THREE.CylinderGeometry(.42,.42,1.3,40)),new THREE.MeshStandardMaterial({color:thermalColor(25),roughness:.4,metalness:.22}));
+   cell.position.set(x,y,.1);cell.userData.id=i;cell.userData.formFactor=prismatic?'PRISMATIC':'CYLINDRICAL';scene.add(cell);meshes.push(cell);
+   if(prismatic){
+     box(.2,.12,.22,x-.28,y+.71,.1,'#ed786a');
+     box(.2,.12,.22,x+.28,y+.71,.1,'#b5c5d3');
+   }else box(.32,.1,.32,x,y+.7,.1,'#b5c5d3');
    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1,1.65,1)),new THREE.LineBasicMaterial({color:'#e7fffa'}));
    edges.position.copy(cell.position);scene.add(edges);outlines.push(edges);
    const labelCanvas=document.createElement('canvas');labelCanvas.width=256;labelCanvas.height=64;
-   const ctx=labelCanvas.getContext('2d');ctx.fillStyle='#c4dae9';ctx.font='bold 28px sans-serif';ctx.textAlign='center';ctx.fillText(`CH ${String(i+1).padStart(2,'0')}`,128,42);
+   const ctx=labelCanvas.getContext('2d');ctx.fillStyle='#c4dae9';ctx.font='bold 24px sans-serif';ctx.textAlign='center';ctx.fillText(`CH ${String(i+1).padStart(2,'0')} · ${prismatic?'PRISM':'CYL'}`,128,42);
    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(labelCanvas)}));sprite.position.set(x,y-.68,1.35);sprite.scale.set(1.15,.29,1);scene.add(sprite);
  }
  const grid=new THREE.GridHelper(20,20,0x345168,0x192d40);grid.position.y=-.1;scene.add(grid);
@@ -87,7 +91,7 @@ function updateUI(s){
  $('fault-pending').textContent=s.pending_fault?`Đã lên lịch lỗi ${s.pending_fault.kind} cho CH ${s.pending_fault.cell}. Bắt đầu để áp dụng.`:'';
  $('run-status').textContent=s.safety_stop?'STOP · Dừng bảo vệ':s.running?'Đang mô phỏng':s.cells.every(c=>['complete','fault'].includes(c.status))?'Đã kết thúc':'Tạm dừng / Sẵn sàng';
  $('run-status').classList.toggle('error',s.safety_stop);
- $('speed').value=String(s.speed);$('cell-title').textContent=`CH ${String(cell.id).padStart(2,'0')}`;
+ $('speed').value=String(s.speed);$('cell-title').textContent=`CH ${String(cell.id).padStart(2,'0')} · ${cell.form_factor}`;
  $('stage').textContent=`${stages[cell.stage]||cell.stage} · ${cell.mode} · Chu kỳ ${cell.cycle}/3`;
  $('temperature').textContent=`${cell.temperature_c.toFixed(2)} °C`;$('temperature').style.color='#'+thermalColor(cell.temperature_c).getHexString();
  $('voltage').textContent=`${cell.voltage_v.toFixed(3)} V`;$('current').textContent=`${cell.current_a.toFixed(3)} A`;
@@ -106,7 +110,7 @@ function updateUI(s){
    if(c.time_s!==lastTime[i]){history[i].push({...c});if(history[i].length>240)history[i].shift();lastTime[i]=c.time_s;}
    if(meshes[i])meshes[i].material.color.copy(thermalColor(c.temperature_c));
    const tr=document.createElement('tr');tr.classList.toggle('selected',i===selected);tr.tabIndex=0;
-   const texts=[`CH ${String(c.id).padStart(2,'0')}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
+   const texts=[`CH ${String(c.id).padStart(2,'0')} · ${c.form_factor}`,statuses[c.status],`${c.cycle}/3`,c.mode,`${c.voltage_v.toFixed(3)} V`,`${c.current_a.toFixed(3)} A`,`${(c.soc*100).toFixed(1)} %`,`${c.temperature_c.toFixed(2)} °C`,`${c.soh_percent.toFixed(3)} %`,c.efc.toFixed(3),c.live_ml.remaining_cycles===null?'Chờ xả':`≈ ${Math.round(c.live_ml.remaining_cycles)}`,c.live_ml.feature_cycle??'—'];
    texts.forEach((text,j)=>{const td=document.createElement('td');td.textContent=text;if(j===7){const dot=document.createElement('span');dot.className='dot';dot.style.background='#'+thermalColor(c.temperature_c).getHexString();td.prepend(dot);}tr.append(td);});
    tr.addEventListener('click',()=>selectCell(i));tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCell(i);}});$('channels').append(tr);
  }
