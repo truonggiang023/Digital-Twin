@@ -1,5 +1,7 @@
 """Local realtime dashboard using the same battery model as main.py."""
 import argparse
+import uuid
+from live_report import report as live_report
 import json
 import os
 import threading
@@ -23,6 +25,7 @@ class Rack:
         self.reset()
 
     def reset(self):
+        self.session_id=uuid.uuid4().hex
         self.running = False
         self.speed = 60
         self.fraction = 0.0
@@ -187,6 +190,8 @@ def make_handler(rack,workspace=None):
             if url.path.startswith('/api/workspace/'):
                 try:self.send_json(workspace_api.get(workspace_store(),url))
                 except ValueError as error:self.send_json({'error':str(error)},400)
+            elif url.path == '/api/live-report':
+                with rack.lock:self.send_json(live_report(rack))
             elif url.path == '/api/state':
                 with rack.lock:
                     self.send_json(rack.snapshot())

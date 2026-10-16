@@ -1,3 +1,29 @@
+## Live 12-channel DOE demo and export
+
+Open `/live-doe.html` or click **12 cell live · DOE / Export** from Home or
+Cycler 3D. Four predefined DOE information sheets (three channels each) join
+the exact same in-memory Rack as `/index.html`; no separate fake running tests
+are used on this page. Start/Pause/Speed operate that same rack. Telemetry and
+ML refresh every second, without changing selection or DOE information.
+
+`GET /api/live-report` captures a locked snapshot with session ID, original
+60-field BOM for each DOE, batch/cell/test/channel identity, actual simulator
+telemetry, SOH/ML histories and alarms. Reset changes the session and test IDs.
+The metadata is a demonstration mapping to CYLINDRICAL LFP01 only: the generic
+3.0–4.2V simulator is not calibrated LFP chemistry and must not stand in for SIB.
+Recipes describe demo design inputs; they do not drive or explain the rack model.
+This mapping is distinct from the persistent manual lifecycle registry.
+
+CSV exports all 12 channels at one snapshot time, all original BOM fields,
+model usable capacity, partial-stage Ah, model resistance, EFC, SOH, experimental
+ML with feature cycle/time, and per-channel alarms. Full JSON retains histories,
+ML features and metric definitions. CE is blank and target assessment pending
+because full paired-cycle capacity/CE has not been aggregated. Model resistance
+is not pulse-measured DCIR. Runtime telemetry is memory-only; export before reset.
+
+Examples in `results/live-doe-*` were captured at about 9,150 simulated seconds
+with all 12 channels running and discharge-window ML available. All are simulated.
+
 ## Project → DOE → Cell → Test lifecycle registry
 
 Open `/` (or `/workflow.html`) for Navigation Home. The original design/DOE
