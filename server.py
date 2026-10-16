@@ -182,7 +182,7 @@ def make_handler(rack,workspace=None):
         def do_GET(self):
             url = urlsplit(self.path)
             if url.path=='/':
-                self.path='/projects.html'
+                self.path='/workflow.html'
                 return super().do_GET()
             if url.path.startswith('/api/workspace/'):
                 try:self.send_json(workspace_api.get(workspace_store(),url))

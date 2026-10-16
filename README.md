@@ -1,3 +1,48 @@
+## Project → DOE → Cell → Test lifecycle registry
+
+Open `/` (or `/workflow.html`) for Navigation Home. The original design/DOE
+simulation workspace remains at `/projects.html`; the 12-channel 3D cycler,
+live SOH charts, experimental NASA ML, safety controls and BatteryLake remain
+at `/index.html`.
+
+Click **Tạo data demo** or run `python -B seed_demo.py` before starting the server.
+This idempotently adds 4 projects × 2 DOE records (V01) × 3 cells = 24 demo cells,
+8 batches, 24 tests and 8 critical issues. Existing records are preserved.
+Demo running statuses are scenario snapshots; they do not claim a connected
+instrument or continuously advancing telemetry. All demo data is tagged `demo`.
+
+The registry supports immutable DOE code/revision, Objective, Owner and all
+60 original BOM fields, batch-to-revision links, cell identity, test equipment,
+channel, protocol, cycle summaries and issue Owner/Due Date/resolution.
+Create records in that order through the navigation tabs. On DOE creation,
+copy a saved sheet from the original design workspace or edit the full BOM JSON.
+New revisions are new immutable records; existing batches retain the old revision.
+No automatic manufacturing runs are created from these design inputs.
+
+Manual tests accept incremental cycle-summary JSON using **Thêm cycles**.
+Cycle indices must increase; duplicate/out-of-order rows roll back the import.
+Temperature ≥45°C sets registry STOP and creates a critical issue. Closed tests
+reject further cycles; retest creates a new test. This **does not send a STOP
+command to equipment**; a device adapter is still required. Running equipment/
+channel occupancy conflicts are rejected. Manual and demo chains cannot mix.
+The registry and old 12-channel live simulator remain separate data sources.
+
+Performance shows capacity, design-normalized SOH, first-cycle retention, entered
+DCIR, CE and temperature, plus a SOH curve and per-DOE summaries. Pass checks
+only minimum capacity and temperature <45°C, not all design targets. Comparing
+unequal cycle horizons is descriptive, not a causal DOE effect estimate.
+Demo LFP tests run the existing NASA RF on explicitly synthetic illustrative
+features; the stored features and model ID are exported, and outputs are marked
+experimental and invalid for hardware control. There is no calibrated project
+model. SIB and manual tests show unavailable ML instead of invented predictions.
+
+Management CSV includes project/DOE revision/objective/owner, batch/cell/test,
+equipment/channel/protocol, data source, STOP/issue context, performance,
+experimental ML provenance, and all 60 immutable original design fields under
+`reference_bom.*`. JSON adds all cycle histories and linked records. These are
+cycle summaries, not raw time-series measurements. SQLite remains local and
+ignored by Git; committed `results/lifecycle-*` files are synthetic examples.
+
 # Digital-Twin Battery Cell
 
 Battery cycler simulator with a realtime 12-cell 3D dashboard.

@@ -1,0 +1,6774 @@
+{
+  "project": {
+    "id": "prismatic-lfp01",
+    "name": "PRISMATIC · LFP01",
+    "form_factor": "PRISMATIC",
+    "chemistry": "LFP",
+    "code": "LFP01"
+  },
+  "records": [
+    {
+      "id": "4dd85f09869341afa91fd52b49aa1e96",
+      "kind": "doe",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0669932,
+      "code": "DEMO-LFP01-1",
+      "objective": "Compare retention and temperature; example design",
+      "owner": "Demo R&D",
+      "revision": 1,
+      "bom": {
+        "cell": {
+          "np_ratio": 1.1,
+          "areal_capacity": 2.7072,
+          "nominal_voltage": 3.2,
+          "capacity_033_typical": 2.5,
+          "capacity_033_min": 2.4,
+          "capacity_1c": 2.3,
+          "weight": 55,
+          "energy_density": 150
+        },
+        "cathode": {
+          "active_1": "LFP",
+          "active_1_pct": 94,
+          "additive": "",
+          "additive_pct": 0,
+          "binder_1": "PVDF",
+          "binder_1_pct": 2,
+          "binder_2": "",
+          "binder_2_pct": 0,
+          "conductor_1": "Carbon black",
+          "conductor_1_pct": 4,
+          "conductor_2": "",
+          "conductor_2_pct": 0,
+          "dispersant": "",
+          "dispersant_pct": 0,
+          "solvent": "NMP",
+          "foil": "Al",
+          "foil_thickness": 15,
+          "thickness": 75,
+          "loading": 18,
+          "density": 2.4
+        },
+        "anode": {
+          "active_1": "Graphite",
+          "active_1_pct": 94,
+          "active_2": "",
+          "active_2_pct": 0,
+          "active_3": "",
+          "active_3_pct": 0,
+          "binder_1": "CMC",
+          "binder_1_pct": 1.5,
+          "binder_2": "SBR",
+          "binder_2_pct": 1.5,
+          "binder_3": "",
+          "binder_3_pct": 0,
+          "conductor_1": "Carbon black",
+          "conductor_1_pct": 3,
+          "conductor_2": "",
+          "conductor_2_pct": 0,
+          "foil": "Cu",
+          "foil_thickness": 10,
+          "thickness": 64.66,
+          "loading": 9.0528,
+          "density": 1.4
+        },
+        "assembly": {
+          "cathode_layers": 20,
+          "anode_layers": 21,
+          "separator": "PE/PP",
+          "separator_thickness": 16,
+          "jr_thickness": 8,
+          "packing_ratio": 0.85,
+          "electrolyte": "LiPF6-EC-EMC",
+          "electrolyte_amount": 3,
+          "can_cap": "Steel can / cap",
+          "can_cap_mass": 2
+        },
+        "formation": {
+          "protocol": "Example: CC/CV 0.1C charge → rest → 0.1C discharge"
+        }
+      }
+    },
+    {
+      "id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "kind": "batch",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0672295,
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "BATCH-1",
+      "owner": "Demo Pilot Line"
+    },
+    {
+      "id": "f7a619d76c2048df8374f11ec51cc62c",
+      "kind": "cell",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0672772,
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "DEMO-1-CELL-1"
+    },
+    {
+      "id": "88f54c91f670405296bcb9b67f0c8713",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0673583,
+      "cell_id": "f7a619d76c2048df8374f11ec51cc62c",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "TEST-DEMO-1-CELL-1",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "1",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "running",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5110552763819096,
+          "discharge_ah": 2.4985,
+          "dcir_mohm": 30.08,
+          "temperature_c": 27.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5095477386934673,
+          "discharge_ah": 2.497,
+          "dcir_mohm": 30.16,
+          "temperature_c": 27.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.508040201005025,
+          "discharge_ah": 2.4955,
+          "dcir_mohm": 30.24,
+          "temperature_c": 27.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.506532663316583,
+          "discharge_ah": 2.494,
+          "dcir_mohm": 30.32,
+          "temperature_c": 27.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.505025125628141,
+          "discharge_ah": 2.4925,
+          "dcir_mohm": 30.4,
+          "temperature_c": 27.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.5035175879396983,
+          "discharge_ah": 2.4909999999999997,
+          "dcir_mohm": 30.48,
+          "temperature_c": 27.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.5020100502512563,
+          "discharge_ah": 2.4895,
+          "dcir_mohm": 30.56,
+          "temperature_c": 27.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.500502512562814,
+          "discharge_ah": 2.488,
+          "dcir_mohm": 30.64,
+          "temperature_c": 27.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4989949748743716,
+          "discharge_ah": 2.4865,
+          "dcir_mohm": 30.72,
+          "temperature_c": 27.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4974874371859297,
+          "discharge_ah": 2.485,
+          "dcir_mohm": 30.8,
+          "temperature_c": 27.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4959798994974873,
+          "discharge_ah": 2.4835,
+          "dcir_mohm": 30.88,
+          "temperature_c": 27.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4944723618090454,
+          "discharge_ah": 2.482,
+          "dcir_mohm": 30.96,
+          "temperature_c": 27.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.492964824120603,
+          "discharge_ah": 2.4805,
+          "dcir_mohm": 31.04,
+          "temperature_c": 27.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4914572864321607,
+          "discharge_ah": 2.479,
+          "dcir_mohm": 31.12,
+          "temperature_c": 27.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.4899497487437188,
+          "discharge_ah": 2.4775,
+          "dcir_mohm": 31.2,
+          "temperature_c": 27.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.4884422110552764,
+          "discharge_ah": 2.476,
+          "dcir_mohm": 31.28,
+          "temperature_c": 27.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.486934673366834,
+          "discharge_ah": 2.4745,
+          "dcir_mohm": 31.36,
+          "temperature_c": 27.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.4854271356783917,
+          "discharge_ah": 2.473,
+          "dcir_mohm": 31.44,
+          "temperature_c": 27.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.48391959798995,
+          "discharge_ah": 2.4715000000000003,
+          "dcir_mohm": 31.52,
+          "temperature_c": 27.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.4824120603015074,
+          "discharge_ah": 2.4699999999999998,
+          "dcir_mohm": 31.6,
+          "temperature_c": 27.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.4809045226130655,
+          "discharge_ah": 2.4685,
+          "dcir_mohm": 31.68,
+          "temperature_c": 27.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.479396984924623,
+          "discharge_ah": 2.467,
+          "dcir_mohm": 31.76,
+          "temperature_c": 27.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4778894472361808,
+          "discharge_ah": 2.4655,
+          "dcir_mohm": 31.84,
+          "temperature_c": 27.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.476381909547739,
+          "discharge_ah": 2.464,
+          "dcir_mohm": 31.92,
+          "temperature_c": 27.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.4748743718592965,
+          "discharge_ah": 2.4625,
+          "dcir_mohm": 32,
+          "temperature_c": 27.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4733668341708546,
+          "discharge_ah": 2.4610000000000003,
+          "dcir_mohm": 32.08,
+          "temperature_c": 27.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.471859296482412,
+          "discharge_ah": 2.4595000000000002,
+          "dcir_mohm": 32.16,
+          "temperature_c": 27.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.4703517587939694,
+          "discharge_ah": 2.4579999999999997,
+          "dcir_mohm": 32.24,
+          "temperature_c": 27.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.468844221105528,
+          "discharge_ah": 2.4565,
+          "dcir_mohm": 32.32,
+          "temperature_c": 27.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.4673366834170856,
+          "discharge_ah": 2.455,
+          "dcir_mohm": 32.4,
+          "temperature_c": 27.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.465829145728643,
+          "discharge_ah": 2.4535,
+          "dcir_mohm": 32.48,
+          "temperature_c": 27.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.464321608040201,
+          "discharge_ah": 2.452,
+          "dcir_mohm": 32.56,
+          "temperature_c": 27.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.462814070351759,
+          "discharge_ah": 2.4505,
+          "dcir_mohm": 32.64,
+          "temperature_c": 27.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4613065326633166,
+          "discharge_ah": 2.449,
+          "dcir_mohm": 32.72,
+          "temperature_c": 28.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.459798994974874,
+          "discharge_ah": 2.4475,
+          "dcir_mohm": 32.8,
+          "temperature_c": 28.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4582914572864323,
+          "discharge_ah": 2.446,
+          "dcir_mohm": 32.88,
+          "temperature_c": 28.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.45678391959799,
+          "discharge_ah": 2.4445,
+          "dcir_mohm": 32.96,
+          "temperature_c": 28.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.455276381909548,
+          "discharge_ah": 2.443,
+          "dcir_mohm": 33.04,
+          "temperature_c": 28.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.4537688442211056,
+          "discharge_ah": 2.4415,
+          "dcir_mohm": 33.12,
+          "temperature_c": 28.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4522613065326633,
+          "discharge_ah": 2.44,
+          "dcir_mohm": 33.2,
+          "temperature_c": 28.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.4507537688442214,
+          "discharge_ah": 2.4385000000000003,
+          "dcir_mohm": 33.28,
+          "temperature_c": 28.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4492462311557786,
+          "discharge_ah": 2.437,
+          "dcir_mohm": 33.36,
+          "temperature_c": 28.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.4477386934673366,
+          "discharge_ah": 2.4354999999999998,
+          "dcir_mohm": 33.44,
+          "temperature_c": 28.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.4462311557788947,
+          "discharge_ah": 2.434,
+          "dcir_mohm": 33.52,
+          "temperature_c": 28.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.4447236180904524,
+          "discharge_ah": 2.4325,
+          "dcir_mohm": 33.6,
+          "temperature_c": 28.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.44321608040201,
+          "discharge_ah": 2.431,
+          "dcir_mohm": 33.68,
+          "temperature_c": 28.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.4417085427135676,
+          "discharge_ah": 2.4295,
+          "dcir_mohm": 33.76,
+          "temperature_c": 28.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.4402010050251257,
+          "discharge_ah": 2.428,
+          "dcir_mohm": 33.84,
+          "temperature_c": 28.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.4386934673366834,
+          "discharge_ah": 2.4265,
+          "dcir_mohm": 33.92,
+          "temperature_c": 28.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.437185929648241,
+          "discharge_ah": 2.425,
+          "dcir_mohm": 34,
+          "temperature_c": 28.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.435678391959799,
+          "discharge_ah": 2.4235,
+          "dcir_mohm": 34.08,
+          "temperature_c": 28.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.434170854271357,
+          "discharge_ah": 2.422,
+          "dcir_mohm": 34.16,
+          "temperature_c": 28.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.4326633165829143,
+          "discharge_ah": 2.4204999999999997,
+          "dcir_mohm": 34.24,
+          "temperature_c": 28.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.4311557788944724,
+          "discharge_ah": 2.419,
+          "dcir_mohm": 34.32,
+          "temperature_c": 28.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.42964824120603,
+          "discharge_ah": 2.4175,
+          "dcir_mohm": 34.4,
+          "temperature_c": 28.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.4281407035175877,
+          "discharge_ah": 2.416,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 28.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.426633165829146,
+          "discharge_ah": 2.4145,
+          "dcir_mohm": 34.56,
+          "temperature_c": 28.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.425125628140704,
+          "discharge_ah": 2.4130000000000003,
+          "dcir_mohm": 34.64,
+          "temperature_c": 28.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.4236180904522615,
+          "discharge_ah": 2.4115,
+          "dcir_mohm": 34.72,
+          "temperature_c": 28.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 34.8,
+          "temperature_c": 28.8
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 60,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": ""
+    },
+    {
+      "id": "9e4928c60c94474ba7d5d84970ec2784",
+      "kind": "cell",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0876036,
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "DEMO-1-CELL-2"
+    },
+    {
+      "id": "16357fe4bd824ae8bd09dbad794ccc7e",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.087804,
+      "cell_id": "9e4928c60c94474ba7d5d84970ec2784",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "TEST-DEMO-1-CELL-2",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "2",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "completed",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5108040201005024,
+          "discharge_ah": 2.49825,
+          "dcir_mohm": 32.08,
+          "temperature_c": 28.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5090452261306533,
+          "discharge_ah": 2.4965,
+          "dcir_mohm": 32.16,
+          "temperature_c": 28.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.5072864321608037,
+          "discharge_ah": 2.49475,
+          "dcir_mohm": 32.239999999999995,
+          "temperature_c": 28.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5055276381909546,
+          "discharge_ah": 2.493,
+          "dcir_mohm": 32.32,
+          "temperature_c": 28.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.5037688442211055,
+          "discharge_ah": 2.49125,
+          "dcir_mohm": 32.4,
+          "temperature_c": 28.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.5020100502512563,
+          "discharge_ah": 2.4895,
+          "dcir_mohm": 32.480000000000004,
+          "temperature_c": 28.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.500251256281407,
+          "discharge_ah": 2.48775,
+          "dcir_mohm": 32.56,
+          "temperature_c": 28.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4984924623115576,
+          "discharge_ah": 2.4859999999999998,
+          "dcir_mohm": 32.64,
+          "temperature_c": 28.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.496733668341709,
+          "discharge_ah": 2.4842500000000003,
+          "dcir_mohm": 32.72,
+          "temperature_c": 28.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4949748743718594,
+          "discharge_ah": 2.4825,
+          "dcir_mohm": 32.8,
+          "temperature_c": 28.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4932160804020103,
+          "discharge_ah": 2.48075,
+          "dcir_mohm": 32.879999999999995,
+          "temperature_c": 28.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4914572864321607,
+          "discharge_ah": 2.479,
+          "dcir_mohm": 32.96,
+          "temperature_c": 28.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4896984924623116,
+          "discharge_ah": 2.47725,
+          "dcir_mohm": 33.04,
+          "temperature_c": 28.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.487939698492462,
+          "discharge_ah": 2.4755,
+          "dcir_mohm": 33.120000000000005,
+          "temperature_c": 28.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.486180904522613,
+          "discharge_ah": 2.47375,
+          "dcir_mohm": 33.2,
+          "temperature_c": 28.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.4844221105527637,
+          "discharge_ah": 2.472,
+          "dcir_mohm": 33.28,
+          "temperature_c": 28.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.4826633165829146,
+          "discharge_ah": 2.47025,
+          "dcir_mohm": 33.36,
+          "temperature_c": 28.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.4809045226130655,
+          "discharge_ah": 2.4685,
+          "dcir_mohm": 33.44,
+          "temperature_c": 28.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4791457286432164,
+          "discharge_ah": 2.46675,
+          "dcir_mohm": 33.519999999999996,
+          "temperature_c": 28.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.477386934673367,
+          "discharge_ah": 2.465,
+          "dcir_mohm": 33.6,
+          "temperature_c": 28.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.4756281407035177,
+          "discharge_ah": 2.46325,
+          "dcir_mohm": 33.68,
+          "temperature_c": 28.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.4738693467336685,
+          "discharge_ah": 2.4615,
+          "dcir_mohm": 33.760000000000005,
+          "temperature_c": 28.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4721105527638194,
+          "discharge_ah": 2.45975,
+          "dcir_mohm": 33.84,
+          "temperature_c": 28.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4703517587939694,
+          "discharge_ah": 2.4579999999999997,
+          "dcir_mohm": 33.92,
+          "temperature_c": 28.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.4685929648241207,
+          "discharge_ah": 2.4562500000000003,
+          "dcir_mohm": 34,
+          "temperature_c": 28.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.466834170854271,
+          "discharge_ah": 2.4545,
+          "dcir_mohm": 34.08,
+          "temperature_c": 28.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.465075376884422,
+          "discharge_ah": 2.45275,
+          "dcir_mohm": 34.16,
+          "temperature_c": 28.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.463316582914573,
+          "discharge_ah": 2.451,
+          "dcir_mohm": 34.24,
+          "temperature_c": 28.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.4615577889447238,
+          "discharge_ah": 2.44925,
+          "dcir_mohm": 34.32,
+          "temperature_c": 28.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.459798994974874,
+          "discharge_ah": 2.4475,
+          "dcir_mohm": 34.4,
+          "temperature_c": 28.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.458040201005025,
+          "discharge_ah": 2.44575,
+          "dcir_mohm": 34.48,
+          "temperature_c": 28.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.456281407035176,
+          "discharge_ah": 2.444,
+          "dcir_mohm": 34.56,
+          "temperature_c": 28.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.454522613065327,
+          "discharge_ah": 2.44225,
+          "dcir_mohm": 34.64,
+          "temperature_c": 28.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4527638190954777,
+          "discharge_ah": 2.4405,
+          "dcir_mohm": 34.72,
+          "temperature_c": 29.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4510050251256286,
+          "discharge_ah": 2.43875,
+          "dcir_mohm": 34.8,
+          "temperature_c": 29.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4492462311557786,
+          "discharge_ah": 2.437,
+          "dcir_mohm": 34.88,
+          "temperature_c": 29.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4474874371859294,
+          "discharge_ah": 2.43525,
+          "dcir_mohm": 34.96,
+          "temperature_c": 29.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.4457286432160803,
+          "discharge_ah": 2.4335,
+          "dcir_mohm": 35.04,
+          "temperature_c": 29.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.443969849246231,
+          "discharge_ah": 2.43175,
+          "dcir_mohm": 35.12,
+          "temperature_c": 29.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4422110552763816,
+          "discharge_ah": 2.4299999999999997,
+          "dcir_mohm": 35.2,
+          "temperature_c": 29.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.440452261306533,
+          "discharge_ah": 2.4282500000000002,
+          "dcir_mohm": 35.28,
+          "temperature_c": 29.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4386934673366834,
+          "discharge_ah": 2.4265,
+          "dcir_mohm": 35.36,
+          "temperature_c": 29.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.4369346733668342,
+          "discharge_ah": 2.42475,
+          "dcir_mohm": 35.44,
+          "temperature_c": 29.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.435175879396985,
+          "discharge_ah": 2.423,
+          "dcir_mohm": 35.52,
+          "temperature_c": 29.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.433417085427136,
+          "discharge_ah": 2.42125,
+          "dcir_mohm": 35.6,
+          "temperature_c": 29.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.431658291457287,
+          "discharge_ah": 2.4195,
+          "dcir_mohm": 35.68,
+          "temperature_c": 29.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.429899497487437,
+          "discharge_ah": 2.41775,
+          "dcir_mohm": 35.76,
+          "temperature_c": 29.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.4281407035175877,
+          "discharge_ah": 2.416,
+          "dcir_mohm": 35.84,
+          "temperature_c": 29.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.4263819095477386,
+          "discharge_ah": 2.41425,
+          "dcir_mohm": 35.92,
+          "temperature_c": 29.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.4246231155778895,
+          "discharge_ah": 2.4125,
+          "dcir_mohm": 36,
+          "temperature_c": 29.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.4228643216080403,
+          "discharge_ah": 2.41075,
+          "dcir_mohm": 36.08,
+          "temperature_c": 29.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.4211055276381908,
+          "discharge_ah": 2.409,
+          "dcir_mohm": 36.16,
+          "temperature_c": 29.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.4193467336683416,
+          "discharge_ah": 2.40725,
+          "dcir_mohm": 36.24,
+          "temperature_c": 29.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.4175879396984925,
+          "discharge_ah": 2.4055,
+          "dcir_mohm": 36.32,
+          "temperature_c": 29.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.4158291457286434,
+          "discharge_ah": 2.40375,
+          "dcir_mohm": 36.4,
+          "temperature_c": 29.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.4140703517587943,
+          "discharge_ah": 2.402,
+          "dcir_mohm": 36.480000000000004,
+          "temperature_c": 29.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.4123115577889447,
+          "discharge_ah": 2.4002499999999998,
+          "dcir_mohm": 36.56,
+          "temperature_c": 29.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.410552763819096,
+          "discharge_ah": 2.3985000000000003,
+          "dcir_mohm": 36.64,
+          "temperature_c": 29.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.408793969849246,
+          "discharge_ah": 2.39675,
+          "dcir_mohm": 36.72,
+          "temperature_c": 29.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.407035175879397,
+          "discharge_ah": 2.395,
+          "dcir_mohm": 36.8,
+          "temperature_c": 29.8
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 60,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": ""
+    },
+    {
+      "id": "fc4f48fb95b6446aa5fa1ebc5934a33e",
+      "kind": "cell",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0885355,
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "DEMO-1-CELL-3"
+    },
+    {
+      "id": "f6f5a79c2b6d444da8a765e1a294f647",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0887918,
+      "cell_id": "fc4f48fb95b6446aa5fa1ebc5934a33e",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "TEST-DEMO-1-CELL-3",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "3",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "stopped",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.510552763819095,
+          "discharge_ah": 2.4979999999999998,
+          "dcir_mohm": 34.08,
+          "temperature_c": 29.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5085427135678393,
+          "discharge_ah": 2.496,
+          "dcir_mohm": 34.16,
+          "temperature_c": 29.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.506532663316583,
+          "discharge_ah": 2.494,
+          "dcir_mohm": 34.239999999999995,
+          "temperature_c": 29.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5045226130653266,
+          "discharge_ah": 2.492,
+          "dcir_mohm": 34.32,
+          "temperature_c": 29.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.5025125628140708,
+          "discharge_ah": 2.49,
+          "dcir_mohm": 34.4,
+          "temperature_c": 29.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.500502512562814,
+          "discharge_ah": 2.488,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 29.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.4984924623115576,
+          "discharge_ah": 2.4859999999999998,
+          "dcir_mohm": 34.56,
+          "temperature_c": 29.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4964824120603013,
+          "discharge_ah": 2.484,
+          "dcir_mohm": 34.64,
+          "temperature_c": 29.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4944723618090454,
+          "discharge_ah": 2.482,
+          "dcir_mohm": 34.72,
+          "temperature_c": 29.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.492462311557789,
+          "discharge_ah": 2.48,
+          "dcir_mohm": 34.8,
+          "temperature_c": 29.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4904522613065323,
+          "discharge_ah": 2.4779999999999998,
+          "dcir_mohm": 34.879999999999995,
+          "temperature_c": 29.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4884422110552764,
+          "discharge_ah": 2.476,
+          "dcir_mohm": 34.96,
+          "temperature_c": 29.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4864321608040205,
+          "discharge_ah": 2.474,
+          "dcir_mohm": 35.04,
+          "temperature_c": 29.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4844221105527637,
+          "discharge_ah": 2.472,
+          "dcir_mohm": 35.120000000000005,
+          "temperature_c": 29.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.4824120603015074,
+          "discharge_ah": 2.4699999999999998,
+          "dcir_mohm": 35.2,
+          "temperature_c": 29.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.480402010050251,
+          "discharge_ah": 2.468,
+          "dcir_mohm": 35.28,
+          "temperature_c": 29.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.478391959798995,
+          "discharge_ah": 2.466,
+          "dcir_mohm": 35.36,
+          "temperature_c": 29.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.476381909547739,
+          "discharge_ah": 2.464,
+          "dcir_mohm": 35.44,
+          "temperature_c": 29.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4743718592964825,
+          "discharge_ah": 2.462,
+          "dcir_mohm": 35.519999999999996,
+          "temperature_c": 29.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.472361809045226,
+          "discharge_ah": 2.46,
+          "dcir_mohm": 35.6,
+          "temperature_c": 29.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.4703517587939694,
+          "discharge_ah": 2.4579999999999997,
+          "dcir_mohm": 35.68,
+          "temperature_c": 29.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.4683417085427135,
+          "discharge_ah": 2.456,
+          "dcir_mohm": 35.760000000000005,
+          "temperature_c": 29.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4663316582914576,
+          "discharge_ah": 2.454,
+          "dcir_mohm": 35.84,
+          "temperature_c": 29.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.464321608040201,
+          "discharge_ah": 2.452,
+          "dcir_mohm": 35.92,
+          "temperature_c": 29.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.462311557788945,
+          "discharge_ah": 2.45,
+          "dcir_mohm": 36,
+          "temperature_c": 29.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4603015075376886,
+          "discharge_ah": 2.448,
+          "dcir_mohm": 36.08,
+          "temperature_c": 29.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.4582914572864323,
+          "discharge_ah": 2.446,
+          "dcir_mohm": 36.16,
+          "temperature_c": 29.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.456281407035176,
+          "discharge_ah": 2.444,
+          "dcir_mohm": 36.24,
+          "temperature_c": 29.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.4542713567839196,
+          "discharge_ah": 2.442,
+          "dcir_mohm": 36.32,
+          "temperature_c": 29.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.4522613065326633,
+          "discharge_ah": 2.44,
+          "dcir_mohm": 36.4,
+          "temperature_c": 29.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.450251256281407,
+          "discharge_ah": 2.4379999999999997,
+          "dcir_mohm": 36.48,
+          "temperature_c": 29.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4482412060301506,
+          "discharge_ah": 2.436,
+          "dcir_mohm": 36.56,
+          "temperature_c": 29.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.4462311557788947,
+          "discharge_ah": 2.434,
+          "dcir_mohm": 36.64,
+          "temperature_c": 29.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.444221105527638,
+          "discharge_ah": 2.432,
+          "dcir_mohm": 36.72,
+          "temperature_c": 30.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4422110552763816,
+          "discharge_ah": 2.4299999999999997,
+          "dcir_mohm": 36.8,
+          "temperature_c": 30.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4402010050251257,
+          "discharge_ah": 2.428,
+          "dcir_mohm": 36.88,
+          "temperature_c": 30.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4381909547738694,
+          "discharge_ah": 2.426,
+          "dcir_mohm": 36.96,
+          "temperature_c": 30.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.436180904522613,
+          "discharge_ah": 2.424,
+          "dcir_mohm": 37.04,
+          "temperature_c": 30.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.434170854271357,
+          "discharge_ah": 2.422,
+          "dcir_mohm": 37.12,
+          "temperature_c": 30.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4321608040201004,
+          "discharge_ah": 2.42,
+          "dcir_mohm": 37.2,
+          "temperature_c": 30.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.4301507537688445,
+          "discharge_ah": 2.418,
+          "dcir_mohm": 37.28,
+          "temperature_c": 30.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4281407035175877,
+          "discharge_ah": 2.416,
+          "dcir_mohm": 37.36,
+          "temperature_c": 30.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.426130653266332,
+          "discharge_ah": 2.414,
+          "dcir_mohm": 37.44,
+          "temperature_c": 30.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.4241206030150755,
+          "discharge_ah": 2.412,
+          "dcir_mohm": 37.52,
+          "temperature_c": 30.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 37.6,
+          "temperature_c": 30.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.4201005025125633,
+          "discharge_ah": 2.4080000000000004,
+          "dcir_mohm": 37.68,
+          "temperature_c": 30.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.4180904522613065,
+          "discharge_ah": 2.406,
+          "dcir_mohm": 37.76,
+          "temperature_c": 30.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.41608040201005,
+          "discharge_ah": 2.404,
+          "dcir_mohm": 37.84,
+          "temperature_c": 30.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.4140703517587943,
+          "discharge_ah": 2.402,
+          "dcir_mohm": 37.92,
+          "temperature_c": 30.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.4120603015075375,
+          "discharge_ah": 2.4,
+          "dcir_mohm": 38,
+          "temperature_c": 30.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.4100502512562816,
+          "discharge_ah": 2.398,
+          "dcir_mohm": 38.08,
+          "temperature_c": 30.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.4080402010050252,
+          "discharge_ah": 2.396,
+          "dcir_mohm": 38.16,
+          "temperature_c": 30.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.406030150753769,
+          "discharge_ah": 2.394,
+          "dcir_mohm": 38.24,
+          "temperature_c": 30.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.4040201005025126,
+          "discharge_ah": 2.392,
+          "dcir_mohm": 38.32,
+          "temperature_c": 30.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.402010050251256,
+          "discharge_ah": 2.3899999999999997,
+          "dcir_mohm": 38.4,
+          "temperature_c": 30.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.4,
+          "discharge_ah": 2.388,
+          "dcir_mohm": 38.480000000000004,
+          "temperature_c": 30.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.397989949748744,
+          "discharge_ah": 2.386,
+          "dcir_mohm": 38.56,
+          "temperature_c": 30.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.3959798994974872,
+          "discharge_ah": 2.384,
+          "dcir_mohm": 38.64,
+          "temperature_c": 30.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.3939698492462314,
+          "discharge_ah": 2.382,
+          "dcir_mohm": 38.72,
+          "temperature_c": 30.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3919597989949746,
+          "discharge_ah": 2.38,
+          "dcir_mohm": 38.8,
+          "temperature_c": 51
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 60,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "Overtemperature 51°C · DEMO"
+    },
+    {
+      "id": "8f6ac2480a8a462bb36d560ad54169cd",
+      "kind": "issue",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0894058,
+      "test_id": "f6f5a79c2b6d444da8a765e1a294f647",
+      "cell_id": "fc4f48fb95b6446aa5fa1ebc5934a33e",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "title": "Overtemperature: STOP latched in demo record",
+      "owner": "Demo Test Engineer",
+      "due_date": "2026-10-23",
+      "severity": "critical",
+      "status": "open",
+      "resolution": ""
+    },
+    {
+      "id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "kind": "doe",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0897808,
+      "code": "DEMO-LFP01-2",
+      "objective": "Compare retention and temperature; example design",
+      "owner": "Demo R&D",
+      "revision": 1,
+      "bom": {
+        "cell": {
+          "np_ratio": 1.1,
+          "areal_capacity": 2.7072,
+          "nominal_voltage": 3.2,
+          "capacity_033_typical": 2.5,
+          "capacity_033_min": 2.4,
+          "capacity_1c": 2.3,
+          "weight": 55,
+          "energy_density": 150
+        },
+        "cathode": {
+          "active_1": "LFP",
+          "active_1_pct": 94,
+          "additive": "",
+          "additive_pct": 0,
+          "binder_1": "PVDF",
+          "binder_1_pct": 2,
+          "binder_2": "",
+          "binder_2_pct": 0,
+          "conductor_1": "Carbon black",
+          "conductor_1_pct": 4,
+          "conductor_2": "",
+          "conductor_2_pct": 0,
+          "dispersant": "",
+          "dispersant_pct": 0,
+          "solvent": "NMP",
+          "foil": "Al",
+          "foil_thickness": 15,
+          "thickness": 75,
+          "loading": 18,
+          "density": 2.4
+        },
+        "anode": {
+          "active_1": "Graphite",
+          "active_1_pct": 94,
+          "active_2": "",
+          "active_2_pct": 0,
+          "active_3": "",
+          "active_3_pct": 0,
+          "binder_1": "CMC",
+          "binder_1_pct": 1.5,
+          "binder_2": "SBR",
+          "binder_2_pct": 1.5,
+          "binder_3": "",
+          "binder_3_pct": 0,
+          "conductor_1": "Carbon black",
+          "conductor_1_pct": 3,
+          "conductor_2": "",
+          "conductor_2_pct": 0,
+          "foil": "Cu",
+          "foil_thickness": 10,
+          "thickness": 64.66,
+          "loading": 9.0528,
+          "density": 1.4
+        },
+        "assembly": {
+          "cathode_layers": 20,
+          "anode_layers": 21,
+          "separator": "PE/PP",
+          "separator_thickness": 16,
+          "jr_thickness": 8,
+          "packing_ratio": 0.85,
+          "electrolyte": "LiPF6-EC-EMC",
+          "electrolyte_amount": 3,
+          "can_cap": "Steel can / cap",
+          "can_cap_mass": 2
+        },
+        "formation": {
+          "protocol": "Example: CC/CV 0.1C charge → rest → 0.1C discharge"
+        }
+      }
+    },
+    {
+      "id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "kind": "batch",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0902777,
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "BATCH-2",
+      "owner": "Demo Pilot Line"
+    },
+    {
+      "id": "cb841a36adce4e5b8d3ee3b4a8887172",
+      "kind": "cell",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0906353,
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "DEMO-2-CELL-1"
+    },
+    {
+      "id": "cf3e6f03496f4628b6de61c063ce3810",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0910163,
+      "cell_id": "cb841a36adce4e5b8d3ee3b4a8887172",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "TEST-DEMO-2-CELL-1",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "4",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "running",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5103015075376884,
+          "discharge_ah": 2.49775,
+          "dcir_mohm": 30.08,
+          "temperature_c": 29.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.508040201005025,
+          "discharge_ah": 2.4955,
+          "dcir_mohm": 30.16,
+          "temperature_c": 29.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.5057788944723614,
+          "discharge_ah": 2.4932499999999997,
+          "dcir_mohm": 30.24,
+          "temperature_c": 29.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5035175879396983,
+          "discharge_ah": 2.4909999999999997,
+          "dcir_mohm": 30.32,
+          "temperature_c": 29.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.501256281407035,
+          "discharge_ah": 2.48875,
+          "dcir_mohm": 30.4,
+          "temperature_c": 29.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.4989949748743716,
+          "discharge_ah": 2.4865,
+          "dcir_mohm": 30.48,
+          "temperature_c": 29.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.496733668341709,
+          "discharge_ah": 2.4842500000000003,
+          "dcir_mohm": 30.56,
+          "temperature_c": 29.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4944723618090454,
+          "discharge_ah": 2.482,
+          "dcir_mohm": 30.64,
+          "temperature_c": 29.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.492211055276382,
+          "discharge_ah": 2.47975,
+          "dcir_mohm": 30.72,
+          "temperature_c": 29.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4899497487437188,
+          "discharge_ah": 2.4775,
+          "dcir_mohm": 30.8,
+          "temperature_c": 29.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4876884422110552,
+          "discharge_ah": 2.47525,
+          "dcir_mohm": 30.88,
+          "temperature_c": 29.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4854271356783917,
+          "discharge_ah": 2.473,
+          "dcir_mohm": 30.96,
+          "temperature_c": 29.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4831658291457286,
+          "discharge_ah": 2.47075,
+          "dcir_mohm": 31.04,
+          "temperature_c": 29.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4809045226130655,
+          "discharge_ah": 2.4685,
+          "dcir_mohm": 31.12,
+          "temperature_c": 29.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.478643216080402,
+          "discharge_ah": 2.46625,
+          "dcir_mohm": 31.2,
+          "temperature_c": 29.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.476381909547739,
+          "discharge_ah": 2.464,
+          "dcir_mohm": 31.28,
+          "temperature_c": 29.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.4741206030150753,
+          "discharge_ah": 2.46175,
+          "dcir_mohm": 31.36,
+          "temperature_c": 29.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.471859296482412,
+          "discharge_ah": 2.4595000000000002,
+          "dcir_mohm": 31.44,
+          "temperature_c": 29.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.469597989949749,
+          "discharge_ah": 2.45725,
+          "dcir_mohm": 31.52,
+          "temperature_c": 29.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.4673366834170856,
+          "discharge_ah": 2.455,
+          "dcir_mohm": 31.6,
+          "temperature_c": 29.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.465075376884422,
+          "discharge_ah": 2.45275,
+          "dcir_mohm": 31.68,
+          "temperature_c": 29.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.462814070351759,
+          "discharge_ah": 2.4505,
+          "dcir_mohm": 31.76,
+          "temperature_c": 29.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4605527638190954,
+          "discharge_ah": 2.44825,
+          "dcir_mohm": 31.84,
+          "temperature_c": 29.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4582914572864323,
+          "discharge_ah": 2.446,
+          "dcir_mohm": 31.92,
+          "temperature_c": 29.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.4560301507537687,
+          "discharge_ah": 2.44375,
+          "dcir_mohm": 32,
+          "temperature_c": 29.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4537688442211056,
+          "discharge_ah": 2.4415,
+          "dcir_mohm": 32.08,
+          "temperature_c": 29.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.451507537688442,
+          "discharge_ah": 2.43925,
+          "dcir_mohm": 32.16,
+          "temperature_c": 29.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.4492462311557786,
+          "discharge_ah": 2.437,
+          "dcir_mohm": 32.24,
+          "temperature_c": 29.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.446984924623116,
+          "discharge_ah": 2.43475,
+          "dcir_mohm": 32.32,
+          "temperature_c": 29.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.4447236180904524,
+          "discharge_ah": 2.4325,
+          "dcir_mohm": 32.4,
+          "temperature_c": 29.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.442462311557789,
+          "discharge_ah": 2.43025,
+          "dcir_mohm": 32.48,
+          "temperature_c": 29.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4402010050251257,
+          "discharge_ah": 2.428,
+          "dcir_mohm": 32.56,
+          "temperature_c": 29.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.4379396984924626,
+          "discharge_ah": 2.4257500000000003,
+          "dcir_mohm": 32.64,
+          "temperature_c": 29.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.435678391959799,
+          "discharge_ah": 2.4235,
+          "dcir_mohm": 32.72,
+          "temperature_c": 30.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.433417085427136,
+          "discharge_ah": 2.42125,
+          "dcir_mohm": 32.8,
+          "temperature_c": 30.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4311557788944724,
+          "discharge_ah": 2.419,
+          "dcir_mohm": 32.88,
+          "temperature_c": 30.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.428894472361809,
+          "discharge_ah": 2.41675,
+          "dcir_mohm": 32.96,
+          "temperature_c": 30.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.426633165829146,
+          "discharge_ah": 2.4145,
+          "dcir_mohm": 33.04,
+          "temperature_c": 30.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.4243718592964822,
+          "discharge_ah": 2.41225,
+          "dcir_mohm": 33.12,
+          "temperature_c": 30.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 33.2,
+          "temperature_c": 30.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.419849246231156,
+          "discharge_ah": 2.40775,
+          "dcir_mohm": 33.28,
+          "temperature_c": 30.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4175879396984925,
+          "discharge_ah": 2.4055,
+          "dcir_mohm": 33.36,
+          "temperature_c": 30.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.415326633165829,
+          "discharge_ah": 2.40325,
+          "dcir_mohm": 33.44,
+          "temperature_c": 30.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.4130653266331663,
+          "discharge_ah": 2.4010000000000002,
+          "dcir_mohm": 33.52,
+          "temperature_c": 30.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.4108040201005028,
+          "discharge_ah": 2.39875,
+          "dcir_mohm": 33.6,
+          "temperature_c": 30.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.408542713567839,
+          "discharge_ah": 2.3965,
+          "dcir_mohm": 33.68,
+          "temperature_c": 30.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.4062814070351757,
+          "discharge_ah": 2.39425,
+          "dcir_mohm": 33.76,
+          "temperature_c": 30.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.4040201005025126,
+          "discharge_ah": 2.392,
+          "dcir_mohm": 33.84,
+          "temperature_c": 30.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.401758793969849,
+          "discharge_ah": 2.38975,
+          "dcir_mohm": 33.92,
+          "temperature_c": 30.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.3994974874371855,
+          "discharge_ah": 2.3874999999999997,
+          "dcir_mohm": 34,
+          "temperature_c": 30.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.397236180904523,
+          "discharge_ah": 2.38525,
+          "dcir_mohm": 34.08,
+          "temperature_c": 30.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.3949748743718593,
+          "discharge_ah": 2.383,
+          "dcir_mohm": 34.16,
+          "temperature_c": 30.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.3927135678391958,
+          "discharge_ah": 2.38075,
+          "dcir_mohm": 34.24,
+          "temperature_c": 30.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.3904522613065327,
+          "discharge_ah": 2.3785,
+          "dcir_mohm": 34.32,
+          "temperature_c": 30.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.3881909547738696,
+          "discharge_ah": 2.37625,
+          "dcir_mohm": 34.4,
+          "temperature_c": 30.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.385929648241206,
+          "discharge_ah": 2.374,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 30.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.383668341708543,
+          "discharge_ah": 2.37175,
+          "dcir_mohm": 34.56,
+          "temperature_c": 30.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.3814070351758794,
+          "discharge_ah": 2.3695,
+          "dcir_mohm": 34.64,
+          "temperature_c": 30.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.379145728643216,
+          "discharge_ah": 2.36725,
+          "dcir_mohm": 34.72,
+          "temperature_c": 30.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3768844221105527,
+          "discharge_ah": 2.3649999999999998,
+          "dcir_mohm": 34.8,
+          "temperature_c": 30.8
+        },
+        {
+          "cycle": 61,
+          "charge_ah": 2.3746231155778896,
+          "discharge_ah": 2.36275,
+          "dcir_mohm": 34.88,
+          "temperature_c": 30.83
+        },
+        {
+          "cycle": 62,
+          "charge_ah": 2.372361809045226,
+          "discharge_ah": 2.3605,
+          "dcir_mohm": 34.96,
+          "temperature_c": 30.86
+        },
+        {
+          "cycle": 63,
+          "charge_ah": 2.370100502512563,
+          "discharge_ah": 2.35825,
+          "dcir_mohm": 35.04,
+          "temperature_c": 30.89
+        },
+        {
+          "cycle": 64,
+          "charge_ah": 2.3678391959798994,
+          "discharge_ah": 2.356,
+          "dcir_mohm": 35.12,
+          "temperature_c": 30.92
+        },
+        {
+          "cycle": 65,
+          "charge_ah": 2.365577889447236,
+          "discharge_ah": 2.35375,
+          "dcir_mohm": 35.2,
+          "temperature_c": 30.95
+        },
+        {
+          "cycle": 66,
+          "charge_ah": 2.363316582914573,
+          "discharge_ah": 2.3515,
+          "dcir_mohm": 35.28,
+          "temperature_c": 30.98
+        },
+        {
+          "cycle": 67,
+          "charge_ah": 2.3610552763819097,
+          "discharge_ah": 2.34925,
+          "dcir_mohm": 35.36,
+          "temperature_c": 31.009999999999998
+        },
+        {
+          "cycle": 68,
+          "charge_ah": 2.358793969849246,
+          "discharge_ah": 2.347,
+          "dcir_mohm": 35.44,
+          "temperature_c": 31.04
+        },
+        {
+          "cycle": 69,
+          "charge_ah": 2.3565326633165826,
+          "discharge_ah": 2.34475,
+          "dcir_mohm": 35.52,
+          "temperature_c": 31.07
+        },
+        {
+          "cycle": 70,
+          "charge_ah": 2.35427135678392,
+          "discharge_ah": 2.3425000000000002,
+          "dcir_mohm": 35.6,
+          "temperature_c": 31.1
+        },
+        {
+          "cycle": 71,
+          "charge_ah": 2.3520100502512564,
+          "discharge_ah": 2.34025,
+          "dcir_mohm": 35.68,
+          "temperature_c": 31.13
+        },
+        {
+          "cycle": 72,
+          "charge_ah": 2.349748743718593,
+          "discharge_ah": 2.338,
+          "dcir_mohm": 35.76,
+          "temperature_c": 31.16
+        },
+        {
+          "cycle": 73,
+          "charge_ah": 2.34748743718593,
+          "discharge_ah": 2.33575,
+          "dcir_mohm": 35.84,
+          "temperature_c": 31.19
+        },
+        {
+          "cycle": 74,
+          "charge_ah": 2.3452261306532662,
+          "discharge_ah": 2.3335,
+          "dcir_mohm": 35.92,
+          "temperature_c": 31.22
+        },
+        {
+          "cycle": 75,
+          "charge_ah": 2.3429648241206027,
+          "discharge_ah": 2.33125,
+          "dcir_mohm": 36,
+          "temperature_c": 31.25
+        },
+        {
+          "cycle": 76,
+          "charge_ah": 2.3407035175879396,
+          "discharge_ah": 2.3289999999999997,
+          "dcir_mohm": 36.08,
+          "temperature_c": 31.28
+        },
+        {
+          "cycle": 77,
+          "charge_ah": 2.3384422110552765,
+          "discharge_ah": 2.32675,
+          "dcir_mohm": 36.16,
+          "temperature_c": 31.31
+        },
+        {
+          "cycle": 78,
+          "charge_ah": 2.336180904522613,
+          "discharge_ah": 2.3245,
+          "dcir_mohm": 36.24,
+          "temperature_c": 31.34
+        },
+        {
+          "cycle": 79,
+          "charge_ah": 2.3339195979899503,
+          "discharge_ah": 2.3222500000000004,
+          "dcir_mohm": 36.32,
+          "temperature_c": 31.37
+        },
+        {
+          "cycle": 80,
+          "charge_ah": 2.3316582914572868,
+          "discharge_ah": 2.3200000000000003,
+          "dcir_mohm": 36.4,
+          "temperature_c": 31.4
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 80,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": ""
+    },
+    {
+      "id": "1c84569a771a4246891901ff328d8369",
+      "kind": "cell",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0919843,
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "DEMO-2-CELL-2"
+    },
+    {
+      "id": "d883ba90af214f708c6bf8972a41537e",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0926125,
+      "cell_id": "1c84569a771a4246891901ff328d8369",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "TEST-DEMO-2-CELL-2",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "5",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "completed",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5100502512562817,
+          "discharge_ah": 2.4975,
+          "dcir_mohm": 32.08,
+          "temperature_c": 30.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5075376884422114,
+          "discharge_ah": 2.495,
+          "dcir_mohm": 32.16,
+          "temperature_c": 30.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.505025125628141,
+          "discharge_ah": 2.4925,
+          "dcir_mohm": 32.239999999999995,
+          "temperature_c": 30.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5025125628140708,
+          "discharge_ah": 2.49,
+          "dcir_mohm": 32.32,
+          "temperature_c": 30.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.5,
+          "discharge_ah": 2.4875,
+          "dcir_mohm": 32.4,
+          "temperature_c": 30.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.4974874371859297,
+          "discharge_ah": 2.485,
+          "dcir_mohm": 32.480000000000004,
+          "temperature_c": 30.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.4949748743718594,
+          "discharge_ah": 2.4825,
+          "dcir_mohm": 32.56,
+          "temperature_c": 30.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.492462311557789,
+          "discharge_ah": 2.48,
+          "dcir_mohm": 32.64,
+          "temperature_c": 30.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4899497487437188,
+          "discharge_ah": 2.4775,
+          "dcir_mohm": 32.72,
+          "temperature_c": 30.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4874371859296485,
+          "discharge_ah": 2.475,
+          "dcir_mohm": 32.8,
+          "temperature_c": 30.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.484924623115578,
+          "discharge_ah": 2.4725,
+          "dcir_mohm": 32.879999999999995,
+          "temperature_c": 30.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4824120603015074,
+          "discharge_ah": 2.4699999999999998,
+          "dcir_mohm": 32.96,
+          "temperature_c": 30.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.479899497487437,
+          "discharge_ah": 2.4675,
+          "dcir_mohm": 33.04,
+          "temperature_c": 30.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.477386934673367,
+          "discharge_ah": 2.465,
+          "dcir_mohm": 33.120000000000005,
+          "temperature_c": 30.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.4748743718592965,
+          "discharge_ah": 2.4625,
+          "dcir_mohm": 33.2,
+          "temperature_c": 30.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.472361809045226,
+          "discharge_ah": 2.46,
+          "dcir_mohm": 33.28,
+          "temperature_c": 30.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.469849246231156,
+          "discharge_ah": 2.4575,
+          "dcir_mohm": 33.36,
+          "temperature_c": 30.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.4673366834170856,
+          "discharge_ah": 2.455,
+          "dcir_mohm": 33.44,
+          "temperature_c": 30.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4648241206030153,
+          "discharge_ah": 2.4525,
+          "dcir_mohm": 33.519999999999996,
+          "temperature_c": 30.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.462311557788945,
+          "discharge_ah": 2.45,
+          "dcir_mohm": 33.6,
+          "temperature_c": 30.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.459798994974874,
+          "discharge_ah": 2.4475,
+          "dcir_mohm": 33.68,
+          "temperature_c": 30.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.457286432160804,
+          "discharge_ah": 2.445,
+          "dcir_mohm": 33.760000000000005,
+          "temperature_c": 30.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4547738693467336,
+          "discharge_ah": 2.4425,
+          "dcir_mohm": 33.84,
+          "temperature_c": 30.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4522613065326633,
+          "discharge_ah": 2.44,
+          "dcir_mohm": 33.92,
+          "temperature_c": 30.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.449748743718593,
+          "discharge_ah": 2.4375,
+          "dcir_mohm": 34,
+          "temperature_c": 30.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4472361809045227,
+          "discharge_ah": 2.435,
+          "dcir_mohm": 34.08,
+          "temperature_c": 30.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.4447236180904524,
+          "discharge_ah": 2.4325,
+          "dcir_mohm": 34.16,
+          "temperature_c": 30.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.4422110552763816,
+          "discharge_ah": 2.4299999999999997,
+          "dcir_mohm": 34.24,
+          "temperature_c": 30.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.4396984924623113,
+          "discharge_ah": 2.4274999999999998,
+          "dcir_mohm": 34.32,
+          "temperature_c": 30.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.437185929648241,
+          "discharge_ah": 2.425,
+          "dcir_mohm": 34.4,
+          "temperature_c": 30.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.4346733668341707,
+          "discharge_ah": 2.4225,
+          "dcir_mohm": 34.48,
+          "temperature_c": 30.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4321608040201004,
+          "discharge_ah": 2.42,
+          "dcir_mohm": 34.56,
+          "temperature_c": 30.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.42964824120603,
+          "discharge_ah": 2.4175,
+          "dcir_mohm": 34.64,
+          "temperature_c": 30.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4271356783919598,
+          "discharge_ah": 2.415,
+          "dcir_mohm": 34.72,
+          "temperature_c": 31.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4246231155778895,
+          "discharge_ah": 2.4125,
+          "dcir_mohm": 34.8,
+          "temperature_c": 31.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 34.88,
+          "temperature_c": 31.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4195979899497484,
+          "discharge_ah": 2.4074999999999998,
+          "dcir_mohm": 34.96,
+          "temperature_c": 31.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.417085427135678,
+          "discharge_ah": 2.405,
+          "dcir_mohm": 35.04,
+          "temperature_c": 31.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.414572864321608,
+          "discharge_ah": 2.4025,
+          "dcir_mohm": 35.12,
+          "temperature_c": 31.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4120603015075375,
+          "discharge_ah": 2.4,
+          "dcir_mohm": 35.2,
+          "temperature_c": 31.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.409547738693467,
+          "discharge_ah": 2.3975,
+          "dcir_mohm": 35.28,
+          "temperature_c": 31.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.407035175879397,
+          "discharge_ah": 2.395,
+          "dcir_mohm": 35.36,
+          "temperature_c": 31.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.4045226130653266,
+          "discharge_ah": 2.3925,
+          "dcir_mohm": 35.44,
+          "temperature_c": 31.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.402010050251256,
+          "discharge_ah": 2.3899999999999997,
+          "dcir_mohm": 35.52,
+          "temperature_c": 31.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.3994974874371855,
+          "discharge_ah": 2.3874999999999997,
+          "dcir_mohm": 35.6,
+          "temperature_c": 31.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.396984924623115,
+          "discharge_ah": 2.385,
+          "dcir_mohm": 35.68,
+          "temperature_c": 31.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.394472361809045,
+          "discharge_ah": 2.3825,
+          "dcir_mohm": 35.76,
+          "temperature_c": 31.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.3919597989949746,
+          "discharge_ah": 2.38,
+          "dcir_mohm": 35.84,
+          "temperature_c": 31.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.3894472361809043,
+          "discharge_ah": 2.3775,
+          "dcir_mohm": 35.92,
+          "temperature_c": 31.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.3869346733668344,
+          "discharge_ah": 2.375,
+          "dcir_mohm": 36,
+          "temperature_c": 31.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.384422110552764,
+          "discharge_ah": 2.3725,
+          "dcir_mohm": 36.08,
+          "temperature_c": 31.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.381909547738694,
+          "discharge_ah": 2.37,
+          "dcir_mohm": 36.16,
+          "temperature_c": 31.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.379396984924623,
+          "discharge_ah": 2.3674999999999997,
+          "dcir_mohm": 36.24,
+          "temperature_c": 31.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.3768844221105527,
+          "discharge_ah": 2.3649999999999998,
+          "dcir_mohm": 36.32,
+          "temperature_c": 31.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.3743718592964824,
+          "discharge_ah": 2.3625,
+          "dcir_mohm": 36.4,
+          "temperature_c": 31.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.371859296482412,
+          "discharge_ah": 2.36,
+          "dcir_mohm": 36.480000000000004,
+          "temperature_c": 31.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.369346733668342,
+          "discharge_ah": 2.3575,
+          "dcir_mohm": 36.56,
+          "temperature_c": 31.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.3668341708542715,
+          "discharge_ah": 2.355,
+          "dcir_mohm": 36.64,
+          "temperature_c": 31.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.364321608040201,
+          "discharge_ah": 2.3525,
+          "dcir_mohm": 36.72,
+          "temperature_c": 31.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3618090452261304,
+          "discharge_ah": 2.3499999999999996,
+          "dcir_mohm": 36.8,
+          "temperature_c": 31.8
+        },
+        {
+          "cycle": 61,
+          "charge_ah": 2.3592964824120606,
+          "discharge_ah": 2.3475,
+          "dcir_mohm": 36.88,
+          "temperature_c": 31.83
+        },
+        {
+          "cycle": 62,
+          "charge_ah": 2.35678391959799,
+          "discharge_ah": 2.3449999999999998,
+          "dcir_mohm": 36.96,
+          "temperature_c": 31.86
+        },
+        {
+          "cycle": 63,
+          "charge_ah": 2.35427135678392,
+          "discharge_ah": 2.3425000000000002,
+          "dcir_mohm": 37.04,
+          "temperature_c": 31.89
+        },
+        {
+          "cycle": 64,
+          "charge_ah": 2.351758793969849,
+          "discharge_ah": 2.34,
+          "dcir_mohm": 37.12,
+          "temperature_c": 31.92
+        },
+        {
+          "cycle": 65,
+          "charge_ah": 2.3492462311557794,
+          "discharge_ah": 2.3375000000000004,
+          "dcir_mohm": 37.2,
+          "temperature_c": 31.95
+        },
+        {
+          "cycle": 66,
+          "charge_ah": 2.3467336683417086,
+          "discharge_ah": 2.335,
+          "dcir_mohm": 37.28,
+          "temperature_c": 31.98
+        },
+        {
+          "cycle": 67,
+          "charge_ah": 2.3442211055276383,
+          "discharge_ah": 2.3325,
+          "dcir_mohm": 37.36,
+          "temperature_c": 32.01
+        },
+        {
+          "cycle": 68,
+          "charge_ah": 2.341708542713568,
+          "discharge_ah": 2.33,
+          "dcir_mohm": 37.44,
+          "temperature_c": 32.04
+        },
+        {
+          "cycle": 69,
+          "charge_ah": 2.3391959798994977,
+          "discharge_ah": 2.3275,
+          "dcir_mohm": 37.52,
+          "temperature_c": 32.07
+        },
+        {
+          "cycle": 70,
+          "charge_ah": 2.336683417085427,
+          "discharge_ah": 2.3249999999999997,
+          "dcir_mohm": 37.6,
+          "temperature_c": 32.1
+        },
+        {
+          "cycle": 71,
+          "charge_ah": 2.334170854271357,
+          "discharge_ah": 2.3225000000000002,
+          "dcir_mohm": 37.68,
+          "temperature_c": 32.13
+        },
+        {
+          "cycle": 72,
+          "charge_ah": 2.3316582914572863,
+          "discharge_ah": 2.32,
+          "dcir_mohm": 37.76,
+          "temperature_c": 32.16
+        },
+        {
+          "cycle": 73,
+          "charge_ah": 2.329145728643216,
+          "discharge_ah": 2.3175,
+          "dcir_mohm": 37.84,
+          "temperature_c": 32.19
+        },
+        {
+          "cycle": 74,
+          "charge_ah": 2.3266331658291457,
+          "discharge_ah": 2.315,
+          "dcir_mohm": 37.92,
+          "temperature_c": 32.22
+        },
+        {
+          "cycle": 75,
+          "charge_ah": 2.3241206030150754,
+          "discharge_ah": 2.3125,
+          "dcir_mohm": 38,
+          "temperature_c": 32.25
+        },
+        {
+          "cycle": 76,
+          "charge_ah": 2.321608040201005,
+          "discharge_ah": 2.31,
+          "dcir_mohm": 38.08,
+          "temperature_c": 32.28
+        },
+        {
+          "cycle": 77,
+          "charge_ah": 2.319095477386935,
+          "discharge_ah": 2.3075,
+          "dcir_mohm": 38.16,
+          "temperature_c": 32.31
+        },
+        {
+          "cycle": 78,
+          "charge_ah": 2.3165829145728645,
+          "discharge_ah": 2.305,
+          "dcir_mohm": 38.24,
+          "temperature_c": 32.34
+        },
+        {
+          "cycle": 79,
+          "charge_ah": 2.314070351758794,
+          "discharge_ah": 2.3025,
+          "dcir_mohm": 38.32,
+          "temperature_c": 32.37
+        },
+        {
+          "cycle": 80,
+          "charge_ah": 2.311557788944724,
+          "discharge_ah": 2.3000000000000003,
+          "dcir_mohm": 38.4,
+          "temperature_c": 32.4
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 80,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": ""
+    },
+    {
+      "id": "c7a5d57d892b4de8a4b98f6fdbceffb1",
+      "kind": "cell",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.093741,
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "DEMO-2-CELL-3"
+    },
+    {
+      "id": "e04c0f6d4b184726bf61b8a2413b17cd",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0946827,
+      "cell_id": "c7a5d57d892b4de8a4b98f6fdbceffb1",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "TEST-DEMO-2-CELL-3",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "6",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "stopped",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5097989949748745,
+          "discharge_ah": 2.49725,
+          "dcir_mohm": 34.08,
+          "temperature_c": 31.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.507035175879397,
+          "discharge_ah": 2.4945,
+          "dcir_mohm": 34.16,
+          "temperature_c": 31.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.50427135678392,
+          "discharge_ah": 2.49175,
+          "dcir_mohm": 34.239999999999995,
+          "temperature_c": 31.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.501507537688442,
+          "discharge_ah": 2.489,
+          "dcir_mohm": 34.32,
+          "temperature_c": 31.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.498743718592965,
+          "discharge_ah": 2.48625,
+          "dcir_mohm": 34.4,
+          "temperature_c": 31.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.4959798994974873,
+          "discharge_ah": 2.4835,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 31.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.4932160804020103,
+          "discharge_ah": 2.48075,
+          "dcir_mohm": 34.56,
+          "temperature_c": 31.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4904522613065323,
+          "discharge_ah": 2.4779999999999998,
+          "dcir_mohm": 34.64,
+          "temperature_c": 31.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4876884422110552,
+          "discharge_ah": 2.47525,
+          "dcir_mohm": 34.72,
+          "temperature_c": 31.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.484924623115578,
+          "discharge_ah": 2.4725,
+          "dcir_mohm": 34.8,
+          "temperature_c": 31.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4821608040201,
+          "discharge_ah": 2.46975,
+          "dcir_mohm": 34.879999999999995,
+          "temperature_c": 31.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.479396984924623,
+          "discharge_ah": 2.467,
+          "dcir_mohm": 34.96,
+          "temperature_c": 31.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4766331658291456,
+          "discharge_ah": 2.46425,
+          "dcir_mohm": 35.04,
+          "temperature_c": 31.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4738693467336685,
+          "discharge_ah": 2.4615,
+          "dcir_mohm": 35.120000000000005,
+          "temperature_c": 31.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.471105527638191,
+          "discharge_ah": 2.45875,
+          "dcir_mohm": 35.2,
+          "temperature_c": 31.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.4683417085427135,
+          "discharge_ah": 2.456,
+          "dcir_mohm": 35.28,
+          "temperature_c": 31.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.465577889447236,
+          "discharge_ah": 2.4532499999999997,
+          "dcir_mohm": 35.36,
+          "temperature_c": 31.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.462814070351759,
+          "discharge_ah": 2.4505,
+          "dcir_mohm": 35.44,
+          "temperature_c": 31.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4600502512562814,
+          "discharge_ah": 2.44775,
+          "dcir_mohm": 35.519999999999996,
+          "temperature_c": 31.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.457286432160804,
+          "discharge_ah": 2.445,
+          "dcir_mohm": 35.6,
+          "temperature_c": 31.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.454522613065327,
+          "discharge_ah": 2.44225,
+          "dcir_mohm": 35.68,
+          "temperature_c": 31.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.451758793969849,
+          "discharge_ah": 2.4395,
+          "dcir_mohm": 35.760000000000005,
+          "temperature_c": 31.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.448994974874372,
+          "discharge_ah": 2.43675,
+          "dcir_mohm": 35.84,
+          "temperature_c": 31.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4462311557788947,
+          "discharge_ah": 2.434,
+          "dcir_mohm": 35.92,
+          "temperature_c": 31.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.443467336683417,
+          "discharge_ah": 2.43125,
+          "dcir_mohm": 36,
+          "temperature_c": 31.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4407035175879397,
+          "discharge_ah": 2.4285,
+          "dcir_mohm": 36.08,
+          "temperature_c": 31.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.4379396984924626,
+          "discharge_ah": 2.4257500000000003,
+          "dcir_mohm": 36.16,
+          "temperature_c": 31.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.435175879396985,
+          "discharge_ah": 2.423,
+          "dcir_mohm": 36.24,
+          "temperature_c": 31.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.432412060301507,
+          "discharge_ah": 2.42025,
+          "dcir_mohm": 36.32,
+          "temperature_c": 31.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.42964824120603,
+          "discharge_ah": 2.4175,
+          "dcir_mohm": 36.4,
+          "temperature_c": 31.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.4268844221105526,
+          "discharge_ah": 2.4147499999999997,
+          "dcir_mohm": 36.48,
+          "temperature_c": 31.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4241206030150755,
+          "discharge_ah": 2.412,
+          "dcir_mohm": 36.56,
+          "temperature_c": 31.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.421356783919598,
+          "discharge_ah": 2.40925,
+          "dcir_mohm": 36.64,
+          "temperature_c": 31.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4185929648241205,
+          "discharge_ah": 2.4065,
+          "dcir_mohm": 36.72,
+          "temperature_c": 32.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4158291457286434,
+          "discharge_ah": 2.40375,
+          "dcir_mohm": 36.8,
+          "temperature_c": 32.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4130653266331663,
+          "discharge_ah": 2.4010000000000002,
+          "dcir_mohm": 36.88,
+          "temperature_c": 32.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4103015075376883,
+          "discharge_ah": 2.39825,
+          "dcir_mohm": 36.96,
+          "temperature_c": 32.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.407537688442211,
+          "discharge_ah": 2.3954999999999997,
+          "dcir_mohm": 37.04,
+          "temperature_c": 32.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.4047738693467338,
+          "discharge_ah": 2.39275,
+          "dcir_mohm": 37.12,
+          "temperature_c": 32.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.402010050251256,
+          "discharge_ah": 2.3899999999999997,
+          "dcir_mohm": 37.2,
+          "temperature_c": 32.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.3992462311557787,
+          "discharge_ah": 2.38725,
+          "dcir_mohm": 37.28,
+          "temperature_c": 32.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.3964824120603017,
+          "discharge_ah": 2.3845,
+          "dcir_mohm": 37.36,
+          "temperature_c": 32.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.393718592964824,
+          "discharge_ah": 2.38175,
+          "dcir_mohm": 37.44,
+          "temperature_c": 32.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.3909547738693466,
+          "discharge_ah": 2.379,
+          "dcir_mohm": 37.52,
+          "temperature_c": 32.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.3881909547738696,
+          "discharge_ah": 2.37625,
+          "dcir_mohm": 37.6,
+          "temperature_c": 32.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.385427135678392,
+          "discharge_ah": 2.3735,
+          "dcir_mohm": 37.68,
+          "temperature_c": 32.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.3826633165829145,
+          "discharge_ah": 2.37075,
+          "dcir_mohm": 37.76,
+          "temperature_c": 32.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.3798994974874375,
+          "discharge_ah": 2.3680000000000003,
+          "dcir_mohm": 37.84,
+          "temperature_c": 32.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.3771356783919595,
+          "discharge_ah": 2.3652499999999996,
+          "dcir_mohm": 37.92,
+          "temperature_c": 32.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.3743718592964824,
+          "discharge_ah": 2.3625,
+          "dcir_mohm": 38,
+          "temperature_c": 32.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.371608040201005,
+          "discharge_ah": 2.35975,
+          "dcir_mohm": 38.08,
+          "temperature_c": 32.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.3688442211055274,
+          "discharge_ah": 2.3569999999999998,
+          "dcir_mohm": 38.16,
+          "temperature_c": 32.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.3660804020100503,
+          "discharge_ah": 2.35425,
+          "dcir_mohm": 38.24,
+          "temperature_c": 32.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.363316582914573,
+          "discharge_ah": 2.3515,
+          "dcir_mohm": 38.32,
+          "temperature_c": 32.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.3605527638190953,
+          "discharge_ah": 2.34875,
+          "dcir_mohm": 38.4,
+          "temperature_c": 32.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.357788944723618,
+          "discharge_ah": 2.346,
+          "dcir_mohm": 38.480000000000004,
+          "temperature_c": 32.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.355025125628141,
+          "discharge_ah": 2.3432500000000003,
+          "dcir_mohm": 38.56,
+          "temperature_c": 32.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.352261306532663,
+          "discharge_ah": 2.3405,
+          "dcir_mohm": 38.64,
+          "temperature_c": 32.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.349497487437186,
+          "discharge_ah": 2.33775,
+          "dcir_mohm": 38.72,
+          "temperature_c": 32.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3467336683417086,
+          "discharge_ah": 2.335,
+          "dcir_mohm": 38.8,
+          "temperature_c": 32.8
+        },
+        {
+          "cycle": 61,
+          "charge_ah": 2.343969849246231,
+          "discharge_ah": 2.3322499999999997,
+          "dcir_mohm": 38.88,
+          "temperature_c": 32.83
+        },
+        {
+          "cycle": 62,
+          "charge_ah": 2.3412060301507536,
+          "discharge_ah": 2.3295,
+          "dcir_mohm": 38.96,
+          "temperature_c": 32.86
+        },
+        {
+          "cycle": 63,
+          "charge_ah": 2.3384422110552765,
+          "discharge_ah": 2.32675,
+          "dcir_mohm": 39.04,
+          "temperature_c": 32.89
+        },
+        {
+          "cycle": 64,
+          "charge_ah": 2.335678391959799,
+          "discharge_ah": 2.324,
+          "dcir_mohm": 39.12,
+          "temperature_c": 32.92
+        },
+        {
+          "cycle": 65,
+          "charge_ah": 2.3329145728643215,
+          "discharge_ah": 2.32125,
+          "dcir_mohm": 39.2,
+          "temperature_c": 32.95
+        },
+        {
+          "cycle": 66,
+          "charge_ah": 2.3301507537688444,
+          "discharge_ah": 2.3185000000000002,
+          "dcir_mohm": 39.28,
+          "temperature_c": 32.98
+        },
+        {
+          "cycle": 67,
+          "charge_ah": 2.327386934673367,
+          "discharge_ah": 2.31575,
+          "dcir_mohm": 39.36,
+          "temperature_c": 33.01
+        },
+        {
+          "cycle": 68,
+          "charge_ah": 2.32462311557789,
+          "discharge_ah": 2.313,
+          "dcir_mohm": 39.44,
+          "temperature_c": 33.04
+        },
+        {
+          "cycle": 69,
+          "charge_ah": 2.321859296482412,
+          "discharge_ah": 2.31025,
+          "dcir_mohm": 39.52,
+          "temperature_c": 33.07
+        },
+        {
+          "cycle": 70,
+          "charge_ah": 2.319095477386935,
+          "discharge_ah": 2.3075,
+          "dcir_mohm": 39.6,
+          "temperature_c": 33.1
+        },
+        {
+          "cycle": 71,
+          "charge_ah": 2.3163316582914573,
+          "discharge_ah": 2.30475,
+          "dcir_mohm": 39.68,
+          "temperature_c": 33.13
+        },
+        {
+          "cycle": 72,
+          "charge_ah": 2.3135678391959797,
+          "discharge_ah": 2.302,
+          "dcir_mohm": 39.76,
+          "temperature_c": 33.16
+        },
+        {
+          "cycle": 73,
+          "charge_ah": 2.3108040201005022,
+          "discharge_ah": 2.29925,
+          "dcir_mohm": 39.84,
+          "temperature_c": 33.19
+        },
+        {
+          "cycle": 74,
+          "charge_ah": 2.308040201005025,
+          "discharge_ah": 2.2965,
+          "dcir_mohm": 39.92,
+          "temperature_c": 33.22
+        },
+        {
+          "cycle": 75,
+          "charge_ah": 2.305276381909548,
+          "discharge_ah": 2.29375,
+          "dcir_mohm": 40,
+          "temperature_c": 33.25
+        },
+        {
+          "cycle": 76,
+          "charge_ah": 2.30251256281407,
+          "discharge_ah": 2.291,
+          "dcir_mohm": 40.08,
+          "temperature_c": 33.28
+        },
+        {
+          "cycle": 77,
+          "charge_ah": 2.299748743718593,
+          "discharge_ah": 2.28825,
+          "dcir_mohm": 40.16,
+          "temperature_c": 33.31
+        },
+        {
+          "cycle": 78,
+          "charge_ah": 2.2969849246231155,
+          "discharge_ah": 2.2855,
+          "dcir_mohm": 40.24,
+          "temperature_c": 33.34
+        },
+        {
+          "cycle": 79,
+          "charge_ah": 2.2942211055276385,
+          "discharge_ah": 2.28275,
+          "dcir_mohm": 40.32,
+          "temperature_c": 33.37
+        },
+        {
+          "cycle": 80,
+          "charge_ah": 2.291457286432161,
+          "discharge_ah": 2.2800000000000002,
+          "dcir_mohm": 40.4,
+          "temperature_c": 51
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 80,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "Overtemperature 51°C · DEMO"
+    },
+    {
+      "id": "f67de89057da4d4caeaede2e4b34e5b7",
+      "kind": "issue",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0963836,
+      "test_id": "e04c0f6d4b184726bf61b8a2413b17cd",
+      "cell_id": "c7a5d57d892b4de8a4b98f6fdbceffb1",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "title": "Overtemperature: STOP latched in demo record",
+      "owner": "Demo Test Engineer",
+      "due_date": "2026-10-23",
+      "severity": "critical",
+      "status": "open",
+      "resolution": ""
+    }
+  ],
+  "tests": [
+    {
+      "id": "88f54c91f670405296bcb9b67f0c8713",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0673583,
+      "cell_id": "f7a619d76c2048df8374f11ec51cc62c",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "TEST-DEMO-1-CELL-1",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "1",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "running",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5110552763819096,
+          "discharge_ah": 2.4985,
+          "dcir_mohm": 30.08,
+          "temperature_c": 27.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5095477386934673,
+          "discharge_ah": 2.497,
+          "dcir_mohm": 30.16,
+          "temperature_c": 27.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.508040201005025,
+          "discharge_ah": 2.4955,
+          "dcir_mohm": 30.24,
+          "temperature_c": 27.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.506532663316583,
+          "discharge_ah": 2.494,
+          "dcir_mohm": 30.32,
+          "temperature_c": 27.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.505025125628141,
+          "discharge_ah": 2.4925,
+          "dcir_mohm": 30.4,
+          "temperature_c": 27.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.5035175879396983,
+          "discharge_ah": 2.4909999999999997,
+          "dcir_mohm": 30.48,
+          "temperature_c": 27.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.5020100502512563,
+          "discharge_ah": 2.4895,
+          "dcir_mohm": 30.56,
+          "temperature_c": 27.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.500502512562814,
+          "discharge_ah": 2.488,
+          "dcir_mohm": 30.64,
+          "temperature_c": 27.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4989949748743716,
+          "discharge_ah": 2.4865,
+          "dcir_mohm": 30.72,
+          "temperature_c": 27.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4974874371859297,
+          "discharge_ah": 2.485,
+          "dcir_mohm": 30.8,
+          "temperature_c": 27.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4959798994974873,
+          "discharge_ah": 2.4835,
+          "dcir_mohm": 30.88,
+          "temperature_c": 27.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4944723618090454,
+          "discharge_ah": 2.482,
+          "dcir_mohm": 30.96,
+          "temperature_c": 27.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.492964824120603,
+          "discharge_ah": 2.4805,
+          "dcir_mohm": 31.04,
+          "temperature_c": 27.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4914572864321607,
+          "discharge_ah": 2.479,
+          "dcir_mohm": 31.12,
+          "temperature_c": 27.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.4899497487437188,
+          "discharge_ah": 2.4775,
+          "dcir_mohm": 31.2,
+          "temperature_c": 27.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.4884422110552764,
+          "discharge_ah": 2.476,
+          "dcir_mohm": 31.28,
+          "temperature_c": 27.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.486934673366834,
+          "discharge_ah": 2.4745,
+          "dcir_mohm": 31.36,
+          "temperature_c": 27.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.4854271356783917,
+          "discharge_ah": 2.473,
+          "dcir_mohm": 31.44,
+          "temperature_c": 27.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.48391959798995,
+          "discharge_ah": 2.4715000000000003,
+          "dcir_mohm": 31.52,
+          "temperature_c": 27.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.4824120603015074,
+          "discharge_ah": 2.4699999999999998,
+          "dcir_mohm": 31.6,
+          "temperature_c": 27.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.4809045226130655,
+          "discharge_ah": 2.4685,
+          "dcir_mohm": 31.68,
+          "temperature_c": 27.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.479396984924623,
+          "discharge_ah": 2.467,
+          "dcir_mohm": 31.76,
+          "temperature_c": 27.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4778894472361808,
+          "discharge_ah": 2.4655,
+          "dcir_mohm": 31.84,
+          "temperature_c": 27.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.476381909547739,
+          "discharge_ah": 2.464,
+          "dcir_mohm": 31.92,
+          "temperature_c": 27.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.4748743718592965,
+          "discharge_ah": 2.4625,
+          "dcir_mohm": 32,
+          "temperature_c": 27.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4733668341708546,
+          "discharge_ah": 2.4610000000000003,
+          "dcir_mohm": 32.08,
+          "temperature_c": 27.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.471859296482412,
+          "discharge_ah": 2.4595000000000002,
+          "dcir_mohm": 32.16,
+          "temperature_c": 27.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.4703517587939694,
+          "discharge_ah": 2.4579999999999997,
+          "dcir_mohm": 32.24,
+          "temperature_c": 27.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.468844221105528,
+          "discharge_ah": 2.4565,
+          "dcir_mohm": 32.32,
+          "temperature_c": 27.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.4673366834170856,
+          "discharge_ah": 2.455,
+          "dcir_mohm": 32.4,
+          "temperature_c": 27.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.465829145728643,
+          "discharge_ah": 2.4535,
+          "dcir_mohm": 32.48,
+          "temperature_c": 27.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.464321608040201,
+          "discharge_ah": 2.452,
+          "dcir_mohm": 32.56,
+          "temperature_c": 27.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.462814070351759,
+          "discharge_ah": 2.4505,
+          "dcir_mohm": 32.64,
+          "temperature_c": 27.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4613065326633166,
+          "discharge_ah": 2.449,
+          "dcir_mohm": 32.72,
+          "temperature_c": 28.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.459798994974874,
+          "discharge_ah": 2.4475,
+          "dcir_mohm": 32.8,
+          "temperature_c": 28.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4582914572864323,
+          "discharge_ah": 2.446,
+          "dcir_mohm": 32.88,
+          "temperature_c": 28.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.45678391959799,
+          "discharge_ah": 2.4445,
+          "dcir_mohm": 32.96,
+          "temperature_c": 28.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.455276381909548,
+          "discharge_ah": 2.443,
+          "dcir_mohm": 33.04,
+          "temperature_c": 28.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.4537688442211056,
+          "discharge_ah": 2.4415,
+          "dcir_mohm": 33.12,
+          "temperature_c": 28.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4522613065326633,
+          "discharge_ah": 2.44,
+          "dcir_mohm": 33.2,
+          "temperature_c": 28.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.4507537688442214,
+          "discharge_ah": 2.4385000000000003,
+          "dcir_mohm": 33.28,
+          "temperature_c": 28.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4492462311557786,
+          "discharge_ah": 2.437,
+          "dcir_mohm": 33.36,
+          "temperature_c": 28.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.4477386934673366,
+          "discharge_ah": 2.4354999999999998,
+          "dcir_mohm": 33.44,
+          "temperature_c": 28.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.4462311557788947,
+          "discharge_ah": 2.434,
+          "dcir_mohm": 33.52,
+          "temperature_c": 28.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.4447236180904524,
+          "discharge_ah": 2.4325,
+          "dcir_mohm": 33.6,
+          "temperature_c": 28.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.44321608040201,
+          "discharge_ah": 2.431,
+          "dcir_mohm": 33.68,
+          "temperature_c": 28.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.4417085427135676,
+          "discharge_ah": 2.4295,
+          "dcir_mohm": 33.76,
+          "temperature_c": 28.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.4402010050251257,
+          "discharge_ah": 2.428,
+          "dcir_mohm": 33.84,
+          "temperature_c": 28.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.4386934673366834,
+          "discharge_ah": 2.4265,
+          "dcir_mohm": 33.92,
+          "temperature_c": 28.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.437185929648241,
+          "discharge_ah": 2.425,
+          "dcir_mohm": 34,
+          "temperature_c": 28.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.435678391959799,
+          "discharge_ah": 2.4235,
+          "dcir_mohm": 34.08,
+          "temperature_c": 28.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.434170854271357,
+          "discharge_ah": 2.422,
+          "dcir_mohm": 34.16,
+          "temperature_c": 28.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.4326633165829143,
+          "discharge_ah": 2.4204999999999997,
+          "dcir_mohm": 34.24,
+          "temperature_c": 28.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.4311557788944724,
+          "discharge_ah": 2.419,
+          "dcir_mohm": 34.32,
+          "temperature_c": 28.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.42964824120603,
+          "discharge_ah": 2.4175,
+          "dcir_mohm": 34.4,
+          "temperature_c": 28.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.4281407035175877,
+          "discharge_ah": 2.416,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 28.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.426633165829146,
+          "discharge_ah": 2.4145,
+          "dcir_mohm": 34.56,
+          "temperature_c": 28.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.425125628140704,
+          "discharge_ah": 2.4130000000000003,
+          "dcir_mohm": 34.64,
+          "temperature_c": 28.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.4236180904522615,
+          "discharge_ah": 2.4115,
+          "dcir_mohm": 34.72,
+          "temperature_c": 28.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 34.8,
+          "temperature_c": 28.8
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 60,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "",
+      "doe_code": "DEMO-LFP01-1",
+      "revision": 1,
+      "cell_code": "DEMO-1-CELL-1",
+      "batch_code": "BATCH-1",
+      "metrics": {
+        "capacity_ah": 2.41,
+        "retention_percent": 96.45787472483491,
+        "soh_percent": 96.4,
+        "dcir_mohm": 34.8,
+        "ce_percent": 99.5,
+        "temperature_c": 28.8
+      },
+      "target_pass": true,
+      "target_scope": "capacity minimum and temperature <45°C only; energy/mass targets not evaluated"
+    },
+    {
+      "id": "16357fe4bd824ae8bd09dbad794ccc7e",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.087804,
+      "cell_id": "9e4928c60c94474ba7d5d84970ec2784",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "TEST-DEMO-1-CELL-2",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "2",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "completed",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5108040201005024,
+          "discharge_ah": 2.49825,
+          "dcir_mohm": 32.08,
+          "temperature_c": 28.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5090452261306533,
+          "discharge_ah": 2.4965,
+          "dcir_mohm": 32.16,
+          "temperature_c": 28.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.5072864321608037,
+          "discharge_ah": 2.49475,
+          "dcir_mohm": 32.239999999999995,
+          "temperature_c": 28.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5055276381909546,
+          "discharge_ah": 2.493,
+          "dcir_mohm": 32.32,
+          "temperature_c": 28.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.5037688442211055,
+          "discharge_ah": 2.49125,
+          "dcir_mohm": 32.4,
+          "temperature_c": 28.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.5020100502512563,
+          "discharge_ah": 2.4895,
+          "dcir_mohm": 32.480000000000004,
+          "temperature_c": 28.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.500251256281407,
+          "discharge_ah": 2.48775,
+          "dcir_mohm": 32.56,
+          "temperature_c": 28.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4984924623115576,
+          "discharge_ah": 2.4859999999999998,
+          "dcir_mohm": 32.64,
+          "temperature_c": 28.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.496733668341709,
+          "discharge_ah": 2.4842500000000003,
+          "dcir_mohm": 32.72,
+          "temperature_c": 28.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4949748743718594,
+          "discharge_ah": 2.4825,
+          "dcir_mohm": 32.8,
+          "temperature_c": 28.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4932160804020103,
+          "discharge_ah": 2.48075,
+          "dcir_mohm": 32.879999999999995,
+          "temperature_c": 28.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4914572864321607,
+          "discharge_ah": 2.479,
+          "dcir_mohm": 32.96,
+          "temperature_c": 28.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4896984924623116,
+          "discharge_ah": 2.47725,
+          "dcir_mohm": 33.04,
+          "temperature_c": 28.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.487939698492462,
+          "discharge_ah": 2.4755,
+          "dcir_mohm": 33.120000000000005,
+          "temperature_c": 28.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.486180904522613,
+          "discharge_ah": 2.47375,
+          "dcir_mohm": 33.2,
+          "temperature_c": 28.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.4844221105527637,
+          "discharge_ah": 2.472,
+          "dcir_mohm": 33.28,
+          "temperature_c": 28.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.4826633165829146,
+          "discharge_ah": 2.47025,
+          "dcir_mohm": 33.36,
+          "temperature_c": 28.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.4809045226130655,
+          "discharge_ah": 2.4685,
+          "dcir_mohm": 33.44,
+          "temperature_c": 28.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4791457286432164,
+          "discharge_ah": 2.46675,
+          "dcir_mohm": 33.519999999999996,
+          "temperature_c": 28.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.477386934673367,
+          "discharge_ah": 2.465,
+          "dcir_mohm": 33.6,
+          "temperature_c": 28.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.4756281407035177,
+          "discharge_ah": 2.46325,
+          "dcir_mohm": 33.68,
+          "temperature_c": 28.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.4738693467336685,
+          "discharge_ah": 2.4615,
+          "dcir_mohm": 33.760000000000005,
+          "temperature_c": 28.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4721105527638194,
+          "discharge_ah": 2.45975,
+          "dcir_mohm": 33.84,
+          "temperature_c": 28.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4703517587939694,
+          "discharge_ah": 2.4579999999999997,
+          "dcir_mohm": 33.92,
+          "temperature_c": 28.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.4685929648241207,
+          "discharge_ah": 2.4562500000000003,
+          "dcir_mohm": 34,
+          "temperature_c": 28.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.466834170854271,
+          "discharge_ah": 2.4545,
+          "dcir_mohm": 34.08,
+          "temperature_c": 28.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.465075376884422,
+          "discharge_ah": 2.45275,
+          "dcir_mohm": 34.16,
+          "temperature_c": 28.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.463316582914573,
+          "discharge_ah": 2.451,
+          "dcir_mohm": 34.24,
+          "temperature_c": 28.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.4615577889447238,
+          "discharge_ah": 2.44925,
+          "dcir_mohm": 34.32,
+          "temperature_c": 28.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.459798994974874,
+          "discharge_ah": 2.4475,
+          "dcir_mohm": 34.4,
+          "temperature_c": 28.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.458040201005025,
+          "discharge_ah": 2.44575,
+          "dcir_mohm": 34.48,
+          "temperature_c": 28.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.456281407035176,
+          "discharge_ah": 2.444,
+          "dcir_mohm": 34.56,
+          "temperature_c": 28.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.454522613065327,
+          "discharge_ah": 2.44225,
+          "dcir_mohm": 34.64,
+          "temperature_c": 28.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4527638190954777,
+          "discharge_ah": 2.4405,
+          "dcir_mohm": 34.72,
+          "temperature_c": 29.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4510050251256286,
+          "discharge_ah": 2.43875,
+          "dcir_mohm": 34.8,
+          "temperature_c": 29.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4492462311557786,
+          "discharge_ah": 2.437,
+          "dcir_mohm": 34.88,
+          "temperature_c": 29.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4474874371859294,
+          "discharge_ah": 2.43525,
+          "dcir_mohm": 34.96,
+          "temperature_c": 29.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.4457286432160803,
+          "discharge_ah": 2.4335,
+          "dcir_mohm": 35.04,
+          "temperature_c": 29.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.443969849246231,
+          "discharge_ah": 2.43175,
+          "dcir_mohm": 35.12,
+          "temperature_c": 29.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4422110552763816,
+          "discharge_ah": 2.4299999999999997,
+          "dcir_mohm": 35.2,
+          "temperature_c": 29.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.440452261306533,
+          "discharge_ah": 2.4282500000000002,
+          "dcir_mohm": 35.28,
+          "temperature_c": 29.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4386934673366834,
+          "discharge_ah": 2.4265,
+          "dcir_mohm": 35.36,
+          "temperature_c": 29.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.4369346733668342,
+          "discharge_ah": 2.42475,
+          "dcir_mohm": 35.44,
+          "temperature_c": 29.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.435175879396985,
+          "discharge_ah": 2.423,
+          "dcir_mohm": 35.52,
+          "temperature_c": 29.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.433417085427136,
+          "discharge_ah": 2.42125,
+          "dcir_mohm": 35.6,
+          "temperature_c": 29.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.431658291457287,
+          "discharge_ah": 2.4195,
+          "dcir_mohm": 35.68,
+          "temperature_c": 29.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.429899497487437,
+          "discharge_ah": 2.41775,
+          "dcir_mohm": 35.76,
+          "temperature_c": 29.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.4281407035175877,
+          "discharge_ah": 2.416,
+          "dcir_mohm": 35.84,
+          "temperature_c": 29.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.4263819095477386,
+          "discharge_ah": 2.41425,
+          "dcir_mohm": 35.92,
+          "temperature_c": 29.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.4246231155778895,
+          "discharge_ah": 2.4125,
+          "dcir_mohm": 36,
+          "temperature_c": 29.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.4228643216080403,
+          "discharge_ah": 2.41075,
+          "dcir_mohm": 36.08,
+          "temperature_c": 29.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.4211055276381908,
+          "discharge_ah": 2.409,
+          "dcir_mohm": 36.16,
+          "temperature_c": 29.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.4193467336683416,
+          "discharge_ah": 2.40725,
+          "dcir_mohm": 36.24,
+          "temperature_c": 29.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.4175879396984925,
+          "discharge_ah": 2.4055,
+          "dcir_mohm": 36.32,
+          "temperature_c": 29.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.4158291457286434,
+          "discharge_ah": 2.40375,
+          "dcir_mohm": 36.4,
+          "temperature_c": 29.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.4140703517587943,
+          "discharge_ah": 2.402,
+          "dcir_mohm": 36.480000000000004,
+          "temperature_c": 29.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.4123115577889447,
+          "discharge_ah": 2.4002499999999998,
+          "dcir_mohm": 36.56,
+          "temperature_c": 29.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.410552763819096,
+          "discharge_ah": 2.3985000000000003,
+          "dcir_mohm": 36.64,
+          "temperature_c": 29.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.408793969849246,
+          "discharge_ah": 2.39675,
+          "dcir_mohm": 36.72,
+          "temperature_c": 29.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.407035175879397,
+          "discharge_ah": 2.395,
+          "dcir_mohm": 36.8,
+          "temperature_c": 29.8
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 60,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "",
+      "doe_code": "DEMO-LFP01-1",
+      "revision": 1,
+      "cell_code": "DEMO-1-CELL-2",
+      "batch_code": "BATCH-1",
+      "metrics": {
+        "capacity_ah": 2.395,
+        "retention_percent": 95.86710697488242,
+        "soh_percent": 95.8,
+        "dcir_mohm": 36.8,
+        "ce_percent": 99.5,
+        "temperature_c": 29.8
+      },
+      "target_pass": false,
+      "target_scope": "capacity minimum and temperature <45°C only; energy/mass targets not evaluated"
+    },
+    {
+      "id": "f6f5a79c2b6d444da8a765e1a294f647",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0887918,
+      "cell_id": "fc4f48fb95b6446aa5fa1ebc5934a33e",
+      "batch_id": "dc2ce2ed25ce4577b67a1289f62a92d0",
+      "doe_id": "4dd85f09869341afa91fd52b49aa1e96",
+      "code": "TEST-DEMO-1-CELL-3",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "3",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "stopped",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.510552763819095,
+          "discharge_ah": 2.4979999999999998,
+          "dcir_mohm": 34.08,
+          "temperature_c": 29.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5085427135678393,
+          "discharge_ah": 2.496,
+          "dcir_mohm": 34.16,
+          "temperature_c": 29.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.506532663316583,
+          "discharge_ah": 2.494,
+          "dcir_mohm": 34.239999999999995,
+          "temperature_c": 29.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5045226130653266,
+          "discharge_ah": 2.492,
+          "dcir_mohm": 34.32,
+          "temperature_c": 29.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.5025125628140708,
+          "discharge_ah": 2.49,
+          "dcir_mohm": 34.4,
+          "temperature_c": 29.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.500502512562814,
+          "discharge_ah": 2.488,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 29.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.4984924623115576,
+          "discharge_ah": 2.4859999999999998,
+          "dcir_mohm": 34.56,
+          "temperature_c": 29.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4964824120603013,
+          "discharge_ah": 2.484,
+          "dcir_mohm": 34.64,
+          "temperature_c": 29.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4944723618090454,
+          "discharge_ah": 2.482,
+          "dcir_mohm": 34.72,
+          "temperature_c": 29.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.492462311557789,
+          "discharge_ah": 2.48,
+          "dcir_mohm": 34.8,
+          "temperature_c": 29.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4904522613065323,
+          "discharge_ah": 2.4779999999999998,
+          "dcir_mohm": 34.879999999999995,
+          "temperature_c": 29.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4884422110552764,
+          "discharge_ah": 2.476,
+          "dcir_mohm": 34.96,
+          "temperature_c": 29.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4864321608040205,
+          "discharge_ah": 2.474,
+          "dcir_mohm": 35.04,
+          "temperature_c": 29.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4844221105527637,
+          "discharge_ah": 2.472,
+          "dcir_mohm": 35.120000000000005,
+          "temperature_c": 29.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.4824120603015074,
+          "discharge_ah": 2.4699999999999998,
+          "dcir_mohm": 35.2,
+          "temperature_c": 29.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.480402010050251,
+          "discharge_ah": 2.468,
+          "dcir_mohm": 35.28,
+          "temperature_c": 29.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.478391959798995,
+          "discharge_ah": 2.466,
+          "dcir_mohm": 35.36,
+          "temperature_c": 29.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.476381909547739,
+          "discharge_ah": 2.464,
+          "dcir_mohm": 35.44,
+          "temperature_c": 29.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4743718592964825,
+          "discharge_ah": 2.462,
+          "dcir_mohm": 35.519999999999996,
+          "temperature_c": 29.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.472361809045226,
+          "discharge_ah": 2.46,
+          "dcir_mohm": 35.6,
+          "temperature_c": 29.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.4703517587939694,
+          "discharge_ah": 2.4579999999999997,
+          "dcir_mohm": 35.68,
+          "temperature_c": 29.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.4683417085427135,
+          "discharge_ah": 2.456,
+          "dcir_mohm": 35.760000000000005,
+          "temperature_c": 29.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4663316582914576,
+          "discharge_ah": 2.454,
+          "dcir_mohm": 35.84,
+          "temperature_c": 29.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.464321608040201,
+          "discharge_ah": 2.452,
+          "dcir_mohm": 35.92,
+          "temperature_c": 29.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.462311557788945,
+          "discharge_ah": 2.45,
+          "dcir_mohm": 36,
+          "temperature_c": 29.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4603015075376886,
+          "discharge_ah": 2.448,
+          "dcir_mohm": 36.08,
+          "temperature_c": 29.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.4582914572864323,
+          "discharge_ah": 2.446,
+          "dcir_mohm": 36.16,
+          "temperature_c": 29.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.456281407035176,
+          "discharge_ah": 2.444,
+          "dcir_mohm": 36.24,
+          "temperature_c": 29.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.4542713567839196,
+          "discharge_ah": 2.442,
+          "dcir_mohm": 36.32,
+          "temperature_c": 29.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.4522613065326633,
+          "discharge_ah": 2.44,
+          "dcir_mohm": 36.4,
+          "temperature_c": 29.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.450251256281407,
+          "discharge_ah": 2.4379999999999997,
+          "dcir_mohm": 36.48,
+          "temperature_c": 29.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4482412060301506,
+          "discharge_ah": 2.436,
+          "dcir_mohm": 36.56,
+          "temperature_c": 29.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.4462311557788947,
+          "discharge_ah": 2.434,
+          "dcir_mohm": 36.64,
+          "temperature_c": 29.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.444221105527638,
+          "discharge_ah": 2.432,
+          "dcir_mohm": 36.72,
+          "temperature_c": 30.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4422110552763816,
+          "discharge_ah": 2.4299999999999997,
+          "dcir_mohm": 36.8,
+          "temperature_c": 30.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4402010050251257,
+          "discharge_ah": 2.428,
+          "dcir_mohm": 36.88,
+          "temperature_c": 30.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4381909547738694,
+          "discharge_ah": 2.426,
+          "dcir_mohm": 36.96,
+          "temperature_c": 30.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.436180904522613,
+          "discharge_ah": 2.424,
+          "dcir_mohm": 37.04,
+          "temperature_c": 30.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.434170854271357,
+          "discharge_ah": 2.422,
+          "dcir_mohm": 37.12,
+          "temperature_c": 30.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4321608040201004,
+          "discharge_ah": 2.42,
+          "dcir_mohm": 37.2,
+          "temperature_c": 30.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.4301507537688445,
+          "discharge_ah": 2.418,
+          "dcir_mohm": 37.28,
+          "temperature_c": 30.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4281407035175877,
+          "discharge_ah": 2.416,
+          "dcir_mohm": 37.36,
+          "temperature_c": 30.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.426130653266332,
+          "discharge_ah": 2.414,
+          "dcir_mohm": 37.44,
+          "temperature_c": 30.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.4241206030150755,
+          "discharge_ah": 2.412,
+          "dcir_mohm": 37.52,
+          "temperature_c": 30.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 37.6,
+          "temperature_c": 30.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.4201005025125633,
+          "discharge_ah": 2.4080000000000004,
+          "dcir_mohm": 37.68,
+          "temperature_c": 30.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.4180904522613065,
+          "discharge_ah": 2.406,
+          "dcir_mohm": 37.76,
+          "temperature_c": 30.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.41608040201005,
+          "discharge_ah": 2.404,
+          "dcir_mohm": 37.84,
+          "temperature_c": 30.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.4140703517587943,
+          "discharge_ah": 2.402,
+          "dcir_mohm": 37.92,
+          "temperature_c": 30.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.4120603015075375,
+          "discharge_ah": 2.4,
+          "dcir_mohm": 38,
+          "temperature_c": 30.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.4100502512562816,
+          "discharge_ah": 2.398,
+          "dcir_mohm": 38.08,
+          "temperature_c": 30.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.4080402010050252,
+          "discharge_ah": 2.396,
+          "dcir_mohm": 38.16,
+          "temperature_c": 30.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.406030150753769,
+          "discharge_ah": 2.394,
+          "dcir_mohm": 38.24,
+          "temperature_c": 30.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.4040201005025126,
+          "discharge_ah": 2.392,
+          "dcir_mohm": 38.32,
+          "temperature_c": 30.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.402010050251256,
+          "discharge_ah": 2.3899999999999997,
+          "dcir_mohm": 38.4,
+          "temperature_c": 30.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.4,
+          "discharge_ah": 2.388,
+          "dcir_mohm": 38.480000000000004,
+          "temperature_c": 30.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.397989949748744,
+          "discharge_ah": 2.386,
+          "dcir_mohm": 38.56,
+          "temperature_c": 30.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.3959798994974872,
+          "discharge_ah": 2.384,
+          "dcir_mohm": 38.64,
+          "temperature_c": 30.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.3939698492462314,
+          "discharge_ah": 2.382,
+          "dcir_mohm": 38.72,
+          "temperature_c": 30.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3919597989949746,
+          "discharge_ah": 2.38,
+          "dcir_mohm": 38.8,
+          "temperature_c": 51
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 60,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "Overtemperature 51°C · DEMO",
+      "doe_code": "DEMO-LFP01-1",
+      "revision": 1,
+      "cell_code": "DEMO-1-CELL-3",
+      "batch_code": "BATCH-1",
+      "metrics": {
+        "capacity_ah": 2.38,
+        "retention_percent": 95.27622097678143,
+        "soh_percent": 95.2,
+        "dcir_mohm": 38.8,
+        "ce_percent": 99.50000000000001,
+        "temperature_c": 51
+      },
+      "target_pass": false,
+      "target_scope": "capacity minimum and temperature <45°C only; energy/mass targets not evaluated"
+    },
+    {
+      "id": "cf3e6f03496f4628b6de61c063ce3810",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0910163,
+      "cell_id": "cb841a36adce4e5b8d3ee3b4a8887172",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "TEST-DEMO-2-CELL-1",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "4",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "running",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5103015075376884,
+          "discharge_ah": 2.49775,
+          "dcir_mohm": 30.08,
+          "temperature_c": 29.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.508040201005025,
+          "discharge_ah": 2.4955,
+          "dcir_mohm": 30.16,
+          "temperature_c": 29.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.5057788944723614,
+          "discharge_ah": 2.4932499999999997,
+          "dcir_mohm": 30.24,
+          "temperature_c": 29.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5035175879396983,
+          "discharge_ah": 2.4909999999999997,
+          "dcir_mohm": 30.32,
+          "temperature_c": 29.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.501256281407035,
+          "discharge_ah": 2.48875,
+          "dcir_mohm": 30.4,
+          "temperature_c": 29.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.4989949748743716,
+          "discharge_ah": 2.4865,
+          "dcir_mohm": 30.48,
+          "temperature_c": 29.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.496733668341709,
+          "discharge_ah": 2.4842500000000003,
+          "dcir_mohm": 30.56,
+          "temperature_c": 29.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4944723618090454,
+          "discharge_ah": 2.482,
+          "dcir_mohm": 30.64,
+          "temperature_c": 29.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.492211055276382,
+          "discharge_ah": 2.47975,
+          "dcir_mohm": 30.72,
+          "temperature_c": 29.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4899497487437188,
+          "discharge_ah": 2.4775,
+          "dcir_mohm": 30.8,
+          "temperature_c": 29.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4876884422110552,
+          "discharge_ah": 2.47525,
+          "dcir_mohm": 30.88,
+          "temperature_c": 29.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4854271356783917,
+          "discharge_ah": 2.473,
+          "dcir_mohm": 30.96,
+          "temperature_c": 29.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4831658291457286,
+          "discharge_ah": 2.47075,
+          "dcir_mohm": 31.04,
+          "temperature_c": 29.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4809045226130655,
+          "discharge_ah": 2.4685,
+          "dcir_mohm": 31.12,
+          "temperature_c": 29.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.478643216080402,
+          "discharge_ah": 2.46625,
+          "dcir_mohm": 31.2,
+          "temperature_c": 29.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.476381909547739,
+          "discharge_ah": 2.464,
+          "dcir_mohm": 31.28,
+          "temperature_c": 29.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.4741206030150753,
+          "discharge_ah": 2.46175,
+          "dcir_mohm": 31.36,
+          "temperature_c": 29.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.471859296482412,
+          "discharge_ah": 2.4595000000000002,
+          "dcir_mohm": 31.44,
+          "temperature_c": 29.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.469597989949749,
+          "discharge_ah": 2.45725,
+          "dcir_mohm": 31.52,
+          "temperature_c": 29.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.4673366834170856,
+          "discharge_ah": 2.455,
+          "dcir_mohm": 31.6,
+          "temperature_c": 29.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.465075376884422,
+          "discharge_ah": 2.45275,
+          "dcir_mohm": 31.68,
+          "temperature_c": 29.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.462814070351759,
+          "discharge_ah": 2.4505,
+          "dcir_mohm": 31.76,
+          "temperature_c": 29.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4605527638190954,
+          "discharge_ah": 2.44825,
+          "dcir_mohm": 31.84,
+          "temperature_c": 29.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4582914572864323,
+          "discharge_ah": 2.446,
+          "dcir_mohm": 31.92,
+          "temperature_c": 29.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.4560301507537687,
+          "discharge_ah": 2.44375,
+          "dcir_mohm": 32,
+          "temperature_c": 29.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4537688442211056,
+          "discharge_ah": 2.4415,
+          "dcir_mohm": 32.08,
+          "temperature_c": 29.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.451507537688442,
+          "discharge_ah": 2.43925,
+          "dcir_mohm": 32.16,
+          "temperature_c": 29.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.4492462311557786,
+          "discharge_ah": 2.437,
+          "dcir_mohm": 32.24,
+          "temperature_c": 29.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.446984924623116,
+          "discharge_ah": 2.43475,
+          "dcir_mohm": 32.32,
+          "temperature_c": 29.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.4447236180904524,
+          "discharge_ah": 2.4325,
+          "dcir_mohm": 32.4,
+          "temperature_c": 29.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.442462311557789,
+          "discharge_ah": 2.43025,
+          "dcir_mohm": 32.48,
+          "temperature_c": 29.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4402010050251257,
+          "discharge_ah": 2.428,
+          "dcir_mohm": 32.56,
+          "temperature_c": 29.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.4379396984924626,
+          "discharge_ah": 2.4257500000000003,
+          "dcir_mohm": 32.64,
+          "temperature_c": 29.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.435678391959799,
+          "discharge_ah": 2.4235,
+          "dcir_mohm": 32.72,
+          "temperature_c": 30.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.433417085427136,
+          "discharge_ah": 2.42125,
+          "dcir_mohm": 32.8,
+          "temperature_c": 30.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4311557788944724,
+          "discharge_ah": 2.419,
+          "dcir_mohm": 32.88,
+          "temperature_c": 30.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.428894472361809,
+          "discharge_ah": 2.41675,
+          "dcir_mohm": 32.96,
+          "temperature_c": 30.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.426633165829146,
+          "discharge_ah": 2.4145,
+          "dcir_mohm": 33.04,
+          "temperature_c": 30.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.4243718592964822,
+          "discharge_ah": 2.41225,
+          "dcir_mohm": 33.12,
+          "temperature_c": 30.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 33.2,
+          "temperature_c": 30.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.419849246231156,
+          "discharge_ah": 2.40775,
+          "dcir_mohm": 33.28,
+          "temperature_c": 30.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.4175879396984925,
+          "discharge_ah": 2.4055,
+          "dcir_mohm": 33.36,
+          "temperature_c": 30.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.415326633165829,
+          "discharge_ah": 2.40325,
+          "dcir_mohm": 33.44,
+          "temperature_c": 30.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.4130653266331663,
+          "discharge_ah": 2.4010000000000002,
+          "dcir_mohm": 33.52,
+          "temperature_c": 30.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.4108040201005028,
+          "discharge_ah": 2.39875,
+          "dcir_mohm": 33.6,
+          "temperature_c": 30.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.408542713567839,
+          "discharge_ah": 2.3965,
+          "dcir_mohm": 33.68,
+          "temperature_c": 30.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.4062814070351757,
+          "discharge_ah": 2.39425,
+          "dcir_mohm": 33.76,
+          "temperature_c": 30.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.4040201005025126,
+          "discharge_ah": 2.392,
+          "dcir_mohm": 33.84,
+          "temperature_c": 30.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.401758793969849,
+          "discharge_ah": 2.38975,
+          "dcir_mohm": 33.92,
+          "temperature_c": 30.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.3994974874371855,
+          "discharge_ah": 2.3874999999999997,
+          "dcir_mohm": 34,
+          "temperature_c": 30.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.397236180904523,
+          "discharge_ah": 2.38525,
+          "dcir_mohm": 34.08,
+          "temperature_c": 30.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.3949748743718593,
+          "discharge_ah": 2.383,
+          "dcir_mohm": 34.16,
+          "temperature_c": 30.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.3927135678391958,
+          "discharge_ah": 2.38075,
+          "dcir_mohm": 34.24,
+          "temperature_c": 30.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.3904522613065327,
+          "discharge_ah": 2.3785,
+          "dcir_mohm": 34.32,
+          "temperature_c": 30.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.3881909547738696,
+          "discharge_ah": 2.37625,
+          "dcir_mohm": 34.4,
+          "temperature_c": 30.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.385929648241206,
+          "discharge_ah": 2.374,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 30.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.383668341708543,
+          "discharge_ah": 2.37175,
+          "dcir_mohm": 34.56,
+          "temperature_c": 30.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.3814070351758794,
+          "discharge_ah": 2.3695,
+          "dcir_mohm": 34.64,
+          "temperature_c": 30.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.379145728643216,
+          "discharge_ah": 2.36725,
+          "dcir_mohm": 34.72,
+          "temperature_c": 30.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3768844221105527,
+          "discharge_ah": 2.3649999999999998,
+          "dcir_mohm": 34.8,
+          "temperature_c": 30.8
+        },
+        {
+          "cycle": 61,
+          "charge_ah": 2.3746231155778896,
+          "discharge_ah": 2.36275,
+          "dcir_mohm": 34.88,
+          "temperature_c": 30.83
+        },
+        {
+          "cycle": 62,
+          "charge_ah": 2.372361809045226,
+          "discharge_ah": 2.3605,
+          "dcir_mohm": 34.96,
+          "temperature_c": 30.86
+        },
+        {
+          "cycle": 63,
+          "charge_ah": 2.370100502512563,
+          "discharge_ah": 2.35825,
+          "dcir_mohm": 35.04,
+          "temperature_c": 30.89
+        },
+        {
+          "cycle": 64,
+          "charge_ah": 2.3678391959798994,
+          "discharge_ah": 2.356,
+          "dcir_mohm": 35.12,
+          "temperature_c": 30.92
+        },
+        {
+          "cycle": 65,
+          "charge_ah": 2.365577889447236,
+          "discharge_ah": 2.35375,
+          "dcir_mohm": 35.2,
+          "temperature_c": 30.95
+        },
+        {
+          "cycle": 66,
+          "charge_ah": 2.363316582914573,
+          "discharge_ah": 2.3515,
+          "dcir_mohm": 35.28,
+          "temperature_c": 30.98
+        },
+        {
+          "cycle": 67,
+          "charge_ah": 2.3610552763819097,
+          "discharge_ah": 2.34925,
+          "dcir_mohm": 35.36,
+          "temperature_c": 31.009999999999998
+        },
+        {
+          "cycle": 68,
+          "charge_ah": 2.358793969849246,
+          "discharge_ah": 2.347,
+          "dcir_mohm": 35.44,
+          "temperature_c": 31.04
+        },
+        {
+          "cycle": 69,
+          "charge_ah": 2.3565326633165826,
+          "discharge_ah": 2.34475,
+          "dcir_mohm": 35.52,
+          "temperature_c": 31.07
+        },
+        {
+          "cycle": 70,
+          "charge_ah": 2.35427135678392,
+          "discharge_ah": 2.3425000000000002,
+          "dcir_mohm": 35.6,
+          "temperature_c": 31.1
+        },
+        {
+          "cycle": 71,
+          "charge_ah": 2.3520100502512564,
+          "discharge_ah": 2.34025,
+          "dcir_mohm": 35.68,
+          "temperature_c": 31.13
+        },
+        {
+          "cycle": 72,
+          "charge_ah": 2.349748743718593,
+          "discharge_ah": 2.338,
+          "dcir_mohm": 35.76,
+          "temperature_c": 31.16
+        },
+        {
+          "cycle": 73,
+          "charge_ah": 2.34748743718593,
+          "discharge_ah": 2.33575,
+          "dcir_mohm": 35.84,
+          "temperature_c": 31.19
+        },
+        {
+          "cycle": 74,
+          "charge_ah": 2.3452261306532662,
+          "discharge_ah": 2.3335,
+          "dcir_mohm": 35.92,
+          "temperature_c": 31.22
+        },
+        {
+          "cycle": 75,
+          "charge_ah": 2.3429648241206027,
+          "discharge_ah": 2.33125,
+          "dcir_mohm": 36,
+          "temperature_c": 31.25
+        },
+        {
+          "cycle": 76,
+          "charge_ah": 2.3407035175879396,
+          "discharge_ah": 2.3289999999999997,
+          "dcir_mohm": 36.08,
+          "temperature_c": 31.28
+        },
+        {
+          "cycle": 77,
+          "charge_ah": 2.3384422110552765,
+          "discharge_ah": 2.32675,
+          "dcir_mohm": 36.16,
+          "temperature_c": 31.31
+        },
+        {
+          "cycle": 78,
+          "charge_ah": 2.336180904522613,
+          "discharge_ah": 2.3245,
+          "dcir_mohm": 36.24,
+          "temperature_c": 31.34
+        },
+        {
+          "cycle": 79,
+          "charge_ah": 2.3339195979899503,
+          "discharge_ah": 2.3222500000000004,
+          "dcir_mohm": 36.32,
+          "temperature_c": 31.37
+        },
+        {
+          "cycle": 80,
+          "charge_ah": 2.3316582914572868,
+          "discharge_ah": 2.3200000000000003,
+          "dcir_mohm": 36.4,
+          "temperature_c": 31.4
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 80,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "",
+      "doe_code": "DEMO-LFP01-2",
+      "revision": 1,
+      "cell_code": "DEMO-2-CELL-1",
+      "batch_code": "BATCH-2",
+      "metrics": {
+        "capacity_ah": 2.3200000000000003,
+        "retention_percent": 92.88359523571215,
+        "soh_percent": 92.80000000000001,
+        "dcir_mohm": 36.4,
+        "ce_percent": 99.5,
+        "temperature_c": 31.4
+      },
+      "target_pass": false,
+      "target_scope": "capacity minimum and temperature <45°C only; energy/mass targets not evaluated"
+    },
+    {
+      "id": "d883ba90af214f708c6bf8972a41537e",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0926125,
+      "cell_id": "1c84569a771a4246891901ff328d8369",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "TEST-DEMO-2-CELL-2",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "5",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "completed",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5100502512562817,
+          "discharge_ah": 2.4975,
+          "dcir_mohm": 32.08,
+          "temperature_c": 30.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.5075376884422114,
+          "discharge_ah": 2.495,
+          "dcir_mohm": 32.16,
+          "temperature_c": 30.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.505025125628141,
+          "discharge_ah": 2.4925,
+          "dcir_mohm": 32.239999999999995,
+          "temperature_c": 30.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.5025125628140708,
+          "discharge_ah": 2.49,
+          "dcir_mohm": 32.32,
+          "temperature_c": 30.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.5,
+          "discharge_ah": 2.4875,
+          "dcir_mohm": 32.4,
+          "temperature_c": 30.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.4974874371859297,
+          "discharge_ah": 2.485,
+          "dcir_mohm": 32.480000000000004,
+          "temperature_c": 30.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.4949748743718594,
+          "discharge_ah": 2.4825,
+          "dcir_mohm": 32.56,
+          "temperature_c": 30.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.492462311557789,
+          "discharge_ah": 2.48,
+          "dcir_mohm": 32.64,
+          "temperature_c": 30.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4899497487437188,
+          "discharge_ah": 2.4775,
+          "dcir_mohm": 32.72,
+          "temperature_c": 30.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.4874371859296485,
+          "discharge_ah": 2.475,
+          "dcir_mohm": 32.8,
+          "temperature_c": 30.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.484924623115578,
+          "discharge_ah": 2.4725,
+          "dcir_mohm": 32.879999999999995,
+          "temperature_c": 30.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.4824120603015074,
+          "discharge_ah": 2.4699999999999998,
+          "dcir_mohm": 32.96,
+          "temperature_c": 30.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.479899497487437,
+          "discharge_ah": 2.4675,
+          "dcir_mohm": 33.04,
+          "temperature_c": 30.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.477386934673367,
+          "discharge_ah": 2.465,
+          "dcir_mohm": 33.120000000000005,
+          "temperature_c": 30.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.4748743718592965,
+          "discharge_ah": 2.4625,
+          "dcir_mohm": 33.2,
+          "temperature_c": 30.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.472361809045226,
+          "discharge_ah": 2.46,
+          "dcir_mohm": 33.28,
+          "temperature_c": 30.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.469849246231156,
+          "discharge_ah": 2.4575,
+          "dcir_mohm": 33.36,
+          "temperature_c": 30.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.4673366834170856,
+          "discharge_ah": 2.455,
+          "dcir_mohm": 33.44,
+          "temperature_c": 30.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4648241206030153,
+          "discharge_ah": 2.4525,
+          "dcir_mohm": 33.519999999999996,
+          "temperature_c": 30.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.462311557788945,
+          "discharge_ah": 2.45,
+          "dcir_mohm": 33.6,
+          "temperature_c": 30.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.459798994974874,
+          "discharge_ah": 2.4475,
+          "dcir_mohm": 33.68,
+          "temperature_c": 30.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.457286432160804,
+          "discharge_ah": 2.445,
+          "dcir_mohm": 33.760000000000005,
+          "temperature_c": 30.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.4547738693467336,
+          "discharge_ah": 2.4425,
+          "dcir_mohm": 33.84,
+          "temperature_c": 30.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4522613065326633,
+          "discharge_ah": 2.44,
+          "dcir_mohm": 33.92,
+          "temperature_c": 30.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.449748743718593,
+          "discharge_ah": 2.4375,
+          "dcir_mohm": 34,
+          "temperature_c": 30.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4472361809045227,
+          "discharge_ah": 2.435,
+          "dcir_mohm": 34.08,
+          "temperature_c": 30.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.4447236180904524,
+          "discharge_ah": 2.4325,
+          "dcir_mohm": 34.16,
+          "temperature_c": 30.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.4422110552763816,
+          "discharge_ah": 2.4299999999999997,
+          "dcir_mohm": 34.24,
+          "temperature_c": 30.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.4396984924623113,
+          "discharge_ah": 2.4274999999999998,
+          "dcir_mohm": 34.32,
+          "temperature_c": 30.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.437185929648241,
+          "discharge_ah": 2.425,
+          "dcir_mohm": 34.4,
+          "temperature_c": 30.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.4346733668341707,
+          "discharge_ah": 2.4225,
+          "dcir_mohm": 34.48,
+          "temperature_c": 30.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4321608040201004,
+          "discharge_ah": 2.42,
+          "dcir_mohm": 34.56,
+          "temperature_c": 30.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.42964824120603,
+          "discharge_ah": 2.4175,
+          "dcir_mohm": 34.64,
+          "temperature_c": 30.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4271356783919598,
+          "discharge_ah": 2.415,
+          "dcir_mohm": 34.72,
+          "temperature_c": 31.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4246231155778895,
+          "discharge_ah": 2.4125,
+          "dcir_mohm": 34.8,
+          "temperature_c": 31.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.422110552763819,
+          "discharge_ah": 2.41,
+          "dcir_mohm": 34.88,
+          "temperature_c": 31.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4195979899497484,
+          "discharge_ah": 2.4074999999999998,
+          "dcir_mohm": 34.96,
+          "temperature_c": 31.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.417085427135678,
+          "discharge_ah": 2.405,
+          "dcir_mohm": 35.04,
+          "temperature_c": 31.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.414572864321608,
+          "discharge_ah": 2.4025,
+          "dcir_mohm": 35.12,
+          "temperature_c": 31.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.4120603015075375,
+          "discharge_ah": 2.4,
+          "dcir_mohm": 35.2,
+          "temperature_c": 31.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.409547738693467,
+          "discharge_ah": 2.3975,
+          "dcir_mohm": 35.28,
+          "temperature_c": 31.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.407035175879397,
+          "discharge_ah": 2.395,
+          "dcir_mohm": 35.36,
+          "temperature_c": 31.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.4045226130653266,
+          "discharge_ah": 2.3925,
+          "dcir_mohm": 35.44,
+          "temperature_c": 31.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.402010050251256,
+          "discharge_ah": 2.3899999999999997,
+          "dcir_mohm": 35.52,
+          "temperature_c": 31.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.3994974874371855,
+          "discharge_ah": 2.3874999999999997,
+          "dcir_mohm": 35.6,
+          "temperature_c": 31.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.396984924623115,
+          "discharge_ah": 2.385,
+          "dcir_mohm": 35.68,
+          "temperature_c": 31.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.394472361809045,
+          "discharge_ah": 2.3825,
+          "dcir_mohm": 35.76,
+          "temperature_c": 31.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.3919597989949746,
+          "discharge_ah": 2.38,
+          "dcir_mohm": 35.84,
+          "temperature_c": 31.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.3894472361809043,
+          "discharge_ah": 2.3775,
+          "dcir_mohm": 35.92,
+          "temperature_c": 31.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.3869346733668344,
+          "discharge_ah": 2.375,
+          "dcir_mohm": 36,
+          "temperature_c": 31.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.384422110552764,
+          "discharge_ah": 2.3725,
+          "dcir_mohm": 36.08,
+          "temperature_c": 31.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.381909547738694,
+          "discharge_ah": 2.37,
+          "dcir_mohm": 36.16,
+          "temperature_c": 31.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.379396984924623,
+          "discharge_ah": 2.3674999999999997,
+          "dcir_mohm": 36.24,
+          "temperature_c": 31.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.3768844221105527,
+          "discharge_ah": 2.3649999999999998,
+          "dcir_mohm": 36.32,
+          "temperature_c": 31.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.3743718592964824,
+          "discharge_ah": 2.3625,
+          "dcir_mohm": 36.4,
+          "temperature_c": 31.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.371859296482412,
+          "discharge_ah": 2.36,
+          "dcir_mohm": 36.480000000000004,
+          "temperature_c": 31.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.369346733668342,
+          "discharge_ah": 2.3575,
+          "dcir_mohm": 36.56,
+          "temperature_c": 31.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.3668341708542715,
+          "discharge_ah": 2.355,
+          "dcir_mohm": 36.64,
+          "temperature_c": 31.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.364321608040201,
+          "discharge_ah": 2.3525,
+          "dcir_mohm": 36.72,
+          "temperature_c": 31.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3618090452261304,
+          "discharge_ah": 2.3499999999999996,
+          "dcir_mohm": 36.8,
+          "temperature_c": 31.8
+        },
+        {
+          "cycle": 61,
+          "charge_ah": 2.3592964824120606,
+          "discharge_ah": 2.3475,
+          "dcir_mohm": 36.88,
+          "temperature_c": 31.83
+        },
+        {
+          "cycle": 62,
+          "charge_ah": 2.35678391959799,
+          "discharge_ah": 2.3449999999999998,
+          "dcir_mohm": 36.96,
+          "temperature_c": 31.86
+        },
+        {
+          "cycle": 63,
+          "charge_ah": 2.35427135678392,
+          "discharge_ah": 2.3425000000000002,
+          "dcir_mohm": 37.04,
+          "temperature_c": 31.89
+        },
+        {
+          "cycle": 64,
+          "charge_ah": 2.351758793969849,
+          "discharge_ah": 2.34,
+          "dcir_mohm": 37.12,
+          "temperature_c": 31.92
+        },
+        {
+          "cycle": 65,
+          "charge_ah": 2.3492462311557794,
+          "discharge_ah": 2.3375000000000004,
+          "dcir_mohm": 37.2,
+          "temperature_c": 31.95
+        },
+        {
+          "cycle": 66,
+          "charge_ah": 2.3467336683417086,
+          "discharge_ah": 2.335,
+          "dcir_mohm": 37.28,
+          "temperature_c": 31.98
+        },
+        {
+          "cycle": 67,
+          "charge_ah": 2.3442211055276383,
+          "discharge_ah": 2.3325,
+          "dcir_mohm": 37.36,
+          "temperature_c": 32.01
+        },
+        {
+          "cycle": 68,
+          "charge_ah": 2.341708542713568,
+          "discharge_ah": 2.33,
+          "dcir_mohm": 37.44,
+          "temperature_c": 32.04
+        },
+        {
+          "cycle": 69,
+          "charge_ah": 2.3391959798994977,
+          "discharge_ah": 2.3275,
+          "dcir_mohm": 37.52,
+          "temperature_c": 32.07
+        },
+        {
+          "cycle": 70,
+          "charge_ah": 2.336683417085427,
+          "discharge_ah": 2.3249999999999997,
+          "dcir_mohm": 37.6,
+          "temperature_c": 32.1
+        },
+        {
+          "cycle": 71,
+          "charge_ah": 2.334170854271357,
+          "discharge_ah": 2.3225000000000002,
+          "dcir_mohm": 37.68,
+          "temperature_c": 32.13
+        },
+        {
+          "cycle": 72,
+          "charge_ah": 2.3316582914572863,
+          "discharge_ah": 2.32,
+          "dcir_mohm": 37.76,
+          "temperature_c": 32.16
+        },
+        {
+          "cycle": 73,
+          "charge_ah": 2.329145728643216,
+          "discharge_ah": 2.3175,
+          "dcir_mohm": 37.84,
+          "temperature_c": 32.19
+        },
+        {
+          "cycle": 74,
+          "charge_ah": 2.3266331658291457,
+          "discharge_ah": 2.315,
+          "dcir_mohm": 37.92,
+          "temperature_c": 32.22
+        },
+        {
+          "cycle": 75,
+          "charge_ah": 2.3241206030150754,
+          "discharge_ah": 2.3125,
+          "dcir_mohm": 38,
+          "temperature_c": 32.25
+        },
+        {
+          "cycle": 76,
+          "charge_ah": 2.321608040201005,
+          "discharge_ah": 2.31,
+          "dcir_mohm": 38.08,
+          "temperature_c": 32.28
+        },
+        {
+          "cycle": 77,
+          "charge_ah": 2.319095477386935,
+          "discharge_ah": 2.3075,
+          "dcir_mohm": 38.16,
+          "temperature_c": 32.31
+        },
+        {
+          "cycle": 78,
+          "charge_ah": 2.3165829145728645,
+          "discharge_ah": 2.305,
+          "dcir_mohm": 38.24,
+          "temperature_c": 32.34
+        },
+        {
+          "cycle": 79,
+          "charge_ah": 2.314070351758794,
+          "discharge_ah": 2.3025,
+          "dcir_mohm": 38.32,
+          "temperature_c": 32.37
+        },
+        {
+          "cycle": 80,
+          "charge_ah": 2.311557788944724,
+          "discharge_ah": 2.3000000000000003,
+          "dcir_mohm": 38.4,
+          "temperature_c": 32.4
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 80,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "",
+      "doe_code": "DEMO-LFP01-2",
+      "revision": 1,
+      "cell_code": "DEMO-2-CELL-2",
+      "batch_code": "BATCH-2",
+      "metrics": {
+        "capacity_ah": 2.3000000000000003,
+        "retention_percent": 92.0920920920921,
+        "soh_percent": 92.00000000000001,
+        "dcir_mohm": 38.4,
+        "ce_percent": 99.5,
+        "temperature_c": 32.4
+      },
+      "target_pass": false,
+      "target_scope": "capacity minimum and temperature <45°C only; energy/mass targets not evaluated"
+    },
+    {
+      "id": "e04c0f6d4b184726bf61b8a2413b17cd",
+      "kind": "test",
+      "project_id": "prismatic-lfp01",
+      "source": "demo",
+      "created": 1792137544.0946827,
+      "cell_id": "c7a5d57d892b4de8a4b98f6fdbceffb1",
+      "batch_id": "b692ab32e7fe4e81a8578ceb70a1e082",
+      "doe_id": "cd0a52e92bb9472a865ca24d2e7e2837",
+      "code": "TEST-DEMO-2-CELL-3",
+      "equipment": "DEMO-prismatic-lfp01",
+      "channel": "6",
+      "protocol": "CC/CV 0.33C charge, 1C discharge; synthetic cycle summary",
+      "status": "stopped",
+      "cycles": [
+        {
+          "cycle": 1,
+          "charge_ah": 2.5097989949748745,
+          "discharge_ah": 2.49725,
+          "dcir_mohm": 34.08,
+          "temperature_c": 31.03
+        },
+        {
+          "cycle": 2,
+          "charge_ah": 2.507035175879397,
+          "discharge_ah": 2.4945,
+          "dcir_mohm": 34.16,
+          "temperature_c": 31.06
+        },
+        {
+          "cycle": 3,
+          "charge_ah": 2.50427135678392,
+          "discharge_ah": 2.49175,
+          "dcir_mohm": 34.239999999999995,
+          "temperature_c": 31.09
+        },
+        {
+          "cycle": 4,
+          "charge_ah": 2.501507537688442,
+          "discharge_ah": 2.489,
+          "dcir_mohm": 34.32,
+          "temperature_c": 31.12
+        },
+        {
+          "cycle": 5,
+          "charge_ah": 2.498743718592965,
+          "discharge_ah": 2.48625,
+          "dcir_mohm": 34.4,
+          "temperature_c": 31.15
+        },
+        {
+          "cycle": 6,
+          "charge_ah": 2.4959798994974873,
+          "discharge_ah": 2.4835,
+          "dcir_mohm": 34.480000000000004,
+          "temperature_c": 31.18
+        },
+        {
+          "cycle": 7,
+          "charge_ah": 2.4932160804020103,
+          "discharge_ah": 2.48075,
+          "dcir_mohm": 34.56,
+          "temperature_c": 31.21
+        },
+        {
+          "cycle": 8,
+          "charge_ah": 2.4904522613065323,
+          "discharge_ah": 2.4779999999999998,
+          "dcir_mohm": 34.64,
+          "temperature_c": 31.24
+        },
+        {
+          "cycle": 9,
+          "charge_ah": 2.4876884422110552,
+          "discharge_ah": 2.47525,
+          "dcir_mohm": 34.72,
+          "temperature_c": 31.27
+        },
+        {
+          "cycle": 10,
+          "charge_ah": 2.484924623115578,
+          "discharge_ah": 2.4725,
+          "dcir_mohm": 34.8,
+          "temperature_c": 31.3
+        },
+        {
+          "cycle": 11,
+          "charge_ah": 2.4821608040201,
+          "discharge_ah": 2.46975,
+          "dcir_mohm": 34.879999999999995,
+          "temperature_c": 31.33
+        },
+        {
+          "cycle": 12,
+          "charge_ah": 2.479396984924623,
+          "discharge_ah": 2.467,
+          "dcir_mohm": 34.96,
+          "temperature_c": 31.36
+        },
+        {
+          "cycle": 13,
+          "charge_ah": 2.4766331658291456,
+          "discharge_ah": 2.46425,
+          "dcir_mohm": 35.04,
+          "temperature_c": 31.39
+        },
+        {
+          "cycle": 14,
+          "charge_ah": 2.4738693467336685,
+          "discharge_ah": 2.4615,
+          "dcir_mohm": 35.120000000000005,
+          "temperature_c": 31.42
+        },
+        {
+          "cycle": 15,
+          "charge_ah": 2.471105527638191,
+          "discharge_ah": 2.45875,
+          "dcir_mohm": 35.2,
+          "temperature_c": 31.45
+        },
+        {
+          "cycle": 16,
+          "charge_ah": 2.4683417085427135,
+          "discharge_ah": 2.456,
+          "dcir_mohm": 35.28,
+          "temperature_c": 31.48
+        },
+        {
+          "cycle": 17,
+          "charge_ah": 2.465577889447236,
+          "discharge_ah": 2.4532499999999997,
+          "dcir_mohm": 35.36,
+          "temperature_c": 31.51
+        },
+        {
+          "cycle": 18,
+          "charge_ah": 2.462814070351759,
+          "discharge_ah": 2.4505,
+          "dcir_mohm": 35.44,
+          "temperature_c": 31.54
+        },
+        {
+          "cycle": 19,
+          "charge_ah": 2.4600502512562814,
+          "discharge_ah": 2.44775,
+          "dcir_mohm": 35.519999999999996,
+          "temperature_c": 31.57
+        },
+        {
+          "cycle": 20,
+          "charge_ah": 2.457286432160804,
+          "discharge_ah": 2.445,
+          "dcir_mohm": 35.6,
+          "temperature_c": 31.6
+        },
+        {
+          "cycle": 21,
+          "charge_ah": 2.454522613065327,
+          "discharge_ah": 2.44225,
+          "dcir_mohm": 35.68,
+          "temperature_c": 31.63
+        },
+        {
+          "cycle": 22,
+          "charge_ah": 2.451758793969849,
+          "discharge_ah": 2.4395,
+          "dcir_mohm": 35.760000000000005,
+          "temperature_c": 31.66
+        },
+        {
+          "cycle": 23,
+          "charge_ah": 2.448994974874372,
+          "discharge_ah": 2.43675,
+          "dcir_mohm": 35.84,
+          "temperature_c": 31.69
+        },
+        {
+          "cycle": 24,
+          "charge_ah": 2.4462311557788947,
+          "discharge_ah": 2.434,
+          "dcir_mohm": 35.92,
+          "temperature_c": 31.72
+        },
+        {
+          "cycle": 25,
+          "charge_ah": 2.443467336683417,
+          "discharge_ah": 2.43125,
+          "dcir_mohm": 36,
+          "temperature_c": 31.75
+        },
+        {
+          "cycle": 26,
+          "charge_ah": 2.4407035175879397,
+          "discharge_ah": 2.4285,
+          "dcir_mohm": 36.08,
+          "temperature_c": 31.78
+        },
+        {
+          "cycle": 27,
+          "charge_ah": 2.4379396984924626,
+          "discharge_ah": 2.4257500000000003,
+          "dcir_mohm": 36.16,
+          "temperature_c": 31.81
+        },
+        {
+          "cycle": 28,
+          "charge_ah": 2.435175879396985,
+          "discharge_ah": 2.423,
+          "dcir_mohm": 36.24,
+          "temperature_c": 31.84
+        },
+        {
+          "cycle": 29,
+          "charge_ah": 2.432412060301507,
+          "discharge_ah": 2.42025,
+          "dcir_mohm": 36.32,
+          "temperature_c": 31.87
+        },
+        {
+          "cycle": 30,
+          "charge_ah": 2.42964824120603,
+          "discharge_ah": 2.4175,
+          "dcir_mohm": 36.4,
+          "temperature_c": 31.9
+        },
+        {
+          "cycle": 31,
+          "charge_ah": 2.4268844221105526,
+          "discharge_ah": 2.4147499999999997,
+          "dcir_mohm": 36.48,
+          "temperature_c": 31.93
+        },
+        {
+          "cycle": 32,
+          "charge_ah": 2.4241206030150755,
+          "discharge_ah": 2.412,
+          "dcir_mohm": 36.56,
+          "temperature_c": 31.96
+        },
+        {
+          "cycle": 33,
+          "charge_ah": 2.421356783919598,
+          "discharge_ah": 2.40925,
+          "dcir_mohm": 36.64,
+          "temperature_c": 31.99
+        },
+        {
+          "cycle": 34,
+          "charge_ah": 2.4185929648241205,
+          "discharge_ah": 2.4065,
+          "dcir_mohm": 36.72,
+          "temperature_c": 32.02
+        },
+        {
+          "cycle": 35,
+          "charge_ah": 2.4158291457286434,
+          "discharge_ah": 2.40375,
+          "dcir_mohm": 36.8,
+          "temperature_c": 32.05
+        },
+        {
+          "cycle": 36,
+          "charge_ah": 2.4130653266331663,
+          "discharge_ah": 2.4010000000000002,
+          "dcir_mohm": 36.88,
+          "temperature_c": 32.08
+        },
+        {
+          "cycle": 37,
+          "charge_ah": 2.4103015075376883,
+          "discharge_ah": 2.39825,
+          "dcir_mohm": 36.96,
+          "temperature_c": 32.11
+        },
+        {
+          "cycle": 38,
+          "charge_ah": 2.407537688442211,
+          "discharge_ah": 2.3954999999999997,
+          "dcir_mohm": 37.04,
+          "temperature_c": 32.14
+        },
+        {
+          "cycle": 39,
+          "charge_ah": 2.4047738693467338,
+          "discharge_ah": 2.39275,
+          "dcir_mohm": 37.12,
+          "temperature_c": 32.17
+        },
+        {
+          "cycle": 40,
+          "charge_ah": 2.402010050251256,
+          "discharge_ah": 2.3899999999999997,
+          "dcir_mohm": 37.2,
+          "temperature_c": 32.2
+        },
+        {
+          "cycle": 41,
+          "charge_ah": 2.3992462311557787,
+          "discharge_ah": 2.38725,
+          "dcir_mohm": 37.28,
+          "temperature_c": 32.23
+        },
+        {
+          "cycle": 42,
+          "charge_ah": 2.3964824120603017,
+          "discharge_ah": 2.3845,
+          "dcir_mohm": 37.36,
+          "temperature_c": 32.26
+        },
+        {
+          "cycle": 43,
+          "charge_ah": 2.393718592964824,
+          "discharge_ah": 2.38175,
+          "dcir_mohm": 37.44,
+          "temperature_c": 32.29
+        },
+        {
+          "cycle": 44,
+          "charge_ah": 2.3909547738693466,
+          "discharge_ah": 2.379,
+          "dcir_mohm": 37.52,
+          "temperature_c": 32.32
+        },
+        {
+          "cycle": 45,
+          "charge_ah": 2.3881909547738696,
+          "discharge_ah": 2.37625,
+          "dcir_mohm": 37.6,
+          "temperature_c": 32.35
+        },
+        {
+          "cycle": 46,
+          "charge_ah": 2.385427135678392,
+          "discharge_ah": 2.3735,
+          "dcir_mohm": 37.68,
+          "temperature_c": 32.38
+        },
+        {
+          "cycle": 47,
+          "charge_ah": 2.3826633165829145,
+          "discharge_ah": 2.37075,
+          "dcir_mohm": 37.76,
+          "temperature_c": 32.41
+        },
+        {
+          "cycle": 48,
+          "charge_ah": 2.3798994974874375,
+          "discharge_ah": 2.3680000000000003,
+          "dcir_mohm": 37.84,
+          "temperature_c": 32.44
+        },
+        {
+          "cycle": 49,
+          "charge_ah": 2.3771356783919595,
+          "discharge_ah": 2.3652499999999996,
+          "dcir_mohm": 37.92,
+          "temperature_c": 32.47
+        },
+        {
+          "cycle": 50,
+          "charge_ah": 2.3743718592964824,
+          "discharge_ah": 2.3625,
+          "dcir_mohm": 38,
+          "temperature_c": 32.5
+        },
+        {
+          "cycle": 51,
+          "charge_ah": 2.371608040201005,
+          "discharge_ah": 2.35975,
+          "dcir_mohm": 38.08,
+          "temperature_c": 32.53
+        },
+        {
+          "cycle": 52,
+          "charge_ah": 2.3688442211055274,
+          "discharge_ah": 2.3569999999999998,
+          "dcir_mohm": 38.16,
+          "temperature_c": 32.56
+        },
+        {
+          "cycle": 53,
+          "charge_ah": 2.3660804020100503,
+          "discharge_ah": 2.35425,
+          "dcir_mohm": 38.24,
+          "temperature_c": 32.59
+        },
+        {
+          "cycle": 54,
+          "charge_ah": 2.363316582914573,
+          "discharge_ah": 2.3515,
+          "dcir_mohm": 38.32,
+          "temperature_c": 32.62
+        },
+        {
+          "cycle": 55,
+          "charge_ah": 2.3605527638190953,
+          "discharge_ah": 2.34875,
+          "dcir_mohm": 38.4,
+          "temperature_c": 32.65
+        },
+        {
+          "cycle": 56,
+          "charge_ah": 2.357788944723618,
+          "discharge_ah": 2.346,
+          "dcir_mohm": 38.480000000000004,
+          "temperature_c": 32.68
+        },
+        {
+          "cycle": 57,
+          "charge_ah": 2.355025125628141,
+          "discharge_ah": 2.3432500000000003,
+          "dcir_mohm": 38.56,
+          "temperature_c": 32.71
+        },
+        {
+          "cycle": 58,
+          "charge_ah": 2.352261306532663,
+          "discharge_ah": 2.3405,
+          "dcir_mohm": 38.64,
+          "temperature_c": 32.74
+        },
+        {
+          "cycle": 59,
+          "charge_ah": 2.349497487437186,
+          "discharge_ah": 2.33775,
+          "dcir_mohm": 38.72,
+          "temperature_c": 32.77
+        },
+        {
+          "cycle": 60,
+          "charge_ah": 2.3467336683417086,
+          "discharge_ah": 2.335,
+          "dcir_mohm": 38.8,
+          "temperature_c": 32.8
+        },
+        {
+          "cycle": 61,
+          "charge_ah": 2.343969849246231,
+          "discharge_ah": 2.3322499999999997,
+          "dcir_mohm": 38.88,
+          "temperature_c": 32.83
+        },
+        {
+          "cycle": 62,
+          "charge_ah": 2.3412060301507536,
+          "discharge_ah": 2.3295,
+          "dcir_mohm": 38.96,
+          "temperature_c": 32.86
+        },
+        {
+          "cycle": 63,
+          "charge_ah": 2.3384422110552765,
+          "discharge_ah": 2.32675,
+          "dcir_mohm": 39.04,
+          "temperature_c": 32.89
+        },
+        {
+          "cycle": 64,
+          "charge_ah": 2.335678391959799,
+          "discharge_ah": 2.324,
+          "dcir_mohm": 39.12,
+          "temperature_c": 32.92
+        },
+        {
+          "cycle": 65,
+          "charge_ah": 2.3329145728643215,
+          "discharge_ah": 2.32125,
+          "dcir_mohm": 39.2,
+          "temperature_c": 32.95
+        },
+        {
+          "cycle": 66,
+          "charge_ah": 2.3301507537688444,
+          "discharge_ah": 2.3185000000000002,
+          "dcir_mohm": 39.28,
+          "temperature_c": 32.98
+        },
+        {
+          "cycle": 67,
+          "charge_ah": 2.327386934673367,
+          "discharge_ah": 2.31575,
+          "dcir_mohm": 39.36,
+          "temperature_c": 33.01
+        },
+        {
+          "cycle": 68,
+          "charge_ah": 2.32462311557789,
+          "discharge_ah": 2.313,
+          "dcir_mohm": 39.44,
+          "temperature_c": 33.04
+        },
+        {
+          "cycle": 69,
+          "charge_ah": 2.321859296482412,
+          "discharge_ah": 2.31025,
+          "dcir_mohm": 39.52,
+          "temperature_c": 33.07
+        },
+        {
+          "cycle": 70,
+          "charge_ah": 2.319095477386935,
+          "discharge_ah": 2.3075,
+          "dcir_mohm": 39.6,
+          "temperature_c": 33.1
+        },
+        {
+          "cycle": 71,
+          "charge_ah": 2.3163316582914573,
+          "discharge_ah": 2.30475,
+          "dcir_mohm": 39.68,
+          "temperature_c": 33.13
+        },
+        {
+          "cycle": 72,
+          "charge_ah": 2.3135678391959797,
+          "discharge_ah": 2.302,
+          "dcir_mohm": 39.76,
+          "temperature_c": 33.16
+        },
+        {
+          "cycle": 73,
+          "charge_ah": 2.3108040201005022,
+          "discharge_ah": 2.29925,
+          "dcir_mohm": 39.84,
+          "temperature_c": 33.19
+        },
+        {
+          "cycle": 74,
+          "charge_ah": 2.308040201005025,
+          "discharge_ah": 2.2965,
+          "dcir_mohm": 39.92,
+          "temperature_c": 33.22
+        },
+        {
+          "cycle": 75,
+          "charge_ah": 2.305276381909548,
+          "discharge_ah": 2.29375,
+          "dcir_mohm": 40,
+          "temperature_c": 33.25
+        },
+        {
+          "cycle": 76,
+          "charge_ah": 2.30251256281407,
+          "discharge_ah": 2.291,
+          "dcir_mohm": 40.08,
+          "temperature_c": 33.28
+        },
+        {
+          "cycle": 77,
+          "charge_ah": 2.299748743718593,
+          "discharge_ah": 2.28825,
+          "dcir_mohm": 40.16,
+          "temperature_c": 33.31
+        },
+        {
+          "cycle": 78,
+          "charge_ah": 2.2969849246231155,
+          "discharge_ah": 2.2855,
+          "dcir_mohm": 40.24,
+          "temperature_c": 33.34
+        },
+        {
+          "cycle": 79,
+          "charge_ah": 2.2942211055276385,
+          "discharge_ah": 2.28275,
+          "dcir_mohm": 40.32,
+          "temperature_c": 33.37
+        },
+        {
+          "cycle": 80,
+          "charge_ah": 2.291457286432161,
+          "discharge_ah": 2.2800000000000002,
+          "dcir_mohm": 40.4,
+          "temperature_c": 51
+        }
+      ],
+      "ml": {
+        "source": "trained-random-forest",
+        "training_cells": [
+          "B0005",
+          "B0006",
+          "B0007"
+        ],
+        "soh_percent": 59.902607233799316,
+        "remaining_cycles": 3.2872849025974027,
+        "eol_soh_percent": 80,
+        "model_id": "nasa-random-forest-v1",
+        "scope": "NASA discharge conditions only; not calibrated for arbitrary chemistries",
+        "features": {
+          "cycle": 80,
+          "voltage_mean": 3,
+          "voltage_std": 1.5,
+          "voltage_end": 3,
+          "temperature_mean": 50,
+          "current_mean": 50,
+          "ambient_temperature": 30
+        },
+        "experimental": true,
+        "valid_for_hardware": false,
+        "input_source": "synthetic illustrative features, not extracted from measurements"
+      },
+      "stop_reason": "Overtemperature 51°C · DEMO",
+      "doe_code": "DEMO-LFP01-2",
+      "revision": 1,
+      "cell_code": "DEMO-2-CELL-3",
+      "batch_code": "BATCH-2",
+      "metrics": {
+        "capacity_ah": 2.2800000000000002,
+        "retention_percent": 91.30043047352088,
+        "soh_percent": 91.20000000000002,
+        "dcir_mohm": 40.4,
+        "ce_percent": 99.5,
+        "temperature_c": 51
+      },
+      "target_pass": false,
+      "target_scope": "capacity minimum and temperature <45°C only; energy/mass targets not evaluated"
+    }
+  ],
+  "source_note": "Demo records are synthetic snapshots; running is a scenario label, not hardware connection. Manual entries are user-supplied, not verified measurements."
+}
