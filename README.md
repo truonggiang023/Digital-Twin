@@ -4,6 +4,71 @@ Battery cycler simulator with a realtime 12-cell 3D dashboard.
 
 Requires Python 3.11+; no external dependencies.
 
+## DOE · Cell Design Performance
+
+Choose **DOE · Cell Design** on the dashboard, or open `/doe.html` on the
+same server. DOE runs independently and does not change the 12 cycler channels.
+
+**Energy Density Target means cell-level specific energy in Wh/kg.** It is
+a fixed objective, not a causal input that forces modeled energy to increase.
+Each run reports initial and final Wh/kg, target margin and initial-target
+pass/fail. Cathode bulk density (g/cm³) is a separate physical design input.
+
+Select 2–4 levels for Capacity Target (nominal Ah), N/P ratio, cathode
+(LFP/NMC622/NMC811), anode (Graphite/Si-Graphite/LTO), example electrolyte,
+cathode bulk density, dry coating loading, active fraction, anode porosity,
+effective electrode conductivity, electrolyte g/Ah, temperature and C-rate.
+Unselected factors stay fixed. Cathode porosity and thickness are derived
+from density, solid-mixture composition and loading to avoid inconsistent
+independent parameters. Loading is dry coating mass per single coated face.
+
+Methods: full factorial, one factor at a time (OFAT), and balanced-level
+random candidates with duplicate removal. Retained random samples need not
+remain orthogonal or perfectly balanced. Preview the matrix before running.
+Limits: 256 runs, 5,000 cycles/run, 1–5 replicates. The seed reproduces order
+and optional synthetic manufacturing variation. At variation=0, repetitions
+are identical and do not supply independent statistical evidence.
+
+Select a metric to inspect marginal level means and effect ranges; compare
+the energy/SOH trade-off and click a row for its SOH curve and derived
+geometry. These descriptive effects depend on chosen ranges/interactions;
+they are not causal effects or significance tests. Infeasible designs and
+thermal stops remain in results with reasons and are excluded from completed
+comparisons, which may unbalance factors. Unobserved 80% SOH crossings stay
+null with `eol_censored=true`, not an invented zero-cycle life.
+
+**Model limits:** material capacities, voltages, resistance/transport terms,
+thermal and aging multipliers are illustrative assumptions, not fitted cell
+measurements. JSON includes all material constants. Responses use mass/area
+balance, approximate electrode transport, steady operating temperature and
+cycle-level exponential fade. No detailed voltage simulation, plating model,
+general electrolyte compatibility assessment or safety qualification is
+provided. The NMC/ether rejection is a demonstration constraint. NASA ML is
+not used to extrapolate material design changes.
+
+CSV contains tabular inputs/responses; JSON adds configuration, units,
+material assumptions, curves and analyses. All records retain
+`data_origin=synthetic_doe`, `calibrated=false`, model version, seed,
+design_id, replicate, run order, status and design-grouped `ml_split`.
+Replicates of a physical design stay in the same split across seeds and
+energy-target changes. Small studies may not populate all splits; verify
+coverage before training. Use completed runs for performance regression,
+handle EOL censoring, and keep synthetic and measured data separate. This
+prepares future optimization; it does not implement a validated ML optimizer.
+
+```sh
+python -B run_doe.py --output doe-output
+python -B run_doe.py --config results/doe-example.json --output doe-output
+python -B -m unittest -v test_doe
+```
+
+APIs: `GET /api/doe/schema`, `POST /api/doe/plan`, `POST /api/doe/run`.
+POST accepts `method`, `baseline`, `vary`, `cycles`, `replicates`, `seed`,
+`samples`, `variation_percent`. Numeric/material validation, same-origin
+checks, 64 KiB request and run-count limits apply. No extra packages needed.
+
+[Executed DOE report and screenshot](results/DOE-REPORT.md).
+
 ## BatteryLake metadata + trained ML on real discharge records
 
 ### Live per-channel ML RUL

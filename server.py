@@ -12,6 +12,7 @@ from aging import forecast
 from batterylake import BatteryLake, BatteryLakeError
 from ml_inference import predict as ml_predict
 from live_features import EarlyDischargeWindow
+from doe import schema as doe_schema, prepare as doe_prepare, run_experiment
 
 
 class Rack:
@@ -175,6 +176,8 @@ def make_handler(rack):
             if url.path == '/api/state':
                 with rack.lock:
                     self.send_json(rack.snapshot())
+            elif url.path=='/api/doe/schema':
+                self.send_json(doe_schema())
             elif url.path=='/api/ml/replay':
                 try:
                     self.send_json(json.loads((Path(__file__).parent/'results/ml-results.json').read_text(encoding='utf-8')))
@@ -219,7 +222,7 @@ def make_handler(rack):
                 super().do_GET()
 
         def do_POST(self):
-            if self.path not in ('/api/control','/api/ml/predict'):
+            if self.path not in ('/api/control','/api/ml/predict','/api/doe/plan','/api/doe/run'):
                 self.send_json({'error': 'Not found'}, 404)
                 return
             # Replit terminates HTTPS before forwarding to this HTTP server.
@@ -230,11 +233,14 @@ def make_handler(rack):
                 return
             try:
                 size = int(self.headers.get('Content-Length', '0'))
-                if not 0 < size <= 1024:
+                if not 0 < size <= (65536 if self.path.startswith('/api/doe/') else 1024):
                     raise ValueError('Invalid request length')
                 data = json.loads(self.rfile.read(size))
                 if not isinstance(data, dict):
                     raise ValueError('Expected object')
+                if self.path.startswith('/api/doe/'):
+                    self.send_json(doe_prepare(data)[1] if self.path.endswith('/plan') else run_experiment(data))
+                    return
                 if self.path=='/api/ml/predict':
                     try:
                         self.send_json(ml_predict(data.get('features')))

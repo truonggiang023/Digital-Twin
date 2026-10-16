@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE · Cell Design Performance</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="doe.css"></head>
+<body>
+<header><div><span class="eyebrow">DIGITAL TWIN / DESIGN OF EXPERIMENTS</span><h1>Cell Design · DOE <span>So sánh thiết kế / chuẩn bị ML optimization</span></h1></div><a class="nav-link" href="/">← Cycler dashboard</a></header>
+<main>
+<section class="panel doe-intro"><h2>Thiết kế cell → ma trận thí nghiệm → performance</h2><p>Chọn yếu tố cần thay đổi, nhập các mức thử và xem trước ma trận trước khi chạy. Mỗi phương án được tính năng lượng, nhiệt, nội trở và suy giảm qua chu kỳ.</p><p class="model-note">Mô hình đáp ứng tổng hợp minh họa, chưa hiệu chuẩn: kết quả không phải phép đo hoặc dự báo ML đã kiểm chứng. Không dùng mô hình NASA để suy luận ảnh hưởng vật liệu. Energy Density Target là mục tiêu năng lượng riêng cell (Wh/kg), không phải biến vật lý ép năng lượng tăng. Mật độ điện cực (g/cm³) là thông số riêng; độ xốp và độ dày cathode được tính từ thiết kế.</p></section>
+<form id="doe-form">
+ <section class="panel doe-settings"><h3>1 · Chọn phương pháp và điều kiện thử</h3><div class="scenario">
+  <label>Phương pháp<select id="doe-method"><option value="factorial">Full factorial · toàn phần</option><option value="balanced">Lấy mẫu cân bằng · loại trùng</option><option value="ofat">OFAT · từng yếu tố</option></select></label>
+  <label>Chu kỳ mỗi mẫu<input id="doe-cycles" type="number" min="1" max="5000" value="500" required></label>
+  <label>Số lần lặp<input id="doe-replicates" type="number" min="1" max="5" value="1" required></label>
+  <label>Số mẫu cân bằng<input id="doe-samples" type="number" min="2" max="128" value="24" required></label>
+  <label>Random seed<input id="doe-seed" type="number" min="0" max="2147483647" value="42" required></label>
+  <label>Biến thiên chế tạo giả lập (%)<input id="doe-variation" type="number" min="0" max="5" step="0.1" value="0" required></label>
+ </div><p class="muted">Giới hạn 256 run, 5.000 chu kỳ/run. Seed giữ thứ tự và biến thiên tái lập. Lặp khi biến thiên = 0 cho kết quả giống nhau, không tạo bằng chứng thống kê độc lập.</p></section>
+ <section class="panel doe-factors"><h3>2 · Thông số thiết kế cell và electrode properties</h3><div class="table-scroll"><table><thead><tr><th>Thay đổi?</th><th>Yếu tố / đơn vị</th><th>Giá trị cố định / mục tiêu</th><th>Các mức thử · ngăn cách bằng dấu phẩy</th></tr></thead><tbody id="doe-factors"></tbody></table></div><p class="muted">Yếu tố không tích chọn giữ giá trị cố định. Mỗi yếu tố thay đổi có 2–4 mức. Electrode loading là khối lượng coating khô trên một mặt; N/P là tỷ số dung lượng định mức. Energy Density Target là mục tiêu chung để đánh giá đạt/không đạt, không được tính như tác nhân nhân quả.</p></section>
+ <div class="doe-actions"><button type="button" id="doe-preview">Xem trước ma trận</button><button type="submit" id="doe-run">▶ Chạy DOE</button><button type="button" id="doe-csv" disabled>Xuất bảng CSV / ML</button><button type="button" id="doe-json" disabled>Xuất cấu hình + JSON</button></div>
+</form>
+<p id="doe-status" role="status">Đang tải các yếu tố thiết kế…</p><p id="doe-error" role="alert"></p>
+<section id="doe-results" hidden>
+ <div id="doe-summary" class="prediction-stats"></div>
+ <section class="panel doe-analysis"><div class="section-title">3 · SO SÁNH PERFORMANCE <label>Chỉ tiêu<select id="doe-metric"></select></label></div><p class="muted">Ảnh hưởng = khoảng chênh trung bình giữa các mức, chỉ tính run hoàn tất. Đây là trung bình biên, không phải hiệu ứng nhân quả hoặc p-value. Loại mẫu không phù hợp / STOP có thể làm mất cân bằng DOE.</p><div class="doe-plots"><div><h3>Ảnh hưởng theo yếu tố</h3><canvas id="doe-effects" role="img" aria-label="So sánh ảnh hưởng các yếu tố DOE"></canvas><div id="doe-level-means"></div></div><div><h3>Trade-off · năng lượng riêng / SOH cuối</h3><canvas id="doe-scatter" role="img" aria-label="Trade-off năng lượng và SOH"></canvas><p class="muted">Màu theo cathode: LFP xanh, NMC622 tím, NMC811 vàng. Chỉ hiển thị run hoàn tất.</p></div></div></section>
+ <section class="panel doe-curves"><h3>SOH theo chu kỳ · chọn dòng trong bảng để xem phương án</h3><p id="doe-selected"></p><canvas id="doe-curve" role="img" aria-label="SOH qua chu kỳ của phương án DOE"></canvas><div id="doe-design-details"></div></section>
+</section>
+<section class="panel doe-table"><div class="section-title">MA TRẬN DOE / KẾT QUẢ <span id="doe-run-count"></span></div><div class="table-scroll"><table><thead id="doe-table-head"></thead><tbody id="doe-table-body"></tbody></table></div></section>
+<footer>Run độc lập với 12 channel cycler · EOL chưa đạt được ghi null / censored · Mỗi thiết kế có design_id và ML split cố định để các lần lặp không rơi vào các tập khác nhau · Giữ riêng dữ liệu mô phỏng và dữ liệu đo khi huấn luyện.</footer>
+</main><script type="module" src="doe.js"></script></body></html>
