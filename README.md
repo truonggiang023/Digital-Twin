@@ -54,7 +54,10 @@ fractions are rescaled when active fraction changes; modeled density/loading
 and N/P-related anode loading/thickness are derived consistently. Original
 reference sheets remain unchanged. Exported per-cell CSV includes project,
 chemistry, form factor, worksheet revision, sample/design IDs, grouped ML split,
-all effective BOM fields, status and performance. JSON retains the reference
+project/experiment names, all 60 original design inputs (`reference_bom.*`),
+all effective trial fields (`bom.*`), status and performance. The original inputs
+are the immutable design supplied by the team, kept beside results for management
+review; trial overrides never replace these reference columns. JSON retains the reference
 sheet, overrides, curves and model assumptions. Synthetic data stays tagged.
 If exported before an experiment report completes, `bom_basis=reference_sheet_pending`
 marks reference-only recipe fields; completed reports use `effective_trial`.
