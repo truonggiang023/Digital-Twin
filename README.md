@@ -4,6 +4,103 @@ Battery cycler simulator with a realtime 12-cell 3D dashboard.
 
 Requires Python 3.11+; no external dependencies.
 
+## Project → cell design sheet → DOE → performance / issues
+
+The server's root page now opens the **project workspace**. Choose one of:
+
+- PRISMATIC · LFP01
+- PRISMATIC · SIB
+- CYLINDRICAL · LFP01
+- CYLINDRICAL · SIB
+
+Capacity fields support 0.1–2,000 Ah for nominal scale, including large
+prismatic designs; accepting a value does not establish model validity at that scale.
+
+SIB means sodium-ion. The example model currently supports NFPP cathode,
+HardCarbon anode and sodium electrolyte profiles; these are illustrative
+assumptions, not production specifications. LFP01 uses a generic LFP profile,
+not a manufacturer-grade characterization. Form factor is tracked for project
+identity and comparison but does not automatically create a calibrated
+prismatic/cylindrical geometry model.
+
+Create a named design/DOE sheet with **60 fields** grouped as Cell, Cathode,
+Anode, Assembly and Formation. The sheet covers N/P, areal capacity, nominal
+voltage, typical/minimum 0.33C capacity, 1C capacity, weight and Wh/kg targets;
+material identities and dry wt% for all requested active materials, binders,
+conductors, additive and dispersant; solvent, foils, foil/coating thickness,
+loading and density; layer counts, separator, JR thickness, packing ratio,
+electrolyte and amount, CAN/CAP and mass, and formation protocol. Cathode and
+anode dry totals are computed separately, excluding solvent. Optional unused
+components use 0%, not an invented material.
+
+Every field is labeled **modeled**, **target**, **consistency validation** or
+**recorded only**. Recorded-only fields, including formulation component
+identities beyond the supported active-material profile, foil/assembly details
+and formation protocol, do not silently change performance. Unknown active
+profiles or unsupported active-material blends can be saved for traceability
+but block simulation. Composition totals, required targets, thickness/loading/
+density consistency, N/P consistency and project chemistry are checked.
+
+Use **Save → Configure and run DOE**. The project-specific DOE screen starts
+from the saved sheet, restricts material families, and executes bounded DOE
+samples in background workers. Return to **Performance / Issues** to select
+up to four experiments and compare energy, final SOH, counts and target pass.
+Different cycle horizons are explicitly flagged. Each generated run/replicate
+represents one simulated cell sample, not a physical cycler channel.
+
+An experiment captures an immutable sheet revision. DOE overrides are recorded
+in the report and expanded into each run's `effective_bom`: cathode inactive
+fractions are rescaled when active fraction changes; modeled density/loading
+and N/P-related anode loading/thickness are derived consistently. Original
+reference sheets remain unchanged. Exported per-cell CSV includes project,
+chemistry, form factor, worksheet revision, sample/design IDs, grouped ML split,
+all effective BOM fields, status and performance. JSON retains the reference
+sheet, overrides, curves and model assumptions. Synthetic data stays tagged.
+If exported before an experiment report completes, `bom_basis=reference_sheet_pending`
+marks reference-only recipe fields; completed reports use `effective_trial`.
+
+**Pass means all configured targets pass**, not just Wh/kg: initial specific
+energy ≥ target; modeled 0.33C capacity ≥ minimum; modeled 1C capacity ≥ target;
+modeled mass ≤ weight limit; nominal voltage within 5% of its target. Target
+capacities are explicit reference targets, not measured capacities. A cell
+can complete successfully but miss targets; this is distinct from STOP or an
+infeasible design. The additional rate-capacity outputs are illustrative
+responses from the transport model, not separate measured charge/discharge tests.
+
+KPI counts apply to selected DOE experiments. The running count comes from
+actual worker/sample state and can return to zero quickly for small studies;
+it is not a fabricated count or the number of physical cycler channels.
+Issue count covers the whole project. Issues are generated from sheet
+validation, failed targets, infeasible samples, thermal stops or interrupted
+execution. Resolving an issue requires a note and preserves the original
+cell failure. Editing a sheet revalidates its issues. The independent 12-channel
+3D demo remains available at `/index.html` and is not assigned to projects.
+
+Workspace state persists in **`data/workspace.sqlite3`**, ignored by Git.
+Reloading or restarting the server preserves sheets, revisions, experiments,
+results and resolutions. Up to two experiments execute concurrently, with a
+maximum 100 experiments per project. Stale unfinished work is marked interrupted
+after 120 seconds without a worker heartbeat; it is not silently counted as
+running forever. To back up the full workspace, stop the server and copy the
+SQLite file. Updating code does not replace this database. Demo screenshots
+and exported example data in `results/` were produced using a separate temporary
+database; a new user's workspace starts empty.
+
+Endpoints use `/api/workspace/`: `schema`, `dashboard?project=<id>`,
+`designs/<id>` (GET context), `designs` (POST save with revision),
+`experiments` (POST start), `experiments/<id>` (GET status/report) and
+`issues/<id>/resolve` (POST note). The dashboard accepts an optional comma-separated
+`experiments` filter (up to four from the same project). Same-origin checks and
+bounded request bodies apply. Material/model coefficients remain uncalibrated;
+no physical cycler or electrochemical formation controller is connected.
+
+```sh
+python -B server.py --port 8000
+python -B -m unittest -v test_workspace test_doe test_live_features test_integrations test_aging
+```
+
+[Project workflow screenshots and executed validation](results/PROJECT-WORKSPACE-REPORT.md).
+
 ## DOE · Cell Design Performance
 
 Choose **DOE · Cell Design** on the dashboard, or open `/doe.html` on the
@@ -250,7 +347,8 @@ and `dashboard-running.png` files retain the original run before aging was added
 python -B server.py --port 8000
 ```
 
-Open the dashboard on port 8000 in a browser on the same machine. The server
+Open `/index.html` on port 8000 for the 3D rack, or use the project workspace
+at `/` on the same machine. The server
 binds to loopback by default. The cloud onboarding interface does not provide
 a browser preview; local requests can still validate the server.
 
@@ -286,8 +384,9 @@ development tool with shared state, without user authentication.
    `python -B server.py --host 0.0.0.0 --port 8000`.
    If configuring an existing app manually, use this command and expose
    internal port 8000 as external port 80 in its port configuration.
-3. Click Run and open the app's Preview/Webview. Click **Bắt đầu** to start
-   simulation. Replit's preview forwards browser requests to the Python
+3. Click Run and open the app's Preview/Webview. Select a project, or choose
+   **Cycler 3D** then **Bắt đầu** for the independent rack simulation.
+   Replit's preview forwards browser requests to the Python
    server; no additional packages or API keys are required.
 4. If your runtime supplies a different `PORT`, use
    `python -B server.py --host 0.0.0.0` to read it automatically and configure

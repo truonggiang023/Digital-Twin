@@ -12,22 +12,26 @@ CATHODES={
     'LFP':dict(specific_capacity=160,voltage=3.2,solid_density=3.6,aging=0.7),
     'NMC622':dict(specific_capacity=180,voltage=3.65,solid_density=4.7,aging=1.0),
     'NMC811':dict(specific_capacity=200,voltage=3.7,solid_density=4.8,aging=1.3),
+    'NFPP':dict(specific_capacity=110,voltage=3.0,solid_density=3.2,aging=1.0),
 }
 ANODES={
     'Graphite':dict(specific_capacity=350,solid_density=2.2,voltage_penalty=0,aging=1),
     'Si-Graphite':dict(specific_capacity=650,solid_density=2.25,voltage_penalty=0.05,aging=1.7),
     'LTO':dict(specific_capacity=160,solid_density=3.5,voltage_penalty=1.4,aging=0.5),
+    'HardCarbon':dict(specific_capacity=280,solid_density=1.6,voltage_penalty=0,aging=1.2),
 }
 ELECTROLYTES={
     'LiPF6-EC-EMC':dict(conductivity=10,aging=1),
     'LiPF6-FEC':dict(conductivity=8,aging=0.9),
     'LiFSI-ether':dict(conductivity=12,aging=0.85),
+    'NaPF6-carbonate':dict(conductivity=8,aging=1.1),
+    'NaFSI-ether':dict(conductivity=10,aging=1.0),
 }
 FACTORS={
     'energy_density_target_wh_kg':dict(label='Energy Density Target · mục tiêu cell',unit='Wh/kg',min=50,max=500,baseline=220,levels=[180,260],role='objective'),
     'cathode_density_g_cm3':dict(label='Mật độ điện cực cathode sau cán',unit='g/cm³',min=1,max=4,baseline=2.7,levels=[2.4,3.0]),
-    'capacity_target_ah':dict(label='Capacity Target',unit='Ah',min=0.1,max=100,baseline=2.5,levels=[2.5,3.0]),
-    'np_ratio':dict(label='N/P capacity ratio',unit='',min=0.8,max=1.6,baseline=1.1,levels=[1.05,1.2]),
+    'capacity_target_ah':dict(label='Capacity Target',unit='Ah',min=0.1,max=2000,baseline=2.5,levels=[2.5,3.0]),
+    'np_ratio':dict(label='N/P capacity ratio',unit='',min=0.8,max=2.5,baseline=1.1,levels=[1.05,1.2]),
     'cathode':dict(label='Vật liệu Cathode',unit='',options=list(CATHODES),baseline='NMC622',levels=['LFP','NMC811']),
     'anode':dict(label='Vật liệu Anode',unit='',options=list(ANODES),baseline='Graphite',levels=['Graphite','Si-Graphite']),
     'electrolyte':dict(label='Electrolyte',unit='',options=list(ELECTROLYTES),baseline='LiPF6-EC-EMC',levels=['LiPF6-EC-EMC','LiPF6-FEC']),
@@ -135,6 +139,9 @@ def prepare(config):
 
 def geometry(p):
     cath=CATHODES[p['cathode']];anode=ANODES[p['anode']]
+    sodium=p['cathode']=='NFPP'
+    if sodium!=(p['anode']=='HardCarbon') or sodium!=p['electrolyte'].startswith('Na'):
+        raise ValueError('Lithium/sodium cathode, anode and electrolyte families must match')
     if p['np_ratio']<1:raise ValueError('N/P < 1: insufficient nominal anode capacity')
     if p['electrolyte']=='LiFSI-ether' and p['cathode']!='LFP':
         raise ValueError('Illustrative ether formulation is not supported with high-voltage NMC')
@@ -181,6 +188,9 @@ def evaluate(p,cycles,rng,variation):
     if curve[-1]['cycle']!=completed:curve.append(dict(cycle=completed,soh_percent=100*soh,capacity_ah=capacity*soh))
     specific_energy=capacity*voltage/(g['cell_mass_g']/1000)
     return dict(**g,usable_capacity_ah=capacity,specific_energy_wh_kg=specific_energy,
+                nominal_voltage_v=voltage,capacity_033c_ah=p['capacity_target_ah']/(1+0.035*0.33*transport),
+                capacity_1c_ah=p['capacity_target_ah']/(1+0.035*transport),
+                areal_capacity_mah_cm2=p['cathode_loading_mg_cm2']*p['active_fraction']*cath['specific_capacity']/1000,
                 specific_energy_final_wh_kg=specific_energy*soh,
                 energy_density_margin_wh_kg=specific_energy-p['energy_density_target_wh_kg'],
                 energy_target_met=specific_energy>=p['energy_density_target_wh_kg'],

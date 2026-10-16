@@ -13,6 +13,8 @@ from batterylake import BatteryLake, BatteryLakeError
 from ml_inference import predict as ml_predict
 from live_features import EarlyDischargeWindow
 from doe import schema as doe_schema, prepare as doe_prepare, run_experiment
+from project_store import ProjectStore
+import workspace_api
 
 
 class Rack:
@@ -152,8 +154,14 @@ class Rack:
                     safety_stop=self.safety_stop,pending_fault=self.pending_fault)
 
 
-def make_handler(rack):
+def make_handler(rack,workspace=None):
     lake = BatteryLake()
+    store=[workspace]
+    store_lock=threading.Lock()
+    def workspace_store():
+        with store_lock:
+            if store[0] is None:store[0]=ProjectStore(Path(__file__).parent/'data/workspace.sqlite3')
+        return store[0]
     class Handler(SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, directory=str(Path(__file__).parent / 'web'), **kwargs)
@@ -173,7 +181,13 @@ def make_handler(rack):
 
         def do_GET(self):
             url = urlsplit(self.path)
-            if url.path == '/api/state':
+            if url.path=='/':
+                self.path='/projects.html'
+                return super().do_GET()
+            if url.path.startswith('/api/workspace/'):
+                try:self.send_json(workspace_api.get(workspace_store(),url))
+                except ValueError as error:self.send_json({'error':str(error)},400)
+            elif url.path == '/api/state':
                 with rack.lock:
                     self.send_json(rack.snapshot())
             elif url.path=='/api/doe/schema':
@@ -222,7 +236,7 @@ def make_handler(rack):
                 super().do_GET()
 
         def do_POST(self):
-            if self.path not in ('/api/control','/api/ml/predict','/api/doe/plan','/api/doe/run'):
+            if self.path not in ('/api/control','/api/ml/predict','/api/doe/plan','/api/doe/run') and not self.path.startswith('/api/workspace/'):
                 self.send_json({'error': 'Not found'}, 404)
                 return
             # Replit terminates HTTPS before forwarding to this HTTP server.
@@ -233,11 +247,14 @@ def make_handler(rack):
                 return
             try:
                 size = int(self.headers.get('Content-Length', '0'))
-                if not 0 < size <= (65536 if self.path.startswith('/api/doe/') else 1024):
+                if not 0 < size <= (65536 if self.path.startswith(('/api/doe/','/api/workspace/')) else 1024):
                     raise ValueError('Invalid request length')
                 data = json.loads(self.rfile.read(size))
                 if not isinstance(data, dict):
                     raise ValueError('Expected object')
+                if self.path.startswith('/api/workspace/'):
+                    self.send_json(workspace_api.post(workspace_store(),self.path,data))
+                    return
                 if self.path.startswith('/api/doe/'):
                     self.send_json(doe_prepare(data)[1] if self.path.endswith('/plan') else run_experiment(data))
                     return

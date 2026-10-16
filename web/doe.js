@@ -1,6 +1,6 @@
 const $=id=>document.getElementById(id);
-let schema=null,report=null,selected=null,pending=false,revision=0;
-const colors={LFP:'#5dd5bf',NMC622:'#c799ff',NMC811:'#f6cd85'};
+let schema=null,report=null,selected=null,pending=false,revision=0,projectContext=null;
+const colors={LFP:'#5dd5bf',NMC622:'#c799ff',NMC811:'#f6cd85',NFPP:'#6ba8ff'};
 const format=v=>v===null||v===undefined?'—':typeof v==='number'?v.toLocaleString('vi-VN',{maximumFractionDigits:3}):String(v);
 function el(tag,text,cls){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;}
 function setExports(){for(const id of ['doe-csv','doe-json'])$(id).disabled=pending||!report?.effects;}
@@ -19,7 +19,7 @@ function config(){
 }
 function factors(){
  for(const [key,spec] of Object.entries(schema.factors)){
-  const row=el('tr'),check=document.createElement('input');check.type='checkbox';check.id='vary-'+key;check.checked=schema.default_vary.includes(key);check.disabled=spec.role==='objective';check.setAttribute('aria-label','Thay đổi '+spec.label);
+  const row=el('tr'),check=document.createElement('input');check.type='checkbox';check.id='vary-'+key;check.checked=schema.default_vary.includes(key);check.disabled=spec.role==='objective'||(spec.options&&spec.options.length<2);check.setAttribute('aria-label','Thay đổi '+spec.label);
   const td=el('td');td.append(check);row.append(td);
   const name=el('td',spec.label);name.append(el('small',spec.unit+(spec.role==='objective'?' · Mục tiêu đánh giá':'')));row.append(name);
   const base=document.createElement(spec.options?'select':'input');base.id='base-'+key;base.setAttribute('aria-label','Giá trị '+spec.label);
@@ -100,7 +100,22 @@ async function execute(kind){
  let body;try{body=config();}catch(e){$('doe-error').textContent=e.message;return;}
  const seq=++revision;pending=true;setExports();$('doe-run').disabled=true;$('doe-preview').disabled=true;$('doe-error').textContent='';$('doe-status').textContent=kind==='run'?'Đang mô phỏng DOE…':'Đang tạo ma trận…';
  try{
-  const response=await fetch('/api/doe/'+kind,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(60000)});const data=await response.json();
+  const endpoint=projectContext&&kind==='run'?'/api/workspace/experiments':'/api/doe/'+kind;
+  const payload=projectContext&&kind==='run'?{design_id:projectContext.design.id,config:body,name:$('project-experiment-name').value}:body;
+  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(60000)});let data=await response.json();
+  if(!response.ok)throw Error(data.error||response.statusText);
+  if(projectContext&&kind==='run'){
+   const id=data.id;
+   for(;;){
+    const stateResponse=await fetch('/api/workspace/experiments/'+id,{signal:AbortSignal.timeout(15000)});const state=await stateResponse.json();
+    if(!stateResponse.ok)throw Error(state.error||'Không tải được DOE');
+    if(state.status==='completed'){data=state.report;break;}
+    if(['failed','interrupted'].includes(state.status))throw Error('DOE '+state.status+' · xem issue trong dashboard dự án');
+    if(seq!==revision)return;
+    $('doe-status').textContent=`DOE ${state.status} · đang chạy ${state.counts.running||0} · hoàn tất ${state.counts.completed||0} · xem được tại dashboard dự án`;
+    await new Promise(resolve=>setTimeout(resolve,300));
+   }
+  }
   if(seq!==revision)return;if(!response.ok)throw Error(data.error||response.statusText);
   report=data;render();$('doe-status').textContent=`${kind==='run'?'Đã chạy':'Đã lập ma trận'} ${data.run_count} runs · seed ${data.config.seed} · dữ liệu tổng hợp ${data.model_version}`;
  }catch(e){if(seq===revision){$('doe-error').textContent=e.message;$('doe-status').textContent='Chưa hoàn tất · kiểm tra cấu hình hoặc kết nối.';}}
@@ -108,11 +123,11 @@ async function execute(kind){
 }
 function save(name,body,type){const url=URL.createObjectURL(new Blob([body],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function csv(){
- const metricKeys=[...Object.keys(schema.metrics),'energy_target_met','eol_censored','completed_cycles','cell_mass_g','cathode_porosity','cathode_thickness_um'];
- const headers=['experiment_id','model_version','data_origin','calibrated','seed','cycles','variation_percent','design_id','run_id','run_order','replicate','ml_split','status','reason',...Object.keys(schema.factors),...metricKeys];
- const quote=v=>'"'+String(v??'').replaceAll('"','""')+'"';
+ const metricKeys=[...Object.keys(schema.metrics),'energy_target_met','eol_censored','completed_cycles','cell_mass_g','cathode_porosity','cathode_thickness_um','nominal_voltage_v','capacity_033c_ah','capacity_1c_ah','areal_capacity_mah_cm2'];
+ const headers=['experiment_id','project_id','worksheet_id','worksheet_revision','workspace_experiment_id','model_version','data_origin','calibrated','seed','cycles','variation_percent','design_id','run_id','run_order','replicate','ml_split','status','reason',...Object.keys(schema.factors),...metricKeys];
+ const quote=v=>{let s=String(v??'');if(typeof v==='string'&&/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};
  const lines=report.runs.map(r=>{
-  const row={experiment_id:report.experiment_id,model_version:report.model_version,data_origin:report.data_origin,calibrated:false,seed:report.config.seed,cycles:report.config.cycles,variation_percent:report.config.variation_percent,...r,...r.inputs,...(r.metrics||{})};
+  const row={experiment_id:report.experiment_id,project_id:report.project_context?.project.id,worksheet_id:report.project_context?.worksheet_id,worksheet_revision:report.project_context?.revision,workspace_experiment_id:report.workspace_experiment_id,model_version:report.model_version,data_origin:report.data_origin,calibrated:false,seed:report.config.seed,cycles:report.config.cycles,variation_percent:report.config.variation_percent,...r,...r.inputs,...(r.metrics||{})};
   return headers.map(k=>quote(row[k])).join(',');
  });save(`doe-${report.experiment_id}.csv`,'\uFEFF'+headers.join(',')+'\r\n'+lines.join('\r\n'),'text/csv;charset=utf-8');
 }
@@ -122,4 +137,20 @@ $('doe-method').addEventListener('change',()=>{$('doe-samples').disabled=$('doe-
 $('doe-metric').addEventListener('change',()=>{if(report?.effects)drawEffects();});
 $('doe-csv').addEventListener('click',csv);$('doe-json').addEventListener('click',()=>save(`doe-${report.experiment_id}.json`,JSON.stringify(report,null,2),'application/json'));
 new ResizeObserver(()=>{if(report?.effects){drawEffects();drawScatter();drawSelected();}}).observe($('doe-results'));
-try{const response=await fetch('/api/doe/schema');if(!response.ok)throw Error('Không tải được DOE schema');schema=await response.json();factors();for(const [key,label] of Object.entries(schema.metrics))$('doe-metric').add(new Option(label,key));$('doe-samples').disabled=true;$('doe-status').textContent='Sẵn sàng · mặc định 16 tổ hợp × 500 chu kỳ.';}catch(e){$('doe-error').textContent=e.message;$('doe-run').disabled=true;$('doe-preview').disabled=true;}
+try{
+ const response=await fetch('/api/doe/schema');if(!response.ok)throw Error('Không tải được DOE schema');schema=await response.json();
+ const query=new URLSearchParams(location.search),designId=query.get('design');
+ if(designId){
+  const contextResponse=await fetch('/api/workspace/designs/'+encodeURIComponent(designId));projectContext=await contextResponse.json();
+  if(!contextResponse.ok)throw Error(projectContext.error);
+  if(!projectContext.design.validation.simulation_supported)throw Error('Hồ sơ cell còn issue chặn mô phỏng; sửa trong trang dự án.');
+  for(const [key,value] of Object.entries(projectContext.baseline))schema.factors[key].baseline=value;
+  for(const [key,list] of [['cathode',projectContext.allowed_cathodes],['anode',projectContext.allowed_anodes],['electrolyte',projectContext.allowed_electrolytes]]){schema.factors[key].options=list;schema.factors[key].levels=list.slice(0,2);}
+  schema.default_vary=Object.keys(projectContext.default_vary);
+  for(const [key,levels] of Object.entries(projectContext.default_vary))schema.factors[key].levels=levels;
+  $('project-return').href='projects.html?project='+projectContext.design.project_id;
+  const box=$('doe-project-context');box.hidden=false;box.append(el('h3',projectContext.design.project.name+' · '+projectContext.design.name+' · rev '+projectContext.design.revision));
+  const label=el('label','Tên lần chạy DOE '),input=document.createElement('input');input.id='project-experiment-name';input.value=projectContext.design.name+' DOE';input.maxLength=100;label.append(input);box.append(label,el('p','Kết quả và issue được lưu trong workspace SQLite. Các trường BOM ghi nhận riêng không tự tạo ảnh hưởng vật lý nếu chưa có mô hình hiệu chuẩn.'));
+ }
+ factors();for(const [key,label] of Object.entries(schema.metrics))$('doe-metric').add(new Option(label,key));$('doe-samples').disabled=true;$('doe-status').textContent=projectContext?'Sẵn sàng · DOE theo dự án đã chọn.':'Sẵn sàng · mặc định 16 tổ hợp × 500 chu kỳ.';
+}catch(e){$('doe-error').textContent=e.message;$('doe-run').disabled=true;$('doe-preview').disabled=true;}

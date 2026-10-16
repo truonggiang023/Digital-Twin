@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOE · Cell Design Performance</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="doe.css"></head>
 <body>
-<header><div><span class="eyebrow">DIGITAL TWIN / DESIGN OF EXPERIMENTS</span><h1>Cell Design · DOE <span>So sánh thiết kế / chuẩn bị ML optimization</span></h1></div><a class="nav-link" href="/">← Cycler dashboard</a></header>
+<header><div><span class="eyebrow">DIGITAL TWIN / DESIGN OF EXPERIMENTS</span><h1>Cell Design · DOE <span>So sánh thiết kế / chuẩn bị ML optimization</span></h1></div><a class="nav-link" href="projects.html" id="project-return">← Dự án / Performance</a><a class="nav-link" href="index.html">Cycler 3D</a></header>
 <main>
+<section id="doe-project-context" class="panel doe-intro" hidden></section>
 <section class="panel doe-intro"><h2>Thiết kế cell → ma trận thí nghiệm → performance</h2><p>Chọn yếu tố cần thay đổi, nhập các mức thử và xem trước ma trận trước khi chạy. Mỗi phương án được tính năng lượng, nhiệt, nội trở và suy giảm qua chu kỳ.</p><p class="model-note">Mô hình đáp ứng tổng hợp minh họa, chưa hiệu chuẩn: kết quả không phải phép đo hoặc dự báo ML đã kiểm chứng. Không dùng mô hình NASA để suy luận ảnh hưởng vật liệu. Energy Density Target là mục tiêu năng lượng riêng cell (Wh/kg), không phải biến vật lý ép năng lượng tăng. Mật độ điện cực (g/cm³) là thông số riêng; độ xốp và độ dày cathode được tính từ thiết kế.</p></section>
 <form id="doe-form">
  <section class="panel doe-settings"><h3>1 · Chọn phương pháp và điều kiện thử</h3><div class="scenario">
